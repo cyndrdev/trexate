@@ -105,6 +105,11 @@ public class SoundEngine : MonoBehaviour {
         StartCoroutine(PlayAndDelete(audioObj));
     }
 
+    public void PlayRandomSFX(string baseclip, int start, int end, bool varyPitch=true)
+    {
+        PlaySFX(baseclip + Random.Range(start, end + 1).ToString(), varyPitch);
+    }
+
     public IEnumerator FadeMusicIn(AudioSource track)
     {
         track.volume = 0f;

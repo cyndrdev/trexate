@@ -16,17 +16,27 @@ public class PlayerController : MonoBehaviour
     [Range(0f, 1f)]
     private float _aimSpeed = 0.9f;
 
+    [SerializeField]
+    [Range(0.5f, 100f)]
+    private float _shotsPerSecond = 10f;
+
     private Vector2 _velocity;
     private Vector2 _aimDirection;
     private float _aimAngle;
 
     private static InputManager _inputManager;
+    private static SoundEngine _soundEngine;
     private bool _isFiring;
+
+    private IEnumerator _fireContinuously;
 
     void Start()
     {
         _inputManager = Game.Instance.InputManager;
-        _inputManager.Primary.AddListener(Fire);
+        _soundEngine = Game.Instance.SoundEngine;
+
+        _inputManager.Primary.AddListener(ChangeFireState);
+        _fireContinuously = FireContinuously();
     }
 
     private float relativeAngle(float angle)
@@ -65,8 +75,26 @@ public class PlayerController : MonoBehaviour
         transform.Translate(_velocity * Time.fixedDeltaTime);
     }
 
-    void Fire (bool down)
+    void ChangeFireState (bool down)
     {
         _isFiring = down;
+        if (_isFiring) StartCoroutine(_fireContinuously);
+        else StopCoroutine(_fireContinuously);
+    }
+
+    void Fire()
+    {
+        Debug.Log("pew!");
+        //_soundEngine.PlayRandomSFX("shoot", 1, 4, true);
+        _soundEngine.PlaySFX("shoot1", true);
+    }
+
+    private IEnumerator FireContinuously()
+    {
+        while(true)
+        {
+            Fire();
+            yield return new WaitForSeconds(1f / _shotsPerSecond);
+        }
     }
 }

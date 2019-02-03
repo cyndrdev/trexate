@@ -141,7 +141,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 121208050}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.40765172, y: 0.29312915, z: -0.02806494}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -199,9 +199,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sfxVolume: 1
   _musicVolume: 1
-  _sfxPitchVariance: 0.4
+  _sfxPitchVariance: 0.2
   _musicFadeTime: 3
-  _soundEffects: []
+  _soundEffects:
+  - {fileID: 8300000, guid: ad19654ae91abcc47bf6458c5cd80a18, type: 3}
+  - {fileID: 8300000, guid: 12d0bfd5444d83446925fb3ef56bcfbd, type: 3}
+  - {fileID: 8300000, guid: 8c1edffc1e0a64c468fc89bf6abbd43c, type: 3}
+  - {fileID: 8300000, guid: 9452c44a5513de240bacf7b733e6064d, type: 3}
+  - {fileID: 8300000, guid: c84e5cea3b8d36d4f86310b2abc8f650, type: 3}
   _musicTracks: []
 --- !u!114 &121208056
 MonoBehaviour:
@@ -392,3 +397,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxSpeed: 10
   _rigidness: 0.75
+  _aimSpeed: 0.9
+  _shotsPerSecond: 10
