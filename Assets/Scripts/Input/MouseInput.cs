@@ -18,9 +18,10 @@ public class MouseInput : MonoBehaviour, IInputMethod
     private void updateInput()
     {
         _leftStick = new Vector2(
-            Input.GetAxis(GameConstants.LeftHorizontal),
-            Input.GetAxis(GameConstants.LeftVertical)
-        ).normalized;
+            Input.GetAxisRaw(GameConstants.LeftHorizontal),
+            Input.GetAxisRaw(GameConstants.LeftVertical)
+        );
+        if (_leftStick.magnitude > 1f) _leftStick.Normalize();
 
         Vector2 mousePos = Camera.main.ViewportToWorldPoint(Input.mousePosition);
         Vector2 playerPos = _playerTransform.position;

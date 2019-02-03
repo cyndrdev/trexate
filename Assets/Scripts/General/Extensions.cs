@@ -11,6 +11,22 @@ namespace Extensions
     public static class Extensions
     {
         /// <summary>
+        /// Get a component or create one if it doesn't exist.
+        /// </summary>
+        /// <typeparam name="T">The type of component to find or create</typeparam>
+        /// <param name="component">the current component</param>
+        /// <returns>The found/created component</returns>
+        public static T GetOrAddComponent<T>(this Component child) where T: Component
+        {
+            T result = child.GetComponent<T>();
+            if (result == null)
+            {
+                result = child.gameObject.AddComponent<T>();
+            }
+            return result;
+        }
+
+        /// <summary>
         /// Find a GameObject with the given tag. Throws an exception if nothing
         /// is found.
         /// </summary>

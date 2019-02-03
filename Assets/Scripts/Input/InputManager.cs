@@ -4,6 +4,11 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
+public class ButtonEvent : UnityEvent<bool>
+{
+}
+
 public class InputManager : MonoBehaviour
 {
     [SerializeField]
@@ -13,9 +18,9 @@ public class InputManager : MonoBehaviour
     public Vector2 RightStick => _inputMethods[_currentInputMethod].GetRightStick();
     public Vector2 LeftStick => _inputMethods[_currentInputMethod].GetLeftStick();
 
-    public UnityEvent<bool> Primary;
-    public UnityEvent<bool> Secondary;
-    public UnityEvent<bool> Tertiary;
+    public UnityEvent<bool> Primary = new ButtonEvent();
+    public UnityEvent<bool> Secondary = new ButtonEvent();
+    public UnityEvent<bool> Tertiary = new ButtonEvent();
 
     public bool CheckForSwitch = false;
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class SoundEngine : Singleton<SoundEngine> {
+public class SoundEngine : MonoBehaviour {
     [SerializeField]
     float _sfxVolume = 1.0f;
 

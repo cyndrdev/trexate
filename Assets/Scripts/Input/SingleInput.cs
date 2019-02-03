@@ -15,14 +15,16 @@ public class SingleInput : MonoBehaviour, IInputMethod
     private void updateInput()
     {
         _rightStick = new Vector2(
-            Input.GetAxis(GameConstants.LeftHorizontal),
-            Input.GetAxis(GameConstants.LeftVertical)
-        ).normalized;
+            Input.GetAxisRaw(GameConstants.LeftHorizontal),
+            Input.GetAxisRaw(GameConstants.LeftVertical)
+        );
+        if (_rightStick.magnitude > 1f) _rightStick.Normalize();
 
         _leftStick = new Vector2(
-            Input.GetAxis(GameConstants.RightHorizontal),
-            Input.GetAxis(GameConstants.RightVertical)
-        ).normalized;
+            Input.GetAxisRaw(GameConstants.RightHorizontal),
+            Input.GetAxisRaw(GameConstants.RightVertical)
+        );
+        if (_leftStick.magnitude > 1f) _leftStick.Normalize();
 
         _buttons = new bool[3]
         {
