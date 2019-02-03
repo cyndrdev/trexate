@@ -23,7 +23,7 @@ public class MouseInput : MonoBehaviour, IInputMethod
         );
         if (_leftStick.magnitude > 1f) _leftStick.Normalize();
 
-        Vector2 mousePos = Camera.main.ViewportToWorldPoint(Input.mousePosition);
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 playerPos = _playerTransform.position;
         _rightStick = (mousePos - playerPos).normalized;
 
