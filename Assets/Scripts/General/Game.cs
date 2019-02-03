@@ -7,6 +7,7 @@ public class Game : MonoBehaviour
     public static Game Instance { get; private set; }
 
     public GameObject Persistant;
+    public Transform BulletRoot;
 
     public SoundEngine SoundEngine { get; private set; }
     public InputManager InputManager { get; private set; }

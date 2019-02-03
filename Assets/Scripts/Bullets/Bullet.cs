@@ -6,9 +6,13 @@ public class Bullet : MonoBehaviour
 {
     int _frameCounter = 0;
 
+    public void Start()
+    {
+        transform.parent = Game.Instance.BulletRoot;
+    }
+
     public void Update()
     {
-        Debug.Log("im updatin");
         // this check is expensive, only run it every 10 frames
         if (_frameCounter++ % 10 == 0)
         {

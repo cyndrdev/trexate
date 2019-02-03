@@ -19,13 +19,14 @@ public class PlayerBullet : Bullet
 
     float _startTime;
 
-    private void Start()
+    new private void Start()
     {
+        base.Start();
         _startTime = Time.time - (Mathf.Sqrt(2f) / 2f);
         transform.Translate(_spawnOffset * (Inverted ? 1f : -1f));
     }
 
-    void Update()
+    new void Update()
     {
         base.Update();
         var verticalMovement = Vector3.right * _speed * Time.deltaTime;
