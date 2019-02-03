@@ -28,8 +28,8 @@ public class SoundEngine : Singleton<SoundEngine> {
 
     public void Awake()
     {
-        UpdateVolumes();
-        PreloadMusic();
+        preloadMusic();
+        updateVolumes();
     }
 
     public void Start()
@@ -40,7 +40,7 @@ public class SoundEngine : Singleton<SoundEngine> {
         PlayMusic(_musicTracks.First().name);
     }
 
-    private void PreloadMusic()
+    private void preloadMusic()
     {
         foreach (AudioClip track in _musicTracks)
         {
@@ -55,12 +55,20 @@ public class SoundEngine : Singleton<SoundEngine> {
         }
     }
 
-    public void UpdateVolumes()
+    private void updateVolumes()
     {
         if (_currentMusic)
         {
             _currentMusic.GetComponent<AudioSource>().volume = _musicVolume;
         }
+    }
+
+    private float getRandomPitch()
+    {
+        return Random.Range(
+            (1f / (_sfxPitchVariance + 1f)),
+            (1f * (_sfxPitchVariance + 1f))
+            );
     }
 
     public IEnumerator PlayAndDelete(GameObject sfxObj)
@@ -88,11 +96,7 @@ public class SoundEngine : Singleton<SoundEngine> {
         audioObj.transform.parent = transform;
         audioObj.transform.localPosition = Vector3.zero;
 
-        float pitchMultiplier = varyPitch 
-            ? Random.Range(
-                1f - (_sfxPitchVariance / 2f), 
-                1f + (_sfxPitchVariance / 2f)) 
-            : 1f;
+        float pitchMultiplier = varyPitch ? getRandomPitch() : 1f;
         AudioSource audioSource = audioObj.AddComponent<AudioSource>();
         audioSource.clip = clip;
         audioSource.volume = _sfxVolume;
