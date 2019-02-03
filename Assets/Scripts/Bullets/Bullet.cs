@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     public void Update()
     {
         // this check is expensive, only run it every 10 frames
-        if (_frameCounter++ % 10 == 0)
+        if (_frameCounter++ % 20 == 0)
         {
             var viewportPos = Camera.main.WorldToViewportPoint(transform.position);
             if (isOffScreen(viewportPos.x) || isOffScreen(viewportPos.y))

@@ -33,4 +33,13 @@ public class PlayerBullet : Bullet
         var horizontalMovement = Vector3.up * Mathf.Sin((Time.time - _startTime) * _wobbleFrequency) * _wobbleAmount * Time.deltaTime;
         transform.Translate(verticalMovement + horizontalMovement * (Inverted ? 1f : -1f));
     }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        EnemyHeart enemy = collider.GetComponent<EnemyHeart>();
+        if (enemy == null) return;
+
+        enemy.DoDamage(1);
+        Destroy(this.gameObject);
+    }
 }
