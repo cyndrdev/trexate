@@ -6,9 +6,11 @@ using UnityEngine.Events;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    private float _maxSpeed = 5f;
+    private float _maxSpeed = 10f;
+
     [SerializeField]
-    private float _sloppiness = 0.1f;
+    [Range(0f, 1f)]
+    private float _rigidness = 0.77f;
 
     private Vector2 _velocity;
 
@@ -24,7 +26,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Vector3 targetVelocity = new Vector3(_inputManager.LeftStick.x, _inputManager.LeftStick.y) * _maxSpeed;
-        float lerpmod = Mathf.Clamp01(1f / (1f + _sloppiness) * Time.deltaTime * 6f);
+        float lerpmod = Mathf.Clamp01(_rigidness * _rigidness);
         _velocity = Vector3.Lerp(_velocity, targetVelocity, lerpmod);
     }
 
