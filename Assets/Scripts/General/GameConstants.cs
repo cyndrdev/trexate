@@ -1,5 +1,7 @@
 ﻿public class GameConstants
 {
-    public static string Horizontal = "Horizontal";
-    public static string Vertical = "Vertical";
+    public static string LeftHorizontal = "LeftHorizontal";
+    public static string LeftVertical = "LeftVertical";
+    public static string RightHorizontal = "RightHorizontal";
+    public static string RightVertical = "RightVertical";
 }
