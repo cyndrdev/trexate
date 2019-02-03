@@ -44,7 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e196c8fd830f342b261b394bec0265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Inverted: 0
+  _spawnOffset: {x: 0, y: 0, z: 0}
   _speed: 20
+  _wobbleAmount: 10
+  _wobbleFrequency: 70
 --- !u!1 &7919459331863912
 GameObject:
   m_ObjectHideFlags: 0
