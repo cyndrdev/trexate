@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Extensions;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class PlayerController : MonoBehaviour
     [Range(0.5f, 100f)]
     private float _shotsPerSecond = 10f;
 
+    [SerializeField]
+    private GameObject _playerBullet;
+
     private Vector2 _velocity;
     private Vector2 _aimDirection;
     private float _aimAngle;
@@ -37,6 +41,11 @@ public class PlayerController : MonoBehaviour
 
         _inputManager.Primary.AddListener(ChangeFireState);
         _fireContinuously = FireContinuously();
+
+        if (_playerBullet == null)
+        {
+            throw new System.Exception("[PlayerController]: no bullet prefab set for player!");
+        }
     }
 
     private float relativeAngle(float angle)
@@ -84,9 +93,12 @@ public class PlayerController : MonoBehaviour
 
     void Fire()
     {
-        Debug.Log("pew!");
+        //Debug.Log("pew!");
         //_soundEngine.PlayRandomSFX("shoot", 1, 4, true);
         _soundEngine.PlaySFX("shoot1", true);
+        GameObject bullet = Instantiate(_playerBullet, transform, true);
+        bullet.transform.position = transform.position;
+        bullet.transform.rotation = Quaternion.Euler(0, 0, _aimAngle.ToDegrees());
     }
 
     private IEnumerator FireContinuously()

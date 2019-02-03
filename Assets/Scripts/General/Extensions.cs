@@ -10,6 +10,9 @@ namespace Extensions
 {
     public static class Extensions
     {
+        public static float ToRadians(this float f) => Mathf.Deg2Rad * f;
+        public static float ToDegrees(this float f) => Mathf.Rad2Deg * f;
+
         /// <summary>
         /// Get a component or create one if it doesn't exist.
         /// </summary>
