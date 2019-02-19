@@ -20,6 +20,5 @@ public class BulletData : ScriptableObject
 
     public string movementBehaviour;
 
-    public bool isPlayerBullet;
     public bool explodeOnInpact;
 }
