@@ -9,6 +9,9 @@ public class Game : MonoBehaviour
     public GameObject Persistant;
     public Transform BulletRoot;
 
+    private GameObject _player;
+    public Vector3 PlayerPosition => _player.transform.position;
+
     public SoundEngine SoundEngine { get; private set; }
     public InputManager InputManager { get; private set; }
 
@@ -23,6 +26,8 @@ public class Game : MonoBehaviour
         Instance = this;
         SoundEngine = Persistant.GetComponent<SoundEngine>();
         InputManager = Persistant.GetComponent<InputManager>();
+
+        _player = GameObject.FindGameObjectWithTag(GameConstants.PlayerController);
 
         DontDestroyOnLoad(this.gameObject);
     }
