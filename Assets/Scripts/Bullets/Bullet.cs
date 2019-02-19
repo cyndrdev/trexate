@@ -1,32 +1,57 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Extensions;
 
 public class Bullet : MonoBehaviour
 {
-    int _frameCounter = 0;
+    public BulletData _data;
 
-    public void Start()
-    {
-        transform.parent = Game.Instance.BulletRoot;
-    }
+    private GameObject _graphicsHolder;
+    private SpriteRenderer _renderer;
+    private Collider2D _collider;
 
-    public void Update()
+    Collider2D CreateCollider(BulletShape shape)
     {
-        // this check is expensive, only run it every 10 frames
-        if (_frameCounter++ % 20 == 0)
+        switch (shape)
         {
-            var viewportPos = Camera.main.WorldToViewportPoint(transform.position);
-            if (isOffScreen(viewportPos.x) || isOffScreen(viewportPos.y))
-            {
-                Destroy(this.gameObject);
-            }
+            case BulletShape.Circle:
+                var circleCollider = this.GetOrAddComponent<CircleCollider2D>();
+                return circleCollider;
+            case BulletShape.Square:
+                var squareCollider = this.GetOrAddComponent<BoxCollider2D>();
+                return squareCollider;
+            case BulletShape.Rectangle:
+                var rectangleCollider = this.GetOrAddComponent<BoxCollider2D>();
+                return rectangleCollider;
+            default:
+                BoxCollider2D fallbackCollider = this.GetOrAddComponent<BoxCollider2D>();
+                return fallbackCollider;
         }
     }
 
-    private bool isOffScreen(float f)
+    void Awake()
     {
-        float diff = 0.5f - Mathf.Abs(f - 0.5f);
-        return diff < -GameConstants.BulletOffScreenMargin;
+        _graphicsHolder = transform.GetChild(0).gameObject;
+
+        _renderer = this.Find<SpriteRenderer>(_graphicsHolder);
+        _collider = CreateCollider(_data.collisionShape);
+
+        _renderer.sprite = _data.sprite;
+
+        transform.parent = Game.Instance.BulletRoot;
+        transform.localScale = _data.scale * _data.collisionScale;
+        _graphicsHolder.transform.localScale = new Vector2(
+            1f / _data.collisionScale.x, 
+            1f / _data.collisionScale.y);
+    }
+
+    void Start()
+    {
+        
+    }
+
+    void Update()
+    {
     }
 }

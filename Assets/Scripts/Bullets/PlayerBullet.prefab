@@ -46,10 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Inverted: 0
-  _spawnOffset: {x: 0, y: 0, z: 0}
+  _spawnOffset: {x: 0, y: -0.35, z: 0}
   _speed: 20
-  _wobbleAmount: 10
-  _wobbleFrequency: 70
+  _wobbleAmount: 14
+  _wobbleFrequency: 40
 --- !u!58 &5746922069717375632
 CircleCollider2D:
   m_ObjectHideFlags: 0

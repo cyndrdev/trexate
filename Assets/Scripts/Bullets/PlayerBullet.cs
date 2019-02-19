@@ -22,7 +22,7 @@ public class PlayerBullet : Bullet
     new private void Start()
     {
         base.Start();
-        _startTime = Time.time - (Mathf.Sqrt(2f) / 2f);
+        _startTime = Time.time;
         transform.Translate(_spawnOffset * (Inverted ? 1f : -1f));
     }
 
