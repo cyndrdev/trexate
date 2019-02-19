@@ -151,5 +151,16 @@ namespace Extensions
 
         public static float ScaleToSignal(this float f)
             => (f - 0.5f) * 2.0f;
+
+        public static float GetRelativeAngle(this float a1, float a2)
+        {
+            float lowerBound = a2 - Mathf.PI;
+            float upperBound = a2 - Mathf.PI;
+
+            while (a1 > upperBound) a1 -= Mathf.PI * 2f;
+            while (a1 < lowerBound) a1 += Mathf.PI * 2f;
+
+            return a1;
+        }
     }
 }

@@ -10,5 +10,5 @@
     public static float BulletOffScreenMargin = 0.05f;
 
     /* === tags === */
-    public static string PlayerController = "PlayerController";
+    public static string PlayerController = "Player";
 }

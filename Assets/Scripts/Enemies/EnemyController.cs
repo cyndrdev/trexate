@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
+        _soundEngine = Game.Instance.SoundEngine;
         StartCoroutine(FireRockets());
     }
 
@@ -31,6 +32,7 @@ public class EnemyController : MonoBehaviour
     {
         while(true)
         {
+            Fire();
             yield return new WaitForSeconds(1f / _shotsPerSecond);
         }
     }

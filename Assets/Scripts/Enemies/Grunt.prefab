@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2895852401441034886}
   - component: {fileID: 2019077323625836546}
   - component: {fileID: 2019561875508055319}
+  - component: {fileID: 1673342460990790506}
   - component: {fileID: 4979324895003096578}
   m_Layer: 10
   m_Name: Grunt
@@ -73,6 +74,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHitPoints: 10
+--- !u!114 &1673342460990790506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3181416036016691506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c32b1b88a453446b659158e95413e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shotsPerSecond: 1
+  _rocket: {fileID: 1709829447939208417, guid: 14780c5f97d55154788dc6151189ccf7, type: 3}
 --- !u!50 &4979324895003096578
 Rigidbody2D:
   serializedVersion: 4

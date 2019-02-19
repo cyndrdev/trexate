@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class EnemyBullet : Bullet
 {
+    protected private void Update()
+    {
+        var verticalMovement = Vector3.right * Time.deltaTime;
+        var horizontalMovement = Vector3.up * Time.deltaTime;
+        transform.Translate(verticalMovement + horizontalMovement);
+        base.Update();
+        print("henlo from enemybullet");
+    }
+
     protected virtual void OnHit()
     {
         Destroy(this.gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    protected void OnTriggerEnter2D(Collider2D collider)
     {
         PlayerHeart player = collider.GetComponent<PlayerHeart>();
         if (player == null) return;

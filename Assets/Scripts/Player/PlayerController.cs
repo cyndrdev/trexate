@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         float lerpmod = Mathf.Clamp01(_rigidness * _rigidness);
         _velocity = Vector3.Lerp(_velocity, targetVelocity, lerpmod);
 
-        float targetAngle = relativeAngle(Mathf.Atan2(_inputManager.RightStick.y, _inputManager.RightStick.x));
+        float targetAngle = Mathf.Atan2(_inputManager.RightStick.y, _inputManager.RightStick.x).GetRelativeAngle(_aimAngle);
         _aimAngle = Mathf.Lerp(_aimAngle, targetAngle, _aimSpeed);
 
         while (_aimAngle < Mathf.PI) _aimAngle += Mathf.PI * 2f;
