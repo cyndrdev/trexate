@@ -15,6 +15,12 @@ public class Bullet : MonoBehaviour
     private SpriteRenderer _renderer;
     private Collider2D _collider;
 
+    private System.Func<float, Vector2> _simplePositionFunc;
+    private MonoBehaviour _smartPositionFunc;
+
+    private float _startTime;
+    private bool _playerBullet = true;
+
     Collider2D CreateCollider(BulletShape shape)
     {
         switch (shape)
@@ -51,17 +57,23 @@ public class Bullet : MonoBehaviour
         switch(_owner.layer)
         {
             case GameConstants.PlayerLayer:
+                _playerBullet = true;
                 newLayer = GameConstants.PlayerBulletLayer;
                 break;
             case GameConstants.EnemyLayer:
+                _playerBullet = false;
                 newLayer = GameConstants.EnemyBulletLayer;
                 break;
             default:
-                newLayer = GameConstants.EnemyBulletLayer;
+                _playerBullet = false;
                 Debug.LogWarning("Bullet's parent is not on either the player or enemy layer, defaulting to enemy.");
                 break;
         }
-        this.gameObject.layer = newLayer;
+
+        this.gameObject.layer = 
+            _playerBullet ? 
+            GameConstants.PlayerBulletLayer : 
+            GameConstants.EnemyBulletLayer;
 
         /* === references === */
         // get our references
@@ -80,9 +92,22 @@ public class Bullet : MonoBehaviour
         _graphicsHolder.transform.localScale = new Vector2(
             1f / _data.collisionScale.x, 
             1f / _data.collisionScale.y);
+
+        /* === movement === */
+        // FIXME: get movement from a database or smth
+        // after this point, either _smartPositionFunc or _simplePositionFunc will be set
+        _startTime = Time.time;
     }
 
     void Update()
+    {
+        if (_smartPositionFunc != null)
+            return; // let our seperate movement monobehaviour deal with this
+
+        transform.localPosition = _simplePositionFunc(_startTime - Time.time);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
     }
 }
