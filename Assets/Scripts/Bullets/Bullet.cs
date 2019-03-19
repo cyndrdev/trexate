@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
 
     private Vector2 _origin;
     private float _originRotation;
+    private bool _flipX = false;
 
     private GameObject _graphicsHolder;
     private SpriteRenderer _renderer;
@@ -45,7 +46,7 @@ public class Bullet : MonoBehaviour
     }
 
     /* === PUBLIC METHODS === */
-    public void Shoot(GameObject parent, Vector2 offset, float rotationOffset)
+    public void Shoot(GameObject parent, Vector2 offset, float rotationOffset, bool flipX)
     {
         if (!_initialized)
             Debug.LogError("[Bullet]: Tried to shoot an uninitialized bullet!");
@@ -53,19 +54,23 @@ public class Bullet : MonoBehaviour
         _origin = offset;
         _originRotation = rotationOffset;
         _owner = parent;
+        _flipX = flipX;
 
         gameObject.SetActive(true);
     }
 
     // perform all instantiation unique to our BulletData
-    public void Initialize(BulletData data)
+    public void Initialize(BulletData data, Transform root)
     {
         // set our bulletdata
         _data = data;
 
         /* === transform setup === */
         // make sure we're children of the bulletroot object
-        transform.parent = Game.Instance.BulletRoot;
+        if (root == null)
+            transform.parent = Game.Instance.BulletRoot;
+        else
+            transform.parent = root;
 
         /* === references === */
         // keep a reference to our gameobject
@@ -107,6 +112,14 @@ public class Bullet : MonoBehaviour
         _object.transform.localPosition = _origin + position.Rotate(_originRotation);
     }
 
+    private void UpdatePosition(float t)
+    {
+        t *= _data.timeScale;
+        Vector2 pos = _simplePositionFunc(t) * _data.movementScale;
+        if (_flipX) pos *= new Vector2(-1f, 1f);
+        SetTransform(pos);
+    }
+
     /* === UNITY STATE METHODS === */
     // perform any init unique to this instantiation.
     void OnEnable()
@@ -144,7 +157,7 @@ public class Bullet : MonoBehaviour
 
         /* === movement === */
         // FIXME: get movement from a database or smth
-        _simplePositionFunc = t => new Vector2(10 * t, 0);
+        _simplePositionFunc = BulletBehaviours.sinusoidal;
         SetTransform(_simplePositionFunc(0f));
 
         // after this point, either _smartPositionFunc or _simplePositionFunc will be set
@@ -175,10 +188,24 @@ public class Bullet : MonoBehaviour
             return;
         }
 
-        SetTransform(_simplePositionFunc(t));
+        UpdatePosition(t);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        EnemyHeart enemyHeart = collision.GetComponent<EnemyHeart>();
+        PlayerHeart playerHeart = collision.GetComponent<PlayerHeart>();
+
+        // FIXME: make this more generic?
+        if (_playerBullet && enemyHeart != null)
+        {
+            enemyHeart.DoDamage(1);
+            gameObject.SetActive(false);
+        }
+        else if (!_playerBullet && playerHeart != null)
+        {
+            playerHeart.Hit();
+            gameObject.SetActive(false);
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace Extensions
         public static float ToDegrees(this float f) => Mathf.Rad2Deg * f;
 
         public static Vector2 Rotate(this Vector2 vector, float degrees)
-            => Quaternion.Euler(0, 0, degrees) * vector;
+            => Quaternion.Euler(0, 0, degrees - 90f) * vector;
 
         /// <summary>
         /// Get a component or create one if it doesn't exist.

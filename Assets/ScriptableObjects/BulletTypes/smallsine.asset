@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6877e2bfe46e7504eaf7fb0c695c9490, type: 3}
   m_Name: smallsine
   m_EditorClassIdentifier: 
-  sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   scale: {x: 1, y: 1}
-  lifetime: 1
   collisionShape: 1
   collisionScale: {x: 1, y: 1}
+  lifetime: 1
   movementBehaviour: sinusoidal
   explodeOnInpact: 0
+  movementScale: {x: 0.1, y: 0.1}
+  timeScale: 100

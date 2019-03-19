@@ -11,11 +11,20 @@ public class BulletFactory : MonoBehaviour
         _bank = new Dictionary<BulletData, List<Bullet>>();
     }
 
-    public void Shoot(GameObject parent, BulletData data, Vector2 offset, float rotationOffset)
+    public void Shoot(GameObject parent, BulletData data, Vector2 offset, float rotationOffset, bool flipX)
     {
+        GameObject vaultObject = null;
         // if this bullet hasn't been fired before, fire it!
         if (!_bank.ContainsKey(data))
+        {
             _bank.Add(data, new List<Bullet>());
+            vaultObject = new GameObject(data.name);
+            vaultObject.transform.parent = Game.Instance.BulletRoot;
+        }
+        else
+        {
+            vaultObject = Game.Instance.BulletRoot.Find(data.name).gameObject;
+        }
 
         List<Bullet> vault = _bank[data];
 
@@ -36,19 +45,20 @@ public class BulletFactory : MonoBehaviour
         {
             GameObject newObject = new GameObject("Bullet");
             newBullet = newObject.AddComponent<Bullet>();
-            newBullet.Initialize(data);
+            newBullet.Initialize(data, vaultObject.transform);
             vault.Add(newBullet);
         }
 
-        newBullet.Shoot(parent, offset, rotationOffset);
+        // shoot our bullet!
+        newBullet.Shoot(parent, offset, rotationOffset, flipX);
     }
 }
 
 public static class BulletExtensions
 {
     public static void Shoot(this GameObject parent, BulletData data)
-        => Game.Instance.BulletFactory.Shoot(parent, data, new Vector2(0,0), 0f);
+        => Game.Instance.BulletFactory.Shoot(parent, data, new Vector2(0,0), 0f, false);
 
-    public static void Shoot(this GameObject parent, BulletData data, Vector2 offset, float rotationOffset)
-        => Game.Instance.BulletFactory.Shoot(parent, data, offset, rotationOffset);
+    public static void Shoot(this GameObject parent, BulletData data, Vector2 offset, float rotationOffset, bool flipX = false)
+        => Game.Instance.BulletFactory.Shoot(parent, data, offset, rotationOffset, flipX);
 }

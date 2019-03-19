@@ -96,23 +96,10 @@ public class PlayerController : MonoBehaviour
 
     void Fire()
     {
-        gameObject.Shoot(_bulletData, new Vector2(0, 0), _aimAngle.ToDegrees());
-        //Debug.Log("pew!");
-        //_soundEngine.PlayRandomSFX("shoot", 1, 4, true);
-        /*
+        Debug.Log(_aimAngle.ToDegrees());
         _soundEngine.PlaySFX("shoot1", true);
-        Quaternion _rotation = Quaternion.Euler(0, 0, _aimAngle.ToDegrees());
-
-        GameObject leftBullet = Instantiate(_playerBullet);
-        GameObject rightBullet = Instantiate(_playerBullet);
-
-        leftBullet.transform.position = transform.position;
-        leftBullet.transform.rotation = _rotation;
-
-        rightBullet.transform.position = transform.position;
-        rightBullet.transform.rotation = _rotation;
-        rightBullet.GetComponent<PlayerBullet>().Inverted = true;
-        */
+        gameObject.Shoot(_bulletData, new Vector2(0, 0), _aimAngle.ToDegrees(), true);
+        gameObject.Shoot(_bulletData, new Vector2(0, 0), _aimAngle.ToDegrees(), false);
     }
 
     private IEnumerator FireContinuously()

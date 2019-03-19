@@ -12,15 +12,20 @@ public enum BulletShape
 [CreateAssetMenu(fileName = "Data", menuName = "Bullet", order = 1)]
 public class BulletData : ScriptableObject
 {
+    [Header("General")]
+    public float lifetime;
+
+    [Header("Visuals")]
     public Sprite sprite;
     public Vector2 scale;
 
-    public float lifetime;
-
+    [Header("Collision")]
     public BulletShape collisionShape;
     public Vector2 collisionScale;
 
+    [Header("Behaviour")]
     public string movementBehaviour;
-
+    public Vector2 movementScale;
+    public float timeScale;
     public bool explodeOnInpact;
 }
