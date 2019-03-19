@@ -12,8 +12,10 @@ public class MouseInput : MonoBehaviour, IInputMethod
     private Vector2 _rightStick;
     private bool[] _buttons;
 
+#pragma warning disable 0649
     [SerializeField]
     private Transform _playerTransform;
+#pragma warning restore 0649
     
     private void updateInput()
     {

@@ -22,6 +22,8 @@ public class Bullet : MonoBehaviour
     private System.Func<float, Vector2> _simplePositionFunc;
     private MonoBehaviour _smartPositionFunc;
 
+    private SoundEngine _soundEngine;
+
     private float _startTime;
     private bool _playerBullet = true;
 
@@ -80,6 +82,8 @@ public class Bullet : MonoBehaviour
         /* === references === */
         // keep a reference to our gameobject
         _object = gameObject;
+
+        _soundEngine = Game.Instance.SoundEngine;
 
         // set our graphicsholder object
         if (transform.childCount == 0)
@@ -235,16 +239,16 @@ public class Bullet : MonoBehaviour
         EnemyHeart enemyHeart = collision.GetComponent<EnemyHeart>();
         PlayerHeart playerHeart = collision.GetComponent<PlayerHeart>();
 
-        // FIXME: make this more generic?
-        if (_playerBullet && enemyHeart != null)
+        bool playerHit = (!_playerBullet && playerHeart != null);
+        bool enemyHit = (_playerBullet && enemyHeart != null);
+
+        if (playerHit) playerHeart.Hit();
+        if (enemyHit) enemyHeart.DoDamage(1);
+
+        if (playerHit || enemyHit)
         {
-            enemyHeart.DoDamage(1);
             gameObject.SetActive(false);
-        }
-        else if (!_playerBullet && playerHeart != null)
-        {
-            playerHeart.Hit();
-            gameObject.SetActive(false);
+            if (_data.explodeOnInpact) _soundEngine.PlaySFX("explosion");
         }
     }
 }

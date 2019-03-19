@@ -21,11 +21,13 @@ public class PlayerController : MonoBehaviour
     [Range(0.5f, 100f)]
     private float _shotsPerSecond = 10f;
 
+#pragma warning disable 0649
     [SerializeField]
     private GameObject _playerBullet;
 
     [SerializeField]
     private BulletData _bulletData;
+#pragma warning restore 0649
 
     private Vector2 _velocity;
     private Vector2 _aimDirection;
