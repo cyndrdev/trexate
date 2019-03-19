@@ -15,6 +15,8 @@ public class BulletData : ScriptableObject
     public Sprite sprite;
     public Vector2 scale;
 
+    public float lifetime;
+
     public BulletShape collisionShape;
     public Vector2 collisionScale;
 

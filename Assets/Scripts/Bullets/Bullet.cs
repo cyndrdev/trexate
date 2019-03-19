@@ -43,13 +43,24 @@ public class Bullet : MonoBehaviour
     }
 
     /* === PUBLIC METHODS === */
-    public void Shoot(GameObject parent, Vector2 offset, float RotationOffset)
+    public bool CheckLifetime()
+    {
+        // don't check if we're already disabled
+        if (!gameObject.activeInHierarchy) return false;
+
+        bool needsDisabling = (Time.time - _startTime >= _data.lifetime);
+        gameObject.SetActive(!needsDisabling);
+
+        return needsDisabling;
+    }
+
+    public void Shoot(GameObject parent, Vector2 offset, float rotationOffset)
     {
         transform.SetPositionAndRotation(
             offset,
-            Quaternion.Euler(new Vector3(0, RotationOffset, 0)));
+            Quaternion.Euler(new Vector3(0, rotationOffset, 0)));
         _owner = parent;
-        enabled = true;
+        gameObject.SetActive(true);
     }
 
     public void Shoot(GameObject parent)
@@ -103,16 +114,13 @@ public class Bullet : MonoBehaviour
         transform.SetPositionAndRotation(_origin, _originRotation);
 
         // detect whether our owner is a player or enemy
-        int newLayer;
         switch(_owner.layer)
         {
             case GameConstants.PlayerLayer:
                 _playerBullet = true;
-                newLayer = GameConstants.PlayerBulletLayer;
                 break;
             case GameConstants.EnemyLayer:
                 _playerBullet = false;
-                newLayer = GameConstants.EnemyBulletLayer;
                 break;
             default:
                 _playerBullet = false;

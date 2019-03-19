@@ -6,12 +6,30 @@ public class BulletFactory : MonoBehaviour
 {
     private Dictionary<BulletData, List<Bullet>> _bank;
 
+    // bullet lifetimes are managed on a cyclical level to reduce load. smaller numbers are more performance
+    // intensive.
+    public int _cycleSize = 10;
+    private int _cycleCount = 0;
+
     void Awake()
     {
         _bank = new Dictionary<BulletData, List<Bullet>>();
     }
 
-    public void Shoot(GameObject parent, BulletData data)
+    void Update()
+    {
+        // check lifetimes of bullets in batches
+        foreach (var bullets in _bank.Values)
+        {
+            for (int i = _cycleCount; i < bullets.Count; i += _cycleSize)
+            {
+                bullets[i].CheckLifetime();
+            }
+        }
+        _cycleCount = (_cycleCount + 1) % _cycleSize;
+    }
+
+    public void Shoot(GameObject parent, BulletData data, Vector2 offset, float rotationOffset)
     {
         // if this bullet hasn't been fired before, fire it!
         if (!_bank.ContainsKey(data))
@@ -38,11 +56,16 @@ public class BulletFactory : MonoBehaviour
             newBullet = newObject.AddComponent<Bullet>();
             vault.Add(newBullet);
         }
+
+        newBullet.Shoot(parent, offset, rotationOffset);
     }
 }
 
 public static class BulletExtensions
 {
     public static void Shoot(this GameObject parent, BulletData data)
-        => Game.Instance.BulletFactory.Shoot(parent, data);
+        => Game.Instance.BulletFactory.Shoot(parent, data, new Vector2(0,0), 0f);
+
+    public static void Shoot(this GameObject parent, BulletData data, Vector2 offset, float rotationOffset)
+        => Game.Instance.BulletFactory.Shoot(parent, data, offset, rotationOffset);
 }
