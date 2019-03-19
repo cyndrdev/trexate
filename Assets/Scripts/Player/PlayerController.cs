@@ -96,7 +96,6 @@ public class PlayerController : MonoBehaviour
 
     void Fire()
     {
-        Debug.Log(_aimAngle.ToDegrees());
         _soundEngine.PlaySFX("shoot1", true);
         gameObject.Shoot(_bulletData, new Vector2(0, 0), _aimAngle.ToDegrees(), true);
         gameObject.Shoot(_bulletData, new Vector2(0, 0), _aimAngle.ToDegrees(), false);

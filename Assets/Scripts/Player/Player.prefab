@@ -53,6 +53,7 @@ MonoBehaviour:
   _shotsPerSecond: 10
   _playerBullet: {fileID: 7919458798951029, guid: 5a170d49aaffb3145bcc2d7218c90898,
     type: 3}
+  _bulletData: {fileID: 11400000, guid: b7f46bcf38c0e9f4cb57f3cec0484701, type: 2}
 --- !u!114 &6102435787397852072
 MonoBehaviour:
   m_ObjectHideFlags: 0

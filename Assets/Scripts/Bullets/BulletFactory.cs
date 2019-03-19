@@ -9,6 +9,7 @@ public class BulletFactory : MonoBehaviour
     void Awake()
     {
         _bank = new Dictionary<BulletData, List<Bullet>>();
+        StartCoroutine(DoDiagnostics());
     }
 
     public void Shoot(GameObject parent, BulletData data, Vector2 offset, float rotationOffset, bool flipX)
@@ -51,6 +52,26 @@ public class BulletFactory : MonoBehaviour
 
         // shoot our bullet!
         newBullet.Shoot(parent, offset, rotationOffset, flipX);
+    }
+
+    private IEnumerator DoDiagnostics()
+    {
+        while (true)
+        {
+            yield return new WaitForSecondsRealtime(10f);
+            int total = 0;
+            int active = 0;
+
+            foreach (var pair in _bank)
+            {
+                foreach (var bullet in pair.Value)
+                {
+                    total++;
+                    if (bullet.isActiveAndEnabled) active++;
+                }
+            }
+            Debug.Log("[BulletFactory]: " + active + " bullets active (" + total + " pooled)");
+        }
     }
 }
 

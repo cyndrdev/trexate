@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6877e2bfe46e7504eaf7fb0c695c9490, type: 3}
-  m_Name: smallsine
+  m_Name: smallprogressive
   m_EditorClassIdentifier: 
-  lifetime: 1
+  lifetime: 2
   sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   scale: {x: 1, y: 1}
-  collisionShape: 1
+  collisionShape: 0
   collisionScale: {x: 1, y: 1}
-  movementBehaviour: sinusoidal
-  movementScale: {x: 0.5, y: 0.5}
-  timeScale: 50
+  movementBehaviour: progressive
+  movementScale: {x: 1, y: 1}
+  timeScale: 15
   explodeOnInpact: 0
