@@ -60,7 +60,7 @@ public class Bullet : MonoBehaviour
     }
 
     // perform all instantiation unique to our BulletData
-    public void Initialize(BulletData data, Transform root)
+    public bool Initialize(BulletData data, Transform root)
     {
         // set our bulletdata
         _data = data;
@@ -102,8 +102,22 @@ public class Bullet : MonoBehaviour
             1f / _data.collisionScale.x, 
             1f / _data.collisionScale.y);
 
+        /* === movement === */
+        BulletBehaviours.Behaviours.TryGetValue(
+            _data.movementBehaviour, 
+            out _simplePositionFunc);
+
+        if (_simplePositionFunc == null)
+        {
+            Debug.LogError("[Bullet]: tried to initialize bullet with behaviour \""
+                + _data.movementBehaviour
+                + "\", but that behaviour doesn't exist.");
+            return false;
+        }
+
         /* === cleanup === */
         _initialized = true;
+        return true;
     }
 
     /* === PRIVATE METHODS === */
@@ -156,8 +170,6 @@ public class Bullet : MonoBehaviour
             GameConstants.EnemyBulletLayer;
 
         /* === movement === */
-        // FIXME: get movement from a database or smth
-        _simplePositionFunc = BulletBehaviours.sinusoidal;
         SetTransform(_simplePositionFunc(0f));
 
         // after this point, either _smartPositionFunc or _simplePositionFunc will be set
