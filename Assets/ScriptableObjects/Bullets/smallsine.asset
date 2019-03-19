@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   scale: {x: 1, y: 1}
-  lifetime: 10
+  lifetime: 1
   collisionShape: 1
   collisionScale: {x: 1, y: 1}
   movementBehaviour: sinusoidal

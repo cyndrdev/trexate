@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
 
     void Fire()
     {
-        gameObject.Shoot(_bulletData);
+        gameObject.Shoot(_bulletData, new Vector2(0, 0), _aimAngle.ToDegrees());
         //Debug.Log("pew!");
         //_soundEngine.PlayRandomSFX("shoot", 1, 4, true);
         /*

@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
     public GameObject _object { get; private set; }
 
     private Vector2 _origin;
-    private Quaternion _originRotation;
+    private float _originRotation;
 
     private GameObject _graphicsHolder;
     private SpriteRenderer _renderer;
@@ -45,34 +45,21 @@ public class Bullet : MonoBehaviour
     }
 
     /* === PUBLIC METHODS === */
-    public bool CheckLifetime()
-    {
-        // don't check if we're already disabled
-        if (!gameObject.activeInHierarchy) return false;
-
-        bool needsDisabling = (Time.time - _startTime >= _data.lifetime);
-        gameObject.SetActive(!needsDisabling);
-
-        return needsDisabling;
-    }
-
     public void Shoot(GameObject parent, Vector2 offset, float rotationOffset)
     {
-        Debug.Log("bullet shoot!");
-        transform.SetPositionAndRotation(
-            offset,
-            Quaternion.Euler(new Vector3(0, rotationOffset, 0)));
+        if (!_initialized)
+            Debug.LogError("[Bullet]: Tried to shoot an uninitialized bullet!");
+
+        _origin = offset;
+        _originRotation = rotationOffset;
         _owner = parent;
+
         gameObject.SetActive(true);
     }
-
-    public void Shoot(GameObject parent)
-        => Shoot(parent, new Vector2(0, 0), 0f);
 
     // perform all instantiation unique to our BulletData
     public void Initialize(BulletData data)
     {
-        Debug.Log("bullet init!");
         // set our bulletdata
         _data = data;
 
@@ -114,6 +101,12 @@ public class Bullet : MonoBehaviour
         _initialized = true;
     }
 
+    /* === PRIVATE METHODS === */
+    private void SetTransform(Vector2 position)
+    {
+        _object.transform.localPosition = _origin + position.Rotate(_originRotation);
+    }
+
     /* === UNITY STATE METHODS === */
     // perform any init unique to this instantiation.
     void OnEnable()
@@ -124,13 +117,10 @@ public class Bullet : MonoBehaviour
             return;
         }
 
-        Debug.Log("bullet enabled!");
-
         /* === transform setup === */
         // set our origin to be our owner's position
-        _origin = _owner.transform.position;
-        _originRotation = _owner.transform.rotation;
-        transform.SetPositionAndRotation(_origin, _originRotation);
+        _origin += (Vector2)_owner.transform.position;
+        _originRotation += _owner.transform.rotation.eulerAngles.z;
 
         // detect whether our owner is a player or enemy
         switch(_owner.layer)
@@ -154,11 +144,20 @@ public class Bullet : MonoBehaviour
 
         /* === movement === */
         // FIXME: get movement from a database or smth
-        _simplePositionFunc = t => new Vector2(0, t);
-        Debug.Log(_simplePositionFunc(1.0f));
+        _simplePositionFunc = t => new Vector2(10 * t, 0);
+        SetTransform(_simplePositionFunc(0f));
 
         // after this point, either _smartPositionFunc or _simplePositionFunc will be set
         _startTime = Time.time;
+    }
+
+    // teleport disabled bullets somewhere hidden
+    void OnDisable()
+    {
+        if (!_initialized)
+            return;
+
+        _object.transform.localPosition = new Vector2(-1000f, -1000f);
     }
 
     void Update()
@@ -169,8 +168,14 @@ public class Bullet : MonoBehaviour
         if (_smartPositionFunc != null)
             return; // let our seperate movement monobehaviour deal with this
 
-        Vector2 newPosition = _simplePositionFunc(_startTime - Time.time);
-        transform.localPosition = newPosition;
+        float t = Time.time - _startTime;
+        if (t >= _data.lifetime)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
+        SetTransform(_simplePositionFunc(t));
     }
 
     void OnTriggerEnter2D(Collider2D collision)

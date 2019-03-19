@@ -6,27 +6,9 @@ public class BulletFactory : MonoBehaviour
 {
     private Dictionary<BulletData, List<Bullet>> _bank;
 
-    // bullet lifetimes are managed on a cyclical level to reduce load. smaller numbers are more performance
-    // intensive.
-    public int _cycleSize = 10;
-    private int _cycleCount = 0;
-
     void Awake()
     {
         _bank = new Dictionary<BulletData, List<Bullet>>();
-    }
-
-    void Update()
-    {
-        // check lifetimes of bullets in batches
-        foreach (var bullets in _bank.Values)
-        {
-            for (int i = _cycleCount; i < bullets.Count; i += _cycleSize)
-            {
-                bullets[i].CheckLifetime();
-            }
-        }
-        _cycleCount = (_cycleCount + 1) % _cycleSize;
     }
 
     public void Shoot(GameObject parent, BulletData data, Vector2 offset, float rotationOffset)
