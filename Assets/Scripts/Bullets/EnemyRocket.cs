@@ -19,7 +19,6 @@ public class EnemyRocket : EnemyBullet
     // Start is called before the first frame update
     new void Start()
     {
-        base.Start();
         var aimDirection = (Game.Instance.PlayerPosition - transform.position).normalized;
         _aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x);
         StartCoroutine(Lifetime());

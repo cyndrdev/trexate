@@ -52,8 +52,9 @@ public class BulletFactory : MonoBehaviour
         // create a new one if it hasn't already been created
         if (newBullet == null)
         {
-            GameObject newObject = new GameObject();
+            GameObject newObject = new GameObject("Bullet");
             newBullet = newObject.AddComponent<Bullet>();
+            newBullet.Initialize(data);
             vault.Add(newBullet);
         }
 

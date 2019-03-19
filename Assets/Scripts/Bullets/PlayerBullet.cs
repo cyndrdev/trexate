@@ -21,14 +21,12 @@ public class PlayerBullet : Bullet
 
     new private void Start()
     {
-        base.Start();
         _startTime = Time.time;
         transform.Translate(_spawnOffset * (Inverted ? 1f : -1f));
     }
 
     new void Update()
     {
-        base.Update();
         var verticalMovement = Vector3.right * _speed * Time.deltaTime;
         var horizontalMovement = Vector3.up * Mathf.Sin((Time.time - _startTime) * _wobbleFrequency) * _wobbleAmount * Time.deltaTime;
         transform.Translate(verticalMovement + horizontalMovement * (Inverted ? 1f : -1f));

@@ -23,6 +23,8 @@ public class Bullet : MonoBehaviour
     private float _startTime;
     private bool _playerBullet = true;
 
+    private bool _initialized = false;
+
     Collider2D CreateCollider(BulletShape shape)
     {
         switch (shape)
@@ -56,6 +58,7 @@ public class Bullet : MonoBehaviour
 
     public void Shoot(GameObject parent, Vector2 offset, float rotationOffset)
     {
+        Debug.Log("bullet shoot!");
         transform.SetPositionAndRotation(
             offset,
             Quaternion.Euler(new Vector3(0, rotationOffset, 0)));
@@ -66,10 +69,13 @@ public class Bullet : MonoBehaviour
     public void Shoot(GameObject parent)
         => Shoot(parent, new Vector2(0, 0), 0f);
 
-    /* === UNITY STATE METHODS === */
     // perform all instantiation unique to our BulletData
-    void Awake()
+    public void Initialize(BulletData data)
     {
+        Debug.Log("bullet init!");
+        // set our bulletdata
+        _data = data;
+
         /* === transform setup === */
         // make sure we're children of the bulletroot object
         transform.parent = Game.Instance.BulletRoot;
@@ -81,15 +87,16 @@ public class Bullet : MonoBehaviour
         // set our graphicsholder object
         if (transform.childCount == 0)
         {
-            _graphicsHolder = new GameObject();
+            _graphicsHolder = new GameObject("Graphics");
             _graphicsHolder.transform.parent = transform;
+
+            _renderer = _graphicsHolder.AddComponent<SpriteRenderer>();
         }
         else
         {
             _graphicsHolder = transform.GetChild(0).gameObject;
+            _renderer = this.Find<SpriteRenderer>(_graphicsHolder);
         }
-
-        _renderer = this.Find<SpriteRenderer>(_graphicsHolder);
 
         // instantiate our colliders
         _collider = CreateCollider(_data.collisionShape);
@@ -102,11 +109,23 @@ public class Bullet : MonoBehaviour
         _graphicsHolder.transform.localScale = new Vector2(
             1f / _data.collisionScale.x, 
             1f / _data.collisionScale.y);
+
+        /* === cleanup === */
+        _initialized = true;
     }
 
+    /* === UNITY STATE METHODS === */
     // perform any init unique to this instantiation.
     void OnEnable()
     {
+        if (!_initialized)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
+        Debug.Log("bullet enabled!");
+
         /* === transform setup === */
         // set our origin to be our owner's position
         _origin = _owner.transform.position;
@@ -135,16 +154,23 @@ public class Bullet : MonoBehaviour
 
         /* === movement === */
         // FIXME: get movement from a database or smth
+        _simplePositionFunc = t => new Vector2(0, t);
+        Debug.Log(_simplePositionFunc(1.0f));
+
         // after this point, either _smartPositionFunc or _simplePositionFunc will be set
         _startTime = Time.time;
     }
 
     void Update()
     {
+        if (!_initialized)
+            return;
+
         if (_smartPositionFunc != null)
             return; // let our seperate movement monobehaviour deal with this
 
-        transform.localPosition = _simplePositionFunc(_startTime - Time.time);
+        Vector2 newPosition = _simplePositionFunc(_startTime - Time.time);
+        transform.localPosition = newPosition;
     }
 
     void OnTriggerEnter2D(Collider2D collision)

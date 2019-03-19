@@ -9,7 +9,6 @@ public class EnemyBullet : Bullet
         var verticalMovement = Vector3.right * Time.deltaTime;
         var horizontalMovement = Vector3.up * Time.deltaTime;
         transform.Translate(verticalMovement + horizontalMovement);
-        base.Update();
         print("henlo from enemybullet");
     }
 

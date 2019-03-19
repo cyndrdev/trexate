@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 121208053}
   - component: {fileID: 121208052}
   - component: {fileID: 121208055}
+  - component: {fileID: 121208057}
   m_Layer: 0
   m_Name: Persistent
   m_TagString: Untagged
@@ -223,6 +224,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckForSwitch: 0
+--- !u!114 &121208057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121208050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d312e79a44c5042852ef4e74d77f57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cycleSize: 10
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,6 +422,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1699985168573419981, guid: 3cdf8e193f123d04e8fac36bc25f7db6,
+        type: 3}
+      propertyPath: _bulletData
+      value: 
+      objectReference: {fileID: 11400000, guid: b7f46bcf38c0e9f4cb57f3cec0484701,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cdf8e193f123d04e8fac36bc25f7db6, type: 3}
 --- !u!1001 &2102109464122410189

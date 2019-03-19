@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameObject _playerBullet;
 
+    [SerializeField]
+    private BulletData _bulletData;
+
     private Vector2 _velocity;
     private Vector2 _aimDirection;
     private float _aimAngle;
@@ -93,8 +96,10 @@ public class PlayerController : MonoBehaviour
 
     void Fire()
     {
+        gameObject.Shoot(_bulletData);
         //Debug.Log("pew!");
         //_soundEngine.PlayRandomSFX("shoot", 1, 4, true);
+        /*
         _soundEngine.PlaySFX("shoot1", true);
         Quaternion _rotation = Quaternion.Euler(0, 0, _aimAngle.ToDegrees());
 
@@ -107,6 +112,7 @@ public class PlayerController : MonoBehaviour
         rightBullet.transform.position = transform.position;
         rightBullet.transform.rotation = _rotation;
         rightBullet.GetComponent<PlayerBullet>().Inverted = true;
+        */
     }
 
     private IEnumerator FireContinuously()
