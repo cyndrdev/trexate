@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Extensions;
@@ -28,21 +29,25 @@ public class Bullet : MonoBehaviour
 
     Collider2D CreateCollider(BulletShape shape)
     {
+        Collider2D newCollider = null;
         switch (shape)
         {
             case BulletShape.Circle:
-                var circleCollider = this.GetOrAddComponent<CircleCollider2D>();
-                return circleCollider;
+                newCollider = this.GetOrAddComponent<CircleCollider2D>();
+                break;
             case BulletShape.Square:
-                var squareCollider = this.GetOrAddComponent<BoxCollider2D>();
-                return squareCollider;
+                newCollider = this.GetOrAddComponent<BoxCollider2D>();
+                break;
             case BulletShape.Rectangle:
-                var rectangleCollider = this.GetOrAddComponent<BoxCollider2D>();
-                return rectangleCollider;
+                newCollider = this.GetOrAddComponent<BoxCollider2D>();
+                break;
             default:
-                BoxCollider2D fallbackCollider = this.GetOrAddComponent<BoxCollider2D>();
-                return fallbackCollider;
+                newCollider = this.GetOrAddComponent<BoxCollider2D>();
+                break;
         }
+
+        newCollider.isTrigger = true;
+        return newCollider;
     }
 
     /* === PUBLIC METHODS === */
@@ -103,16 +108,36 @@ public class Bullet : MonoBehaviour
             1f / _data.collisionScale.y);
 
         /* === movement === */
-        BulletBehaviours.Behaviours.TryGetValue(
-            _data.movementBehaviour, 
-            out _simplePositionFunc);
-
-        if (_simplePositionFunc == null && _data.useSimpleMovement)
+        if (_data.useSimpleMovement)
         {
-            Debug.LogError("[Bullet]: tried to initialize bullet with behaviour \""
-                + _data.movementBehaviour
-                + "\", but that behaviour doesn't exist.");
-            return false;
+            BulletBehaviours.Behaviours.TryGetValue(
+                _data.movementBehaviour, 
+                out _simplePositionFunc);
+
+            if (_simplePositionFunc == null)
+            {
+                Debug.LogError("[Bullet]: tried to initialize bullet with behaviour \""
+                    + _data.movementBehaviour
+                    + "\", but that behaviour doesn't exist.");
+                return false;
+            }
+        }
+        else
+        {
+            // NOTE: this is potentially a really bad idea!
+            // we're adding a component via reflection.
+            Type objType = Type.GetType(_data.movementScript);
+
+            if (objType != null)
+            {
+                _object.AddComponent(objType);
+            }
+            else
+            {
+                Debug.LogError("[Bullet]: tried to initialize bullet with movement script \""
+                    + _data.movementScript
+                    + "\", but that script doesn't exist.");
+            }
         }
 
         /* === cleanup === */
@@ -170,7 +195,10 @@ public class Bullet : MonoBehaviour
             GameConstants.EnemyBulletLayer;
 
         /* === movement === */
-        SetTransform(_simplePositionFunc(0f));
+        if (_data.useSimpleMovement)
+            SetTransform(_simplePositionFunc(0f));
+        else
+            SetTransform(new Vector2(0f, 0f));
 
         // after this point, either _smartPositionFunc or _simplePositionFunc will be set
         _startTime = Time.time;
@@ -190,9 +218,6 @@ public class Bullet : MonoBehaviour
         if (!_initialized)
             return;
 
-        if (!_data.useSimpleMovement)
-            return; // the movement is handled in a seperate monobehaviour
-
         float t = Time.time - _startTime;
         if (t >= _data.lifetime)
         {
@@ -200,7 +225,9 @@ public class Bullet : MonoBehaviour
             return;
         }
 
-        UpdatePosition(t);
+        // only handle movement if we're using the "simple" version
+        if (_data.useSimpleMovement)
+            UpdatePosition(t);
     }
 
     void OnTriggerEnter2D(Collider2D collision)

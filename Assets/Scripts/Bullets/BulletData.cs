@@ -18,20 +18,20 @@ public class BulletData : ScriptableObject
 
     [Header("Visuals")]
     public Sprite sprite;
-    public Vector2 scale;
+    public Vector2 scale = new Vector2(1f, 1f);
 
     [Header("Collision")]
     public BulletShape collisionShape;
-    public Vector2 collisionScale;
+    public Vector2 collisionScale = new Vector2(1f, 1f);
 
     [Header("Behaviour")]
     public bool useSimpleMovement;
     [ConditionalHide("useSimpleMovement", false)]
     public string movementBehaviour;
     [ConditionalHide("useSimpleMovement", false)]
-    public Vector2 movementScale;
+    public Vector2 movementScale = new Vector2(1f, 1f);
     [ConditionalHide("useSimpleMovement", false)]
-    public float timeScale;
+    public float timeScale = 1f;
     [ConditionalHide("useSimpleMovement", false, true)]
     public string movementScript;
     public bool explodeOnInpact;
