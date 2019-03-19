@@ -107,7 +107,7 @@ public class Bullet : MonoBehaviour
             _data.movementBehaviour, 
             out _simplePositionFunc);
 
-        if (_simplePositionFunc == null)
+        if (_simplePositionFunc == null && _data.useSimpleMovement)
         {
             Debug.LogError("[Bullet]: tried to initialize bullet with behaviour \""
                 + _data.movementBehaviour
@@ -190,8 +190,8 @@ public class Bullet : MonoBehaviour
         if (!_initialized)
             return;
 
-        if (_smartPositionFunc != null)
-            return; // let our seperate movement monobehaviour deal with this
+        if (!_data.useSimpleMovement)
+            return; // the movement is handled in a seperate monobehaviour
 
         float t = Time.time - _startTime;
         if (t >= _data.lifetime)

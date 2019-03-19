@@ -26,11 +26,13 @@ public class BulletData : ScriptableObject
 
     [Header("Behaviour")]
     public bool useSimpleMovement;
-    [ConditionalHide("useSimpleMovement", true)]
+    [ConditionalHide("useSimpleMovement", false)]
     public string movementBehaviour;
-    [ConditionalHide("useSimpleMovement", true)]
+    [ConditionalHide("useSimpleMovement", false)]
     public Vector2 movementScale;
-    [ConditionalHide("useSimpleMovement", true)]
+    [ConditionalHide("useSimpleMovement", false)]
     public float timeScale;
+    [ConditionalHide("useSimpleMovement", false, true)]
+    public string movementScript;
     public bool explodeOnInpact;
 }
