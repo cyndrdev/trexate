@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public enum BulletShape
 {
@@ -24,8 +25,12 @@ public class BulletData : ScriptableObject
     public Vector2 collisionScale;
 
     [Header("Behaviour")]
+    public bool useSimpleMovement;
+    [ConditionalHide("useSimpleMovement", true)]
     public string movementBehaviour;
+    [ConditionalHide("useSimpleMovement", true)]
     public Vector2 movementScale;
+    [ConditionalHide("useSimpleMovement", true)]
     public float timeScale;
     public bool explodeOnInpact;
 }

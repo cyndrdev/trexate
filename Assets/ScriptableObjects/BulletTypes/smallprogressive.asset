@@ -17,6 +17,7 @@ MonoBehaviour:
   scale: {x: 1, y: 1}
   collisionShape: 0
   collisionScale: {x: 1, y: 1}
+  useSimpleMovement: 1
   movementBehaviour: progressive
   movementScale: {x: 1, y: 1}
   timeScale: 15
