@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
     public BulletData _data;
     public GameObject _owner;
 
+    public GameObject _object { get; private set; }
+
     private Vector2 _origin;
     private Quaternion _originRotation;
 
@@ -40,13 +42,61 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    // use OnEnable rather than Start or Awake to make pooling easier
-    void OnEnable()
+    /* === PUBLIC METHODS === */
+    public void Shoot(GameObject parent, Vector2 offset, float RotationOffset)
+    {
+        transform.SetPositionAndRotation(
+            offset,
+            Quaternion.Euler(new Vector3(0, RotationOffset, 0)));
+        _owner = parent;
+        enabled = true;
+    }
+
+    public void Shoot(GameObject parent)
+        => Shoot(parent, new Vector2(0, 0), 0f);
+
+    /* === UNITY STATE METHODS === */
+    // perform all instantiation unique to our BulletData
+    void Awake()
     {
         /* === transform setup === */
         // make sure we're children of the bulletroot object
         transform.parent = Game.Instance.BulletRoot;
 
+        /* === references === */
+        // keep a reference to our gameobject
+        _object = gameObject;
+
+        // set our graphicsholder object
+        if (transform.childCount == 0)
+        {
+            _graphicsHolder = new GameObject();
+            _graphicsHolder.transform.parent = transform;
+        }
+        else
+        {
+            _graphicsHolder = transform.GetChild(0).gameObject;
+        }
+
+        _renderer = this.Find<SpriteRenderer>(_graphicsHolder);
+
+        // instantiate our colliders
+        _collider = CreateCollider(_data.collisionShape);
+
+        _renderer.sprite = _data.sprite;
+
+        /* === scaling === */
+        // scale according to data object
+        transform.localScale = _data.scale * _data.collisionScale;
+        _graphicsHolder.transform.localScale = new Vector2(
+            1f / _data.collisionScale.x, 
+            1f / _data.collisionScale.y);
+    }
+
+    // perform any init unique to this instantiation.
+    void OnEnable()
+    {
+        /* === transform setup === */
         // set our origin to be our owner's position
         _origin = _owner.transform.position;
         _originRotation = _owner.transform.rotation;
@@ -75,24 +125,6 @@ public class Bullet : MonoBehaviour
             GameConstants.PlayerBulletLayer : 
             GameConstants.EnemyBulletLayer;
 
-        /* === references === */
-        // get our references
-        _graphicsHolder = transform.GetChild(0).gameObject;
-
-        _renderer = this.Find<SpriteRenderer>(_graphicsHolder);
-
-        // instantiate our colliders
-        _collider = CreateCollider(_data.collisionShape);
-
-        _renderer.sprite = _data.sprite;
-
-        /* === scaling === */
-        // scale according to data object
-        transform.localScale = _data.scale * _data.collisionScale;
-        _graphicsHolder.transform.localScale = new Vector2(
-            1f / _data.collisionScale.x, 
-            1f / _data.collisionScale.y);
-
         /* === movement === */
         // FIXME: get movement from a database or smth
         // after this point, either _smartPositionFunc or _simplePositionFunc will be set
@@ -107,7 +139,7 @@ public class Bullet : MonoBehaviour
         transform.localPosition = _simplePositionFunc(_startTime - Time.time);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
     }
 }
