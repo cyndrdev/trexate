@@ -35,7 +35,9 @@ public class Bullet : MonoBehaviour
         switch (shape)
         {
             case BulletShape.Circle:
-                newCollider = this.GetOrAddComponent<CircleCollider2D>();
+                CircleCollider2D circle = this.GetOrAddComponent<CircleCollider2D>();
+                circle.radius = 0.1f;
+                newCollider = circle;
                 break;
             case BulletShape.Square:
                 newCollider = this.GetOrAddComponent<BoxCollider2D>();

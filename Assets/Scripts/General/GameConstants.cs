@@ -6,8 +6,13 @@
     public static string RightHorizontal = "RightHorizontal";
     public static string RightVertical = "RightVertical";
 
-    /* === global settings */
+    /* === global settings === */
+    /* --- mechanics --- */
     public static float BulletOffScreenMargin = 0.05f;
+
+    /* --- visuals --- */
+    public static int HitFlashFrames = 3;
+    public static int HitFlashFade = 0;
 
     /* === tags === */
     public static string PlayerController = "Player";

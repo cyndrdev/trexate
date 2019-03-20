@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotsPerSecond: 1
-  _rocket: {fileID: 1709829447939208417, guid: 14780c5f97d55154788dc6151189ccf7, type: 3}
+  _bulletData: {fileID: 0}
 --- !u!50 &4979324895003096578
 Rigidbody2D:
   serializedVersion: 4
@@ -157,7 +157,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2bee6f114b85ef14e94beeb8c8045575, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
