@@ -23,9 +23,6 @@ public class PlayerController : MonoBehaviour
 
 #pragma warning disable 0649
     [SerializeField]
-    private GameObject _playerBullet;
-
-    [SerializeField]
     private BulletData _bulletData;
 #pragma warning restore 0649
 
@@ -47,9 +44,9 @@ public class PlayerController : MonoBehaviour
         _inputManager.Primary.AddListener(ChangeFireState);
         _fireContinuously = FireContinuously();
 
-        if (_playerBullet == null)
+        if (_bulletData == null)
         {
-            throw new System.Exception("[PlayerController]: no bullet prefab set for player!");
+            throw new System.Exception("[PlayerController]: no bullet data set for player!");
         }
     }
 
