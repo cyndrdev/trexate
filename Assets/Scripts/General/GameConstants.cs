@@ -11,4 +11,10 @@
 
     /* === tags === */
     public static string PlayerController = "Player";
+
+    /* === layers === */
+    public const int PlayerLayer = 8;
+    public const int PlayerBulletLayer = 9;
+    public const int EnemyLayer = 10;
+    public const int EnemyBulletLayer = 11;
 }

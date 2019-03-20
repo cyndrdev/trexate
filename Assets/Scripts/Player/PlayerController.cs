@@ -21,8 +21,10 @@ public class PlayerController : MonoBehaviour
     [Range(0.5f, 100f)]
     private float _shotsPerSecond = 10f;
 
+#pragma warning disable 0649
     [SerializeField]
-    private GameObject _playerBullet;
+    private BulletData _bulletData;
+#pragma warning restore 0649
 
     private Vector2 _velocity;
     private Vector2 _aimDirection;
@@ -42,9 +44,9 @@ public class PlayerController : MonoBehaviour
         _inputManager.Primary.AddListener(ChangeFireState);
         _fireContinuously = FireContinuously();
 
-        if (_playerBullet == null)
+        if (_bulletData == null)
         {
-            throw new System.Exception("[PlayerController]: no bullet prefab set for player!");
+            throw new System.Exception("[PlayerController]: no bullet data set for player!");
         }
     }
 
@@ -93,20 +95,9 @@ public class PlayerController : MonoBehaviour
 
     void Fire()
     {
-        //Debug.Log("pew!");
-        //_soundEngine.PlayRandomSFX("shoot", 1, 4, true);
         _soundEngine.PlaySFX("shoot1", true);
-        Quaternion _rotation = Quaternion.Euler(0, 0, _aimAngle.ToDegrees());
-
-        GameObject leftBullet = Instantiate(_playerBullet);
-        GameObject rightBullet = Instantiate(_playerBullet);
-
-        leftBullet.transform.position = transform.position;
-        leftBullet.transform.rotation = _rotation;
-
-        rightBullet.transform.position = transform.position;
-        rightBullet.transform.rotation = _rotation;
-        rightBullet.GetComponent<PlayerBullet>().Inverted = true;
+        gameObject.Shoot(_bulletData, new Vector2(0, 0), _aimAngle.ToDegrees(), true);
+        gameObject.Shoot(_bulletData, new Vector2(0, 0), _aimAngle.ToDegrees(), false);
     }
 
     private IEnumerator FireContinuously()

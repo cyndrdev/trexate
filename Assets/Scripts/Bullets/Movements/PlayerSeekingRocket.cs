@@ -3,33 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using Extensions;
 
-public class EnemyRocket : EnemyBullet
+public class PlayerSeekingRocket : MonoBehaviour
 {
-    [SerializeField]
-    private float _speed;
-    [SerializeField]
-    private float _turningRadius;
-
-    [SerializeField]
-    private float _lifetime;
+    private float _speed = 7f;
+    private float _turningRadius = 3f;
 
     private float _targetAngle;
     private float _aimAngle = 0;
 
     // Start is called before the first frame update
-    new void Start()
+    void Start()
     {
-        base.Start();
-        var aimDirection = (Game.Instance.PlayerPosition - transform.position).normalized;
+        var aimDirection =
+            (Game.Instance.PlayerPosition - transform.position)
+            .normalized;
         _aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x);
-        StartCoroutine(Lifetime());
     }
 
     // Update is called once per frame
-    new void Update()
+    void Update()
     {
         Vector2 bulletPos = transform.position;
         Vector2 playerPos = Game.Instance.PlayerPosition;
+
         var targetDirection = (bulletPos - playerPos).normalized;
 
         _targetAngle = Mathf.Atan2(targetDirection.y, targetDirection.x)
@@ -47,26 +43,5 @@ public class EnemyRocket : EnemyBullet
 
         transform.Translate(movement);
         transform.SetPositionAndRotation(transform.position, Quaternion.Euler(0, 0, _aimAngle.ToDegrees()));
-    }
-
-    new void Explode()
-    {
-        Game.Instance.SoundEngine.PlaySFX("explosion");
-        Destroy(gameObject);
-    }
-
-    private IEnumerator Lifetime()
-    {
-        yield return new WaitForSeconds(_lifetime);
-        Explode();
-    }
-
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        PlayerHeart player = collider.GetComponent<PlayerHeart>();
-        if (player == null) return;
-
-        player.Hit();
-        this.Explode();
     }
 }

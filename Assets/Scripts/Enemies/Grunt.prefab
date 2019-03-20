@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f7b11186beb40d4ebfca01d9c26c145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHitPoints: 10
+  _maxHitPoints: 25
 --- !u!114 &1673342460990790506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3181416036016691506}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14c32b1b88a453446b659158e95413e9, type: 3}
   m_Name: 

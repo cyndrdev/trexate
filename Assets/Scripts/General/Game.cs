@@ -14,6 +14,7 @@ public class Game : MonoBehaviour
 
     public SoundEngine SoundEngine { get; private set; }
     public InputManager InputManager { get; private set; }
+    public BulletFactory BulletFactory { get; private set; }
 
     void Awake()
     {
@@ -26,6 +27,7 @@ public class Game : MonoBehaviour
         Instance = this;
         SoundEngine = Persistant.GetComponent<SoundEngine>();
         InputManager = Persistant.GetComponent<InputManager>();
+        BulletFactory = Persistant.GetComponent<BulletFactory>();
 
         _player = GameObject.FindGameObjectWithTag(GameConstants.PlayerController);
 

@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+#pragma warning disable 0649
     [SerializeField]
     private float _shotsPerSecond;
 
     [SerializeField]
-    private GameObject _rocket;
+    private BulletData _bulletData;
+#pragma warning restore 0649
 
     private SoundEngine _soundEngine;
 
@@ -21,11 +23,7 @@ public class EnemyController : MonoBehaviour
     void Fire()
     {
         _soundEngine.PlaySFX("shoot3", true);
-        Quaternion rotation = Quaternion.Euler(0f, 0f, Random.Range(-Mathf.PI, Mathf.PI));
-
-        GameObject rocket = Instantiate(_rocket);
-        rocket.transform.rotation = rotation;
-        rocket.transform.position = transform.position;
+        gameObject.Shoot(_bulletData, new Vector2(0,0), Random.Range(-Mathf.PI, Mathf.PI));
     }
 
     private IEnumerator FireRockets()

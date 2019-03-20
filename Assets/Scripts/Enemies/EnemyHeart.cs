@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class EnemyHeart : MonoBehaviour
 {
+#pragma warning disable 0649
     [SerializeField]
     private int _maxHitPoints;
+#pragma warning restore 0649
+
     private int _hitPoints;
 
     private static SoundEngine _soundEngine;
