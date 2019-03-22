@@ -5,7 +5,7 @@
 		[PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
 		_Tint ("Tint", Color) = (1,1,1,1)
 		_HitColor ("Hit Color", Color) = (1,1,1,1)
-		[MaterialToggle] _HitAmount ("Hit Flash", Float) = 0
+		_HitAmount ("Hit Flash", Float) = 0
 		[MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
 	}
 

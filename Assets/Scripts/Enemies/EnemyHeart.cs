@@ -10,6 +10,7 @@ public class EnemyHeart : MonoBehaviour
 #pragma warning restore 0649
 
     private int _hitPoints;
+    private IEnumerator hitFlashInstance;
 
     private static SoundEngine _soundEngine;
     private Material _material;
@@ -34,7 +35,11 @@ public class EnemyHeart : MonoBehaviour
         }
         else
         {
-            StartCoroutine(DoFlash());
+            if (hitFlashInstance != null)
+                StopCoroutine(hitFlashInstance);
+
+            hitFlashInstance = DoFlash();
+            StartCoroutine(hitFlashInstance);
         }
     }
 
@@ -49,14 +54,14 @@ public class EnemyHeart : MonoBehaviour
         int flashFrames = (int)(GameConstants.HitFlashFrames * Time.timeScale);
         int flashFadeFrames = (int)(GameConstants.HitFlashFade * Time.timeScale);
 
-        _material.SetFloat("_HitAmount", 1f);
+        _material.SetFloat("_HitAmount", GameConstants.HitFlashPeak);
 
         for (int i = 0; i < flashFrames; i++)
             yield return new WaitForEndOfFrame();
 
         for (int i = 0; i < flashFadeFrames; i++)
         {
-            _material.SetFloat("_HitAmount", (flashFadeFrames - i) / (flashFadeFrames + 1f));
+            _material.SetFloat("_HitAmount", GameConstants.HitFlashPeak * (flashFadeFrames - i) / (flashFadeFrames + 1f));
             yield return new WaitForEndOfFrame();
         }
 

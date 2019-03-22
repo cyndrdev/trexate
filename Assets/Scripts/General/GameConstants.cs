@@ -11,8 +11,9 @@
     public static float BulletOffScreenMargin = 0.05f;
 
     /* --- visuals --- */
-    public static int HitFlashFrames = 3;
-    public static int HitFlashFade = 0;
+    public static int HitFlashFrames = 2;
+    public static int HitFlashFade = 2;
+    public static float HitFlashPeak = 0.85f;
 
     /* === tags === */
     public static string PlayerController = "Player";
