@@ -12,6 +12,7 @@ namespace Extensions
     {
         public static float ToRadians(this float f) => Mathf.Deg2Rad * f;
         public static float ToDegrees(this float f) => Mathf.Rad2Deg * f;
+        public static Quaternion ToRotation(this float degrees) => Quaternion.Euler(0, 0, degrees - 90f);
 
         public static float SignalToScale(this float f)
             => (f + 1.0f) / 2.0f;
@@ -19,8 +20,9 @@ namespace Extensions
         public static float ScaleToSignal(this float f)
             => (f - 0.5f) * 2.0f;
 
+
         public static Vector2 Rotate(this Vector2 vector, float degrees)
-            => Quaternion.Euler(0, 0, degrees - 90f) * vector;
+            => degrees.ToRotation() * vector;
 
         /// <summary>
         /// Get a component or create one if it doesn't exist.
