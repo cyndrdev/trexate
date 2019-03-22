@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
             transform.position + new Vector3(_aimDirection.x, _aimDirection.y) * 1000
         );
 
-        transform.localRotation = (_aimAngle.ToDegrees() - 90f).ToRotation();
+        //transform.localRotation = (_aimAngle.ToDegrees() - 90f).ToRotation();
     }
 
     private void FixedUpdate()

@@ -12,16 +12,12 @@ public class PixelPerfectEntity : MonoBehaviour
     {
         Vector3 position = _graphics.localPosition;
 
-        position.x = (
-            Mathf.Round(transform.position.x * GameConstants.TileSize) / GameConstants.TileSize
-            - transform.position.x
-        );
+        int unitSnap = GameConstants.TileSize; // Game.Instance.PixelPerfectCamera.SpriteScale;
 
-        position.y = (
-            Mathf.Round(transform.position.y * GameConstants.TileSize) 
-            / GameConstants.TileSize
-            - transform.position.y
-        );
+        position.x = ((Mathf.Round(transform.position.x * unitSnap) / unitSnap) - transform.position.x);
+        position.y = ((Mathf.Round(transform.position.y * unitSnap) / unitSnap) - transform.position.y);
+
+        Debug.Log(position);
 
         _graphics.localPosition = position;
     }
@@ -33,8 +29,6 @@ public class PixelPerfectEntity : MonoBehaviour
         float parentRotation = transform.rotation.eulerAngles.z;
 
         float targetAngle = Mathf.Round(parentRotation / stepValue) * stepValue;
-
-        Debug.Log(targetAngle);
 
         float angleDiff = targetAngle - parentRotation;
 
