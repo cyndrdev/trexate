@@ -28,14 +28,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3181416036016691506}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6606494476534413594}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!61 &2019077323625836546
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f7b11186beb40d4ebfca01d9c26c145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHitPoints: 25
+  _maxHitPoints: 2500
 --- !u!114 &1673342460990790506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,13 +82,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3181416036016691506}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14c32b1b88a453446b659158e95413e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _shotsPerSecond: 1
-  _bulletData: {fileID: 0}
+  _bulletData: {fileID: 11400000, guid: 7b77e5896a0a9be43ba57412e78cef43, type: 2}
 --- !u!50 &4979324895003096578
 Rigidbody2D:
   serializedVersion: 4
@@ -146,13 +146,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6407249682174744536}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2895852401441034886}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4971939024858665763
 SpriteRenderer:
   m_ObjectHideFlags: 0

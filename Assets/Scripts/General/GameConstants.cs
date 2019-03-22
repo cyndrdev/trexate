@@ -14,7 +14,7 @@ public class GameConstants
     public static int TileSize = 16;
     public static bool SnapPosition = true;
     public static bool SnapAngle = true;
-    public static int SnapAngleSteps = 16;
+    public static int SnapAngleSteps = 24;
 
     /* --- mechanics --- */
     public static float BulletOffScreenMargin = 0.05f;
