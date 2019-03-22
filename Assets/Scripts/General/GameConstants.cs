@@ -14,7 +14,13 @@ public class GameConstants
     public static int TileSize = 16;
     public static bool SnapPosition = true;
     public static bool SnapAngle = true;
-    public static int SnapAngleSteps = 24;
+
+    /* --- Sprite UV Passthrough --- */
+    public static string UVPassthroughUV = "_SpriteUV";
+    public static string UVPassthroughPivot = "_SpritePivot";
+    public static string UVPassthroughUVCenter = "_UVCenter";
+    public static string UVPassthroughTextureSize = "_Res";
+    public static string UVPassthroughPixelSize = "_PixelSize";
 
     /* --- mechanics --- */
     public static float BulletOffScreenMargin = 0.05f;

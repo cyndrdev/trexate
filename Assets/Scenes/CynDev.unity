@@ -487,7 +487,8 @@ PrefabInstance:
       propertyPath: pixelSize_property
       value: _PixelSize
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3522130959835622769, guid: 3cdf8e193f123d04e8fac36bc25f7db6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3cdf8e193f123d04e8fac36bc25f7db6, type: 3}
 --- !u!1001 &2102109464122410189
 PrefabInstance:

@@ -11,11 +11,6 @@ using System.Collections.Generic;
 [RequireComponent(typeof(SpriteRenderer))]
 public class SpriteUVToShader : MonoBehaviour {
  
-    public string UV_property="_SpriteUV";
-    public string Pivot_property="_SpritePivot";
-    public string uvCenter_property="_UVCenter";
-    public string textureSize_property="_Res";
-    public string pixelSize_property="_PixelSize";
     SpriteRenderer sr;
     Sprite sprite;
     MaterialPropertyBlock mpb;
@@ -39,8 +34,13 @@ public class SpriteUVToShader : MonoBehaviour {
        
         if(sprite != sr.sprite){
             sprite = sr.sprite;
-            applySpriteUV(sr, sprite, ref mpb, UV_property, Pivot_property, uvCenter_property);
-            applySpriteTX(sr, sprite, ref mpb, textureSize_property, pixelSize_property);
+            applySpriteUV(sr, sprite, ref mpb, 
+                GameConstants.UVPassthroughUV, 
+                GameConstants.UVPassthroughPivot, 
+                GameConstants.UVPassthroughUVCenter);
+            applySpriteTX(sr, sprite, ref mpb, 
+                GameConstants.UVPassthroughTextureSize, 
+                GameConstants.UVPassthroughPixelSize);
         }
     }
    

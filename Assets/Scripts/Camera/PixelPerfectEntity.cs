@@ -12,25 +12,12 @@ public class PixelPerfectEntity : MonoBehaviour
     {
         Vector3 position = _graphics.localPosition;
 
-        int unitSnap = GameConstants.TileSize; // Game.Instance.PixelPerfectCamera.SpriteScale;
+        int unitSnap = GameConstants.TileSize; 
 
         position.x = ((Mathf.Round(transform.position.x * unitSnap) / unitSnap) - transform.position.x);
         position.y = ((Mathf.Round(transform.position.y * unitSnap) / unitSnap) - transform.position.y);
 
         _graphics.localPosition = position;
-    }
-
-    void snapAngle()
-    {
-        float stepValue = 360f / GameConstants.SnapAngleSteps;
-
-        float parentRotation = transform.rotation.eulerAngles.z;
-
-        float targetAngle = Mathf.Round(parentRotation / stepValue) * stepValue;
-
-        float angleDiff = targetAngle - parentRotation;
-
-        _graphics.localRotation = angleDiff.ToRotation();
     }
 
     void Start()
@@ -41,11 +28,12 @@ public class PixelPerfectEntity : MonoBehaviour
             throw new System.Exception();
 
         _graphics = _renderer.transform;
+
+        if (GameConstants.SnapAngle) _graphics.gameObject.AddComponent<SpriteUVToShader>();
     }
 
     void LateUpdate()
     {
-        if (GameConstants.SnapAngle) snapAngle();
         if (GameConstants.SnapPosition) snapPosition();
     }
 }
