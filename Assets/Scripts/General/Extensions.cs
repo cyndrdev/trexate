@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +11,8 @@ namespace Extensions
     {
         public static float ToRadians(this float f) => Mathf.Deg2Rad * f;
         public static float ToDegrees(this float f) => Mathf.Rad2Deg * f;
-        public static Quaternion ToRotation(this float degrees) => Quaternion.Euler(0, 0, degrees - 90f);
+
+        public static Quaternion ToRotation(this float degrees) => Quaternion.Euler(0, 0, degrees);
 
         public static float SignalToScale(this float f)
             => (f + 1.0f) / 2.0f;

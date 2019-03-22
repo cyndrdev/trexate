@@ -1,4 +1,6 @@
-﻿public class GameConstants
+﻿using UnityEngine;
+
+public class GameConstants
 {
     /* === input axes === */
     public static string LeftHorizontal = "LeftHorizontal";
@@ -7,6 +9,13 @@
     public static string RightVertical = "RightVertical";
 
     /* === global settings === */
+    /* --- pixel perfect --- */
+    public static Vector2Int ViewportRes = new Vector2Int(360, 360);
+    public static int TileSize = 16;
+    public static bool SnapPosition = true;
+    public static bool SnapAngle = true;
+    public static int SnapAngleSteps = 16;
+
     /* --- mechanics --- */
     public static float BulletOffScreenMargin = 0.05f;
 

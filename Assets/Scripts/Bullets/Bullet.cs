@@ -178,7 +178,7 @@ public class Bullet : MonoBehaviour
         /* === transform setup === */
         // set our origin to be our owner's position
         _origin += (Vector2)_owner.transform.position;
-        _originRotation += _owner.transform.rotation.eulerAngles.z;
+        // _originRotation += _owner.transform.rotation.eulerAngles.z;
 
         // detect whether our owner is a player or enemy
         switch(_owner.layer)

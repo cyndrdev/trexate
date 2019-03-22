@@ -85,12 +85,12 @@ public class PlayerController : MonoBehaviour
             transform.position + new Vector3(_aimDirection.x, _aimDirection.y) * 1000
         );
 
-        _graphics.localRotation = _aimAngle.ToDegrees().ToRotation();
+        transform.localRotation = (_aimAngle.ToDegrees() - 90f).ToRotation();
     }
 
     private void FixedUpdate()
     {
-        transform.Translate(_velocity * Time.fixedDeltaTime);
+        transform.localPosition += new Vector3(_velocity.x, _velocity.y) * Time.fixedDeltaTime;
     }
 
     void ChangeFireState (bool down)
@@ -102,9 +102,10 @@ public class PlayerController : MonoBehaviour
 
     void Fire()
     {
+        float _shootAngle = _aimAngle.ToDegrees() - 90f;
         _soundEngine.PlaySFX("shoot1", true);
-        gameObject.Shoot(_bulletData, new Vector2(0, 0), _aimAngle.ToDegrees(), true);
-        gameObject.Shoot(_bulletData, new Vector2(0, 0), _aimAngle.ToDegrees(), false);
+        gameObject.Shoot(_bulletData, new Vector2(0, 0), _shootAngle, true);
+        gameObject.Shoot(_bulletData, new Vector2(0, 0), _shootAngle, false);
     }
 
     private IEnumerator FireContinuously()

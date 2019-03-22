@@ -47,6 +47,7 @@ public class BulletFactory : MonoBehaviour
             GameObject newObject = new GameObject("Bullet");
             newBullet = newObject.AddComponent<Bullet>();
             newBullet.Initialize(data, vaultObject.transform);
+            newObject.transform.rotation = Quaternion.identity;
             vault.Add(newBullet);
         }
 
