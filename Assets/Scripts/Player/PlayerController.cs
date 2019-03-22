@@ -6,6 +6,7 @@ using Extensions;
 
 public class PlayerController : MonoBehaviour
 {
+    /* === movement & aim tweaks === */
     [SerializeField]
     private float _maxSpeed = 10f;
 
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
 
     private static InputManager _inputManager;
     private static SoundEngine _soundEngine;
+    private Transform _graphics;
     private bool _isFiring;
 
     private IEnumerator _fireContinuously;
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         _inputManager = Game.Instance.InputManager;
         _soundEngine = Game.Instance.SoundEngine;
+        _graphics = transform.GetChild(0);
 
         _inputManager.Primary.AddListener(ChangeFireState);
         _fireContinuously = FireContinuously();
@@ -63,12 +66,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        float frameTime = Time.deltaTime * 60f;
+
         Vector3 targetVelocity = new Vector3(_inputManager.LeftStick.x, _inputManager.LeftStick.y) * _maxSpeed;
-        float lerpmod = Mathf.Clamp01(_rigidness * _rigidness);
+        float lerpmod = Mathf.Clamp01(_rigidness * _rigidness * frameTime);
         _velocity = Vector3.Lerp(_velocity, targetVelocity, lerpmod);
 
         float targetAngle = Mathf.Atan2(_inputManager.RightStick.y, _inputManager.RightStick.x).GetRelativeAngle(_aimAngle);
-        _aimAngle = Mathf.Lerp(_aimAngle, targetAngle, _aimSpeed);
+        _aimAngle = Mathf.Lerp(_aimAngle, targetAngle, _aimSpeed * frameTime);
 
         while (_aimAngle < Mathf.PI) _aimAngle += Mathf.PI * 2f;
         while (_aimAngle > Mathf.PI) _aimAngle -= Mathf.PI * 2f;
@@ -79,6 +84,8 @@ public class PlayerController : MonoBehaviour
             transform.position, 
             transform.position + new Vector3(_aimDirection.x, _aimDirection.y) * 1000
         );
+
+        _graphics.localRotation = _aimAngle.ToDegrees().ToRotation();
     }
 
     private void FixedUpdate()

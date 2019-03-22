@@ -49,10 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxSpeed: 10
   _rigidness: 0.75
-  _aimSpeed: 0.9
+  _aimSpeed: 0.3
   _shotsPerSecond: 10
-  _playerBullet: {fileID: 7919458798951029, guid: 5a170d49aaffb3145bcc2d7218c90898,
-    type: 3}
   _bulletData: {fileID: 11400000, guid: b7f46bcf38c0e9f4cb57f3cec0484701, type: 2}
 --- !u!114 &6102435787397852072
 MonoBehaviour:
@@ -181,8 +179,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0.92438126, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 54e963a9685bd49438514c90d90a13a7, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
