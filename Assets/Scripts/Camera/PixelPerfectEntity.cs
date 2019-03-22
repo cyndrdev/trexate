@@ -17,8 +17,6 @@ public class PixelPerfectEntity : MonoBehaviour
         position.x = ((Mathf.Round(transform.position.x * unitSnap) / unitSnap) - transform.position.x);
         position.y = ((Mathf.Round(transform.position.y * unitSnap) / unitSnap) - transform.position.y);
 
-        Debug.Log(position);
-
         _graphics.localPosition = position;
     }
 

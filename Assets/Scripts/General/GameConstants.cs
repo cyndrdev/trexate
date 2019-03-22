@@ -10,7 +10,7 @@ public class GameConstants
 
     /* === global settings === */
     /* --- pixel perfect --- */
-    public static Vector2Int ViewportRes = new Vector2Int(130, 130);
+    public static Vector2Int ViewportRes = new Vector2Int(360, 360);
     public static int TileSize = 16;
     public static bool SnapPosition = true;
     public static bool SnapAngle = true;
