@@ -87,6 +87,7 @@ public class Bullet : MonoBehaviour
 
         _soundEngine = Game.Instance.SoundEngine;
 
+
         // set our graphicsholder object
         if (transform.childCount == 0)
         {
@@ -94,6 +95,18 @@ public class Bullet : MonoBehaviour
             _graphicsHolder.transform.parent = transform;
 
             _renderer = _graphicsHolder.AddComponent<SpriteRenderer>();
+            // _renderer.material = Instantiate(Game.Instance.BulletFactory.BulletMaterial);
+            _renderer.sprite = _data.sprite;
+            // _renderer.material = Instantiate(_data.material);
+
+            var mat = Resources.Load<Material>("PixelPerfectTexture");
+            Debug.Log(mat);
+            _renderer.material = mat;
+
+            _renderer.material.SetTexture("_MainTex", _data.sprite.texture);
+            Debug.Log(_data.sprite);
+
+            gameObject.AddComponent<PixelPerfectEntity>();
         }
         else
         {
@@ -103,8 +116,6 @@ public class Bullet : MonoBehaviour
 
         // instantiate our colliders
         _collider = CreateCollider(_data.collisionShape);
-
-        _renderer.sprite = _data.sprite;
 
         /* === scaling === */
         // scale according to data object
@@ -174,6 +185,7 @@ public class Bullet : MonoBehaviour
             gameObject.SetActive(false);
             return;
         }
+
 
         /* === transform setup === */
         // set our origin to be our owner's position

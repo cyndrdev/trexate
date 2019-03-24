@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: debug
   m_EditorClassIdentifier: 
   lifetime: 20
-  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  sprite: {fileID: 21300000, guid: 431a73adc0e0f894f93a6fefa90b0522, type: 3}
   scale: {x: 1, y: 1}
+  material: {fileID: 2100000, guid: 8fc7f13c2ec6091438d43f0e73b2b441, type: 2}
   collisionShape: 0
   collisionScale: {x: 1, y: 1}
   useSimpleMovement: 1

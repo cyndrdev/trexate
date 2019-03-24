@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: smallsine
   m_EditorClassIdentifier: 
   lifetime: 1
-  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  sprite: {fileID: 21300000, guid: 94cace0ae5132c04b8272ccf178fb304, type: 3}
   scale: {x: 1, y: 1}
   collisionShape: 1
   collisionScale: {x: 1, y: 1}
@@ -21,4 +21,5 @@ MonoBehaviour:
   movementBehaviour: sinusoidal
   movementScale: {x: 0.5, y: 0.5}
   timeScale: 50
+  movementScript: 
   explodeOnInpact: 0

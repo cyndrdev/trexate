@@ -14,26 +14,19 @@ public class SpriteUVToShader : MonoBehaviour {
     SpriteRenderer sr;
     Sprite sprite;
     MaterialPropertyBlock mpb;
-   
-    void OnValidate()
-    {
-        update();
-    }
-   
-    void OnWillRenderObject(){
-        update();
-    }
-   
-    void Start(){
-        update();
-    }
-   
+
+    void OnValidate() => update();
+    void OnWillRenderObject() => update();
+    void Start() => update();
+    void Update() => update();
+
     void update(){
         if(sr==null)
             sr = GetComponent<SpriteRenderer>();
        
         if(sprite != sr.sprite){
             sprite = sr.sprite;
+
             applySpriteUV(sr, sprite, ref mpb, 
                 GameConstants.UVPassthroughUV, 
                 GameConstants.UVPassthroughPivot, 
@@ -67,6 +60,7 @@ public class SpriteUVToShader : MonoBehaviour {
             mpb = new MaterialPropertyBlock();
  
         renderer.GetPropertyBlock(mpb);
+        mpb.SetTexture("_MainTex", toSprite.texture);
        
         mpb.SetVector(uvProp, uvVector);
         if(!string.IsNullOrEmpty(pivotProp))
@@ -77,6 +71,7 @@ public class SpriteUVToShader : MonoBehaviour {
                 Mathf.Lerp(uvVector.z, uvVector.z+uvVector.x, pivotVector.x),
                 Mathf.Lerp(uvVector.w, uvVector.w+uvVector.y, pivotVector.y)
             ));
+
        
         renderer.SetPropertyBlock(mpb);
     }
@@ -86,7 +81,7 @@ public class SpriteUVToShader : MonoBehaviour {
         string texSizeProp=null, string pixSizeProp=null){
        
         if(toSprite==null || string.IsNullOrEmpty(texSizeProp)) return;
-       
+
         if(mpb==null)
             mpb = new MaterialPropertyBlock();
  
@@ -95,6 +90,8 @@ public class SpriteUVToShader : MonoBehaviour {
         mpb.SetFloat(texSizeProp, toSprite.texture.width);
         if(!string.IsNullOrEmpty(pixSizeProp))
             mpb.SetFloat(pixSizeProp, 1f/toSprite.pixelsPerUnit);
+
+        Debug.Log(renderer.transform.parent.gameObject.name + ": " + mpb.GetVector("_SpriteUV"));
        
         renderer.SetPropertyBlock(mpb);
     }

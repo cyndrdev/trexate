@@ -1,18 +1,11 @@
-﻿
-//
-// shader starts here, c# companion script below
-//
-// PS. Make sure to use square texture (sides must be equal)
-//
- 
-Shader "Unlit/spritePixelated"
+﻿Shader "Sprite/PixelPerfectEntity"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
+        [PerRendererData] _MainTex ("Texture", 2D) = "transparent" {}
        
         [Header(Scaling)]
-        _Res ("Resolution", Float) = 1024
+        _Res ("Resolution", Float) = 16
         _PixelSize ("Pixel Size", Float) = .0625
        
         [Header(Sprite MetaData)]
@@ -23,10 +16,18 @@ Shader "Unlit/spritePixelated"
     }
     SubShader
     {
-        Tags { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"
-        "DisableBatching"="True"
+        Tags {
+			"Queue"="Transparent"
+			"IgnoreProjector"="True"
+			"RenderType"="Transparent"
+			"DisableBatching"="True"
+			"PreviewType"="Plane"
+			"CanUseSpriteAtlas"="True"
         }
-        LOD 100
+
+		Cull Off
+		Lighting Off
+		ZWrite Off
         Blend SrcAlpha OneMinusSrcAlpha
  
         Pass
@@ -43,12 +44,14 @@ Shader "Unlit/spritePixelated"
             struct appdata
             {
                 float4 vertex : POSITION;
+				float4 color  : COLOR;
                 float2 uv : TEXCOORD0;
             };
  
             struct v2f
             {
                 float2 uv : TEXCOORD0;
+				fixed4 color : COLOR;
                 float4 vertex : SV_POSITION;
             };
  
@@ -63,6 +66,7 @@ Shader "Unlit/spritePixelated"
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
+				o.color = v.color;
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 return o;
             }
@@ -79,7 +83,7 @@ Shader "Unlit/spritePixelated"
                // next line is the pixelation
                 uv = quantToWorld(uv-_UVCenter.xy,  1/_Res)+_UVCenter.xy;
                
-                fixed4 col = tex2D(_MainTex, uv);
+                fixed4 col = tex2D(_MainTex, uv) * i.color;
                 clip(col.a-.001);
                 return col;
             }

@@ -19,6 +19,7 @@ public class BulletData : ScriptableObject
     [Header("Visuals")]
     public Sprite sprite;
     public Vector2 scale = new Vector2(1f, 1f);
+    public Material material;
 
     [Header("Collision")]
     public BulletShape collisionShape;
