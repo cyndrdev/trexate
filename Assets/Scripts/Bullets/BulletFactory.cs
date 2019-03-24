@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class BulletFactory : MonoBehaviour
 {
-    [SerializeField]
-    private Material _bulletMaterial;
-
-    public Material BulletMaterial {
-        get => _bulletMaterial;
-        protected set => _bulletMaterial = value;
-    }
-
     private Dictionary<BulletData, List<Bullet>> _bank;
 
     void Awake()

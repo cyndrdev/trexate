@@ -1,4 +1,5 @@
 ﻿/// Based on: http://www.brechtos.com/hiding-or-disabling-inspector-properties-using-propertydrawers-within-unity-5/
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 
@@ -55,3 +56,4 @@ public class ConditionalHidePropertyDrawer : PropertyDrawer
         return enabled;
     }
 }
+#endif

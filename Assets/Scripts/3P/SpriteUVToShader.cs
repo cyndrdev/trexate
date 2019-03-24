@@ -10,6 +10,7 @@ using System.Collections.Generic;
 [ExecuteInEditMode]
 [RequireComponent(typeof(SpriteRenderer))]
 public class SpriteUVToShader : MonoBehaviour {
+    Material material;
  
     SpriteRenderer sr;
     Sprite sprite;
@@ -17,11 +18,30 @@ public class SpriteUVToShader : MonoBehaviour {
 
     void OnValidate() => update();
     void OnWillRenderObject() => update();
-    void Start() => update();
-    void Update() => update();
+    void OnEnable() => init();
+    // void Update() => update();
+
+    void checkNulls()
+    {
+        if (sr==null)
+            sr = GetComponent<SpriteRenderer>();
+       
+        if(sprite != sr.sprite)
+            sprite = sr.sprite;
+    }
+
+    void init()
+    {
+        if (sr == null)
+            sr = GetComponent<SpriteRenderer>();
+
+        material = new Material(Shader.Find(GameConstants.BulletShader));
+        sr.material = material;
+        update();
+    }
 
     void update(){
-        if(sr==null)
+        if (sr==null)
             sr = GetComponent<SpriteRenderer>();
        
         if(sprite != sr.sprite){

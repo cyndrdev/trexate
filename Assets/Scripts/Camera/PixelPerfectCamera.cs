@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PixelPerfectCamera : MonoBehaviour
 {
+#pragma warning disable 0649
     [SerializeField]
     private bool _fill;
+#pragma warning restore 0649
 
     private float _orthoScale;
     private Camera _camera;

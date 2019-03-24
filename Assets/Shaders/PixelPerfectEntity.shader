@@ -1,4 +1,4 @@
-﻿Shader "Sprite/PixelPerfectEntity"
+﻿Shader "Sprites/PixelPerfectEntity"
 {
     Properties
     {

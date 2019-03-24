@@ -23,6 +23,7 @@ public class Bullet : MonoBehaviour
     private MonoBehaviour _smartPositionFunc;
 
     private SoundEngine _soundEngine;
+    private Material _material;
 
     private float _startTime;
     private bool _playerBullet = true;
@@ -95,18 +96,17 @@ public class Bullet : MonoBehaviour
             _graphicsHolder.transform.parent = transform;
 
             _renderer = _graphicsHolder.AddComponent<SpriteRenderer>();
-            // _renderer.material = Instantiate(Game.Instance.BulletFactory.BulletMaterial);
             _renderer.sprite = _data.sprite;
-            // _renderer.material = Instantiate(_data.material);
 
-            var mat = Resources.Load<Material>("PixelPerfectTexture");
-            Debug.Log(mat);
-            _renderer.material = mat;
+            //_material = new Material(Shader.Find(GameConstants.BulletShader));
 
-            _renderer.material.SetTexture("_MainTex", _data.sprite.texture);
+            //_material.mainTexture = _renderer.sprite.texture;
+            //_renderer.material = _material;
+
             Debug.Log(_data.sprite);
 
-            gameObject.AddComponent<PixelPerfectEntity>();
+            //gameObject.AddComponent<PixelPerfectEntity>();
+            _graphicsHolder.AddComponent<SpriteUVToShader>();
         }
         else
         {
