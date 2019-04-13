@@ -2,19 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
 
 public class FramerateCounter : MonoBehaviour
 {
     private Text _counter;
     private float _framerate;
-
     [SerializeField]
-    private int _historySize;
-
-    private float[] _history;
-
-    private int position;
+    [Range(0f, 1f)]
+    private float _smoothing;
 
     void Start()
     {
@@ -22,18 +17,12 @@ public class FramerateCounter : MonoBehaviour
 
         if (_counter == null)
             throw new System.Exception();
-
-        _history = new float[_historySize];
     }
 
     void Update()
     {
-        _history[position++] = Time.deltaTime;
-
-        while (position >= _historySize)
-            position -= _historySize;
-
-        int frameRate = (int)(1f / _history.Average());
-        _counter.text = frameRate.ToString();
+        float currentFramerate = 1f / Time.deltaTime;
+        _framerate = Mathf.Lerp(_framerate, currentFramerate, _smoothing);
+        _counter.text = Mathf.RoundToInt(_framerate).ToString();
     }
 }

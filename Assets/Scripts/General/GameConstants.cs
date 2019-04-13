@@ -30,6 +30,9 @@ public class GameConstants
     public static int GruntHitScore = 10;
     public static int GruntKillScore = 500;
 
+    /* --- input --- */
+    public static float EmergencyExitDuration = 2f;
+
     /* === visuals === */
     public static int HitFlashFrames = 2;
     public static int HitFlashFade = 2;
