@@ -25,11 +25,17 @@ public class GameConstants
     /* --- mechanics --- */
     public static float BulletOffScreenMargin = 0.05f;
 
-    /* --- visuals --- */
+    /* --- points --- */
+    public static int MinScoreIncrease = 1;
+    public static int GruntHitScore = 10;
+    public static int GruntKillScore = 500;
+
+    /* === visuals === */
     public static int HitFlashFrames = 2;
     public static int HitFlashFade = 2;
     public static float HitFlashPeak = 0.85f;
     public static string PixelPerfectShader = "Sprites/PixelPerfectEntity";
+    public static float CounterRefreshRate = 0.025f;
 
     /* === tags === */
     public static string PlayerController = "Player";

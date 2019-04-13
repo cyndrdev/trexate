@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Extensions;
 
 public class EnemyHeart : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class EnemyHeart : MonoBehaviour
     {
         _hitPoints -= damage;
         _soundEngine.PlaySFX("hurt");
+        GameConstants.GruntHitScore.AddToScore();
         Debug.Log("[EnemyHeart]: took " + damage.ToString() + " damage!");
 
         if (_hitPoints < 0)
@@ -46,6 +48,7 @@ public class EnemyHeart : MonoBehaviour
     private void die()
     {
         _soundEngine.PlaySFX("explosion");
+        GameConstants.GruntKillScore.AddToScore();
         Destroy(gameObject);
     }
 

@@ -10,6 +10,7 @@ namespace Extensions
     public static class Extensions
     {
         public static float ToRadians(this float f) => Mathf.Deg2Rad * f;
+
         public static float ToDegrees(this float f) => Mathf.Rad2Deg * f;
 
         public static Quaternion ToRotation(this float degrees) => Quaternion.Euler(0, 0, degrees);
@@ -20,6 +21,15 @@ namespace Extensions
         public static float ScaleToSignal(this float f)
             => (f - 0.5f) * 2.0f;
 
+        public static int Pow(this int baseNum, int power)
+        {
+            int r = 1;
+
+            for (int i = 0; i < power; i++)
+                r *= baseNum;
+
+            return r;
+        }
 
         public static Vector2 Rotate(this Vector2 vector, float degrees)
             => degrees.ToRotation() * vector;
