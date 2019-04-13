@@ -106,7 +106,7 @@ public class Bullet : MonoBehaviour
             Debug.Log(_data.sprite);
 
             //gameObject.AddComponent<PixelPerfectEntity>();
-            _graphicsHolder.AddComponent<SpriteUVToShader>();
+            //_graphicsHolder.AddComponent<SpriteUVToShader>();
         }
         else
         {

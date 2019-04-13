@@ -29,7 +29,7 @@ public class GameConstants
     public static int HitFlashFrames = 2;
     public static int HitFlashFade = 2;
     public static float HitFlashPeak = 0.85f;
-    public static string BulletShader = "Sprites/Default";
+    public static string PixelPerfectShader = "Sprites/PixelPerfectEntity";
 
     /* === tags === */
     public static string PlayerController = "Player";

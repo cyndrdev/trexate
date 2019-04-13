@@ -35,7 +35,7 @@ public class SpriteUVToShader : MonoBehaviour {
         if (sr == null)
             sr = GetComponent<SpriteRenderer>();
 
-        material = new Material(Shader.Find(GameConstants.BulletShader));
+        material = new Material(Shader.Find(GameConstants.PixelPerfectShader));
         sr.material = material;
         update();
     }
