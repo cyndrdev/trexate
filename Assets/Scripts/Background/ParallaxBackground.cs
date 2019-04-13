@@ -32,8 +32,6 @@ public class ParallaxBackground : MonoBehaviour
     {
         var go = new GameObject("Layer " + _layers.Count.ToString());
         go.transform.parent = transform;
-        var sr = go.AddComponent<SpriteRenderer>();
-        sr.sprite = sprite;
 
         float spriteHeight = sprite.bounds.size.y;
 
@@ -41,6 +39,16 @@ public class ParallaxBackground : MonoBehaviour
         {
             // this is our base layer, set our base height
             _baseHeight = spriteHeight;
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            var so = new GameObject("Instance " + i);
+            so.transform.parent = go.transform;
+            var sr = so.AddComponent<SpriteRenderer>();
+            sr.sprite = sprite;
+
+            so.transform.localPosition = new Vector3(0f, (i - 1) * spriteHeight, 0f);
         }
 
         _layers.Add(
