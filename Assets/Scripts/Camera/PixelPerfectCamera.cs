@@ -21,14 +21,17 @@ public class PixelPerfectCamera : MonoBehaviour
         if (_camera == null)
             throw new System.Exception();
 
-        float pixelSizeX = Screen.width / GameConstants.ViewportRes.x;
-        float pixelSizeY = Screen.height / GameConstants.ViewportRes.y;
+        float pixelSizeX = (float)Screen.width / (float)GameConstants.ViewportRes.x;
+        float pixelSizeY = (float)Screen.height / (float)GameConstants.ViewportRes.y;
+        Debug.Log("X: " + pixelSizeX + "\nY: " + pixelSizeY);
 
         SpriteScale = _fill ?
-            (int)Mathf.Min(pixelSizeX, pixelSizeY) :
-            (int)Mathf.Max(pixelSizeX, pixelSizeY);
+            (int)Mathf.Ceil(Mathf.Min(pixelSizeX, pixelSizeY)) :
+            (int)Mathf.Ceil(Mathf.Max(pixelSizeX, pixelSizeY));
 
-        _orthoScale = (float)Screen.height / SpriteScale / GameConstants.TileSize / 2f;
+        Debug.Log("[PixelPerfectCamera]: initialised with pixel size of " + SpriteScale);
+
+        _orthoScale = (float)Screen.height / (SpriteScale * GameConstants.TileSize);
 
         _camera.orthographicSize = _orthoScale;
     }
