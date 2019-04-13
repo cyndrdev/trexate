@@ -97,13 +97,12 @@ public class Bullet : MonoBehaviour
 
             _renderer = _graphicsHolder.AddComponent<SpriteRenderer>();
             _renderer.sprite = _data.sprite;
+            _renderer.sortingLayerName = GameConstants.BulletSortLayer;
 
             //_material = new Material(Shader.Find(GameConstants.BulletShader));
 
             //_material.mainTexture = _renderer.sprite.texture;
             //_renderer.material = _material;
-
-            Debug.Log(_data.sprite);
 
             //gameObject.AddComponent<PixelPerfectEntity>();
             //_graphicsHolder.AddComponent<SpriteUVToShader>();

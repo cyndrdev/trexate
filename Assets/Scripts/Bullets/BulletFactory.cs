@@ -15,7 +15,7 @@ public class BulletFactory : MonoBehaviour
     public void Shoot(GameObject parent, BulletData data, Vector2 offset, float rotationOffset, bool flipX)
     {
         GameObject vaultObject = null;
-        // if this bullet hasn't been fired before, fire it!
+        // if this bullet hasn't been fired before, create a vault for it
         if (!_bank.ContainsKey(data))
         {
             _bank.Add(data, new List<Bullet>());

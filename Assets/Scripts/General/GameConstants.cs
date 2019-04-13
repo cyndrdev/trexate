@@ -40,9 +40,15 @@ public class GameConstants
     /* === tags === */
     public static string PlayerController = "Player";
 
-    /* === layers === */
+    /* === physics layers === */
     public const int PlayerLayer = 8;
     public const int PlayerBulletLayer = 9;
     public const int EnemyLayer = 10;
     public const int EnemyBulletLayer = 11;
+
+    /* === sprite sort layers === */
+
+    public const string EntitySortLayer = "Entities";
+    public const string BulletSortLayer = "Bullets";
+    public const string BackgroundSortLayer = "Background";
 }

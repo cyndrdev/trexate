@@ -41,12 +41,14 @@ public class ParallaxBackground : MonoBehaviour
             _baseHeight = spriteHeight;
         }
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i <3; i++)
         {
             var so = new GameObject("Instance " + i);
             so.transform.parent = go.transform;
             var sr = so.AddComponent<SpriteRenderer>();
             sr.sprite = sprite;
+            sr.sortingLayerName = GameConstants.BackgroundSortLayer;
+            sr.sortingOrder = _layers.Count;
 
             so.transform.localPosition = new Vector3(0f, (i - 1) * spriteHeight, 0f);
         }

@@ -62,7 +62,6 @@ public class LaggyStateCounter : MonoBehaviour
 
         // update our text
         _counter.text = _shownValue.ToString();
-        Debug.Log("+" + step);
     }
 
     public IEnumerator KeepUp()
