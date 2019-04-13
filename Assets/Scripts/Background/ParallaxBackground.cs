@@ -74,7 +74,10 @@ public class ParallaxBackground : MonoBehaviour
         float relPos = _t * movementRate;
 
         while (relPos > _baseHeight)
+        {
+            _t -= relPos / movementRate;
             relPos -= _baseHeight;
+        }
 
         foreach (ParallaxLayer layer in _layers)
         {
