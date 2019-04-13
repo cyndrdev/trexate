@@ -5,17 +5,20 @@ using UnityEngine;
 public struct ParallaxLayer
 {
     public GameObject GameObject;
+    public float Size;
     public float MovementScale;
 
-    public ParallaxLayer(GameObject gameObject, float movementScale)
+    public ParallaxLayer(GameObject gameObject, float size, float movementScale)
     {
         GameObject = gameObject;
+        Size = size;
         MovementScale = movementScale;
     }
 }
 
 public class ParallaxBackground : MonoBehaviour
 {
+    public float movementRate = 16f;
     public Sprite _background;
     public Sprite _layerOne;
     public Sprite _layerTwo;
@@ -43,6 +46,7 @@ public class ParallaxBackground : MonoBehaviour
         _layers.Add(
             new ParallaxLayer(
                 go, 
+                spriteHeight,
                 spriteHeight / _baseHeight
             )
         );
@@ -59,15 +63,17 @@ public class ParallaxBackground : MonoBehaviour
     private void Update()
     {
         _t += Time.deltaTime;
+        float relPos = _t * movementRate;
+
+        while (relPos > _baseHeight)
+            relPos -= _baseHeight;
+
         foreach (ParallaxLayer layer in _layers)
         {
+            var height = (layer.Size / 2f) - relPos * layer.MovementScale;
             var position = layer.GameObject.transform.position;
-            layer.GameObject.transform.position = new Vector3
-            (
-                position.x,
-                -_t * layer.MovementScale,
-                position.z
-            );
+            layer.GameObject.transform.position
+                = new Vector3(position.x, height, position.z);
         }
     }
 }
