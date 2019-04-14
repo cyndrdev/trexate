@@ -11,5 +11,6 @@ public class GlobalState : MonoBehaviour
     {
         Counters = new Dictionary<string, int>();
         Counters.Add("score", 0);
+        Counters.Add("date", 0);
     }
 }

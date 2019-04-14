@@ -20,6 +20,7 @@ public class Game : MonoBehaviour
     public BulletFactory BulletFactory { get; private set; }
     public PixelPerfectCamera PixelPerfectCamera { get; private set; }
     public GlobalState GlobalState { get; private set; }
+    public TimeTravelManager TimeTravelManager { get; private set; }
 
     void Awake()
     {
@@ -35,6 +36,7 @@ public class Game : MonoBehaviour
         InputManager        = Persistant.GetComponent<InputManager>();
         BulletFactory       = Persistant.GetComponent<BulletFactory>();
         GlobalState         = Persistant.GetComponent<GlobalState>();
+        TimeTravelManager   = Persistant.GetComponent<TimeTravelManager>();
 
         PixelPerfectCamera  = Camera.main.GetComponent<PixelPerfectCamera>();
 
@@ -43,6 +45,7 @@ public class Game : MonoBehaviour
         if (BulletFactory       == null)    throw new System.Exception();
         if (PixelPerfectCamera  == null)    throw new System.Exception();
         if (GlobalState         == null)    throw new System.Exception();
+        if (TimeTravelManager   == null)    throw new System.Exception();
 
         _player = GameObject.FindGameObjectWithTag(GameConstants.PlayerController);
 
