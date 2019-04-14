@@ -10,7 +10,10 @@ public class Game : MonoBehaviour
     public Transform BulletRoot;
 
     private GameObject _player;
-    public Vector3 PlayerPosition { get => _player.transform.position; }
+    public Vector3 PlayerPosition {
+        get => _player.transform.position;
+        set => _player.transform.position = value;
+    }
 
     public SoundEngine SoundEngine { get; private set; }
     public InputManager InputManager { get; private set; }

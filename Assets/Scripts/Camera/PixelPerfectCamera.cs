@@ -13,6 +13,7 @@ public class PixelPerfectCamera : MonoBehaviour
     private Camera _camera;
 
     public int SpriteScale { get; private set; }
+    public float OrthoScale { get => _orthoScale; }
 
     void UpdateOrtho()
     {

@@ -23,7 +23,7 @@ public class GameConstants
     public static string UVPassthroughPixelSize = "_PixelSize";
 
     /* --- mechanics --- */
-    public static float BulletOffScreenMargin = 0.05f;
+    public static float BoundsMargin = 0.25f;
 
     /* --- points --- */
     public static int MinScoreIncrease = 1;
