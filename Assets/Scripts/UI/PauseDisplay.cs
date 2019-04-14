@@ -7,6 +7,9 @@ public class PauseDisplay : MonoBehaviour
 {
     private Text _display;
 
+    [SerializeField]
+    private bool _flash;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +22,17 @@ public class PauseDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _display.enabled = (Time.timeScale == 0);
+        bool flashState;
+
+        flashState = (
+           !_flash || // if we enable flashing, flashState will always be true
+           Mathf.RoundToInt(
+               Time.unscaledTime / GameConstants.PauseDisplayFlashRate
+           ) % 2 == 0
+        );
+
+        _display.enabled = (
+            Time.timeScale == 0 && flashState
+        );
     }
 }

@@ -39,11 +39,15 @@ public class GameConstants
     public static float EmergencyExitDuration = 1f;
 
     /* === visuals === */
+    /* --- gameplay --- */
     public static int HitFlashFrames = 2;
     public static int HitFlashFade = 2;
     public static float HitFlashPeak = 0.85f;
     public static string PixelPerfectShader = "Sprites/PixelPerfectEntity";
+
+    /* --- ui --- */
     public static float CounterRefreshRate = 0.025f;
+    public static float PauseDisplayFlashRate = 0.35f;
 
     /* === tags === */
     public static string PlayerController = "Player";
