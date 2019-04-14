@@ -5,18 +5,19 @@ using UnityEngine;
 public class EmergencyExit : MonoBehaviour
 {
     private float _time = 0;
+    private KeyCode _exit = KeyCode.Escape;
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyUp(_exit))
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                // first frame the key is pressed, reset timer
-                _time = 0;
-            }
+            _time = 0;
+            Game.Instance.TogglePause();
+        }
 
-            _time += Time.deltaTime;
+        if (Input.GetKey(_exit))
+        {
+            _time += Time.unscaledDeltaTime;
 
             if (_time > GameConstants.EmergencyExitDuration)
             {

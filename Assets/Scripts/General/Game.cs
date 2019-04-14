@@ -51,4 +51,7 @@ public class Game : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
     }
+
+    public void TogglePause()
+        => Time.timeScale = (Time.timeScale == 0) ? 1f : 0f;
 }

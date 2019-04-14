@@ -28,7 +28,7 @@ public class GameConstants
     /* --- time travel --- */
     public static int TimeTravelStart = 2177;
     public static int TimeTravelEnd = -137500000;
-    public static float TimeTravelExponent = 3f;
+    public static float TimeTravelExponent = 3.35f;
 
     /* --- points --- */
     public static int MinScoreIncrease = 1;
@@ -36,7 +36,7 @@ public class GameConstants
     public static int GruntKillScore = 500;
 
     /* --- input --- */
-    public static float EmergencyExitDuration = 2f;
+    public static float EmergencyExitDuration = 1f;
 
     /* === visuals === */
     public static int HitFlashFrames = 2;

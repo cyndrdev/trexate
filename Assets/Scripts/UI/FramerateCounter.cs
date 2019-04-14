@@ -21,7 +21,7 @@ public class FramerateCounter : MonoBehaviour
 
     void Update()
     {
-        float currentFramerate = 1f / Time.deltaTime;
+        float currentFramerate = 1f / Time.unscaledDeltaTime;
         _framerate = Mathf.Lerp(_framerate, currentFramerate, _smoothing);
         _counter.text = Mathf.RoundToInt(_framerate).ToString();
     }
