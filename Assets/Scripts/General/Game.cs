@@ -21,6 +21,7 @@ public class Game : MonoBehaviour
     public PixelPerfectCamera PixelPerfectCamera { get; private set; }
     public GlobalState GlobalState { get; private set; }
     public TimeTravelManager TimeTravelManager { get; private set; }
+    public EnemyFactory EnemyFactory { get; private set; }
 
     void Awake()
     {
@@ -35,6 +36,7 @@ public class Game : MonoBehaviour
         SoundEngine         = Persistant.GetComponent<SoundEngine>();
         InputManager        = Persistant.GetComponent<InputManager>();
         BulletFactory       = Persistant.GetComponent<BulletFactory>();
+        EnemyFactory        = Persistant.GetComponent<EnemyFactory>();
         GlobalState         = Persistant.GetComponent<GlobalState>();
         TimeTravelManager   = Persistant.GetComponent<TimeTravelManager>();
 
@@ -43,6 +45,7 @@ public class Game : MonoBehaviour
         if (SoundEngine         == null)    throw new System.Exception();
         if (InputManager        == null)    throw new System.Exception();
         if (BulletFactory       == null)    throw new System.Exception();
+        if (EnemyFactory        == null)    throw new System.Exception();
         if (PixelPerfectCamera  == null)    throw new System.Exception();
         if (GlobalState         == null)    throw new System.Exception();
         if (TimeTravelManager   == null)    throw new System.Exception();

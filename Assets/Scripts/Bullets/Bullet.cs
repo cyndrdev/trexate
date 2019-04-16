@@ -66,6 +66,9 @@ public class Bullet : MonoBehaviour
         _owner = parent;
         _flipX = flipX;
 
+        if (_data.shootSample != "")
+            _soundEngine.PlaySFX(_data.shootSample, true, _data.shootSampleVolume);
+
         gameObject.SetActive(true);
     }
 
@@ -100,10 +103,10 @@ public class Bullet : MonoBehaviour
             _renderer.sprite = _data.sprite;
             _renderer.sortingLayerName = GameConstants.BulletSortLayer;
 
-            if (data.controller != null)
+            if (data.animatorController != null)
             {
                 _animator = _graphicsHolder.AddComponent<Animator>();
-                _animator.runtimeAnimatorController = data.controller;
+                _animator.runtimeAnimatorController = data.animatorController;
             }
 
             //_material = new Material(Shader.Find(GameConstants.BulletShader));
@@ -272,8 +275,10 @@ public class Bullet : MonoBehaviour
 
         if (playerHit || enemyHit)
         {
+            if (_data.hitSample != "")
+                _soundEngine.PlaySFX(_data.hitSample, true, _data.hitSampleVolume);
+
             gameObject.SetActive(false);
-            if (_data.explodeOnInpact) _soundEngine.PlaySFX("explosion");
         }
     }
 }

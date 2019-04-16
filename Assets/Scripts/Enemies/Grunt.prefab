@@ -75,6 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHitPoints: 2500
+  _hitPoints: 0
 --- !u!114 &1673342460990790506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,8 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c32b1b88a453446b659158e95413e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shotsPerSecond: 1
-  _bulletData: {fileID: 11400000, guid: 7b77e5896a0a9be43ba57412e78cef43, type: 2}
+  _data: {fileID: 11400000, guid: a0b232bac4c3bc94a8d229fd325d3421, type: 2}
 --- !u!50 &4979324895003096578
 Rigidbody2D:
   serializedVersion: 4

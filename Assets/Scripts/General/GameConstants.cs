@@ -65,4 +65,8 @@ public class GameConstants
     public const string EntitySortLayer = "Entities";
     public const string BulletSortLayer = "Bullets";
     public const string BackgroundSortLayer = "Background";
+
+    /* === resource paths === */
+    public const string BulletBehaviourPath = "BulletTypes/";
+    public const string EnemyBehaviourPath = "EnemyBehaviour/";
 }

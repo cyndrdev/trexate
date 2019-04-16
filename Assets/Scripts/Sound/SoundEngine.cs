@@ -79,7 +79,7 @@ public class SoundEngine : MonoBehaviour {
         Destroy(sfxObj);
     }
 
-    public void PlaySFX(string clipname, bool varyPitch=true)
+    public void PlaySFX(string clipname, bool varyPitch=true, float volume=1f)
     {
         AudioClip clip = _soundEffects
             .Where((AudioClip a) => a.name == clipname)
@@ -99,15 +99,15 @@ public class SoundEngine : MonoBehaviour {
         float pitchMultiplier = varyPitch ? getRandomPitch() : 1f;
         AudioSource audioSource = audioObj.AddComponent<AudioSource>();
         audioSource.clip = clip;
-        audioSource.volume = _sfxVolume;
+        audioSource.volume = _sfxVolume * volume;
         audioSource.pitch = pitchMultiplier;
 
         StartCoroutine(PlayAndDelete(audioObj));
     }
 
-    public void PlayRandomSFX(string baseclip, int start, int end, bool varyPitch=true)
+    public void PlayRandomSFX(string baseclip, int start, int end, bool varyPitch=true, float volume=1f)
     {
-        PlaySFX(baseclip + Random.Range(start, end + 1).ToString(), varyPitch);
+        PlaySFX(baseclip + Random.Range(start, end + 1).ToString(), varyPitch, volume);
     }
 
     public IEnumerator FadeMusicIn(AudioSource track)

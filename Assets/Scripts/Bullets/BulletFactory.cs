@@ -78,9 +78,51 @@ public class BulletFactory : MonoBehaviour
 
 public static class BulletExtensions
 {
+    private static BulletData ToBulletData(this string name)
+    {
+        BulletData data = Resources.Load<BulletData>(GameConstants.BulletBehaviourPath + name);
+
+        if (data == null)
+        {
+            throw new System.Exception("[BulletExtensions]: tried to load BulletData with name '" + name + "', none found.");
+        }
+
+        return data;
+    }
+
     public static void Shoot(this GameObject parent, BulletData data)
-        => Game.Instance.BulletFactory.Shoot(parent, data, new Vector2(0,0), 0f, false);
+        => Game.Instance.BulletFactory.Shoot(
+            parent, 
+            data, 
+            new Vector2(0,0), 
+            0f, 
+            false
+        );
 
     public static void Shoot(this GameObject parent, BulletData data, Vector2 offset, float rotationOffset, bool flipX = false)
-        => Game.Instance.BulletFactory.Shoot(parent, data, offset, rotationOffset, flipX);
+        => Game.Instance.BulletFactory.Shoot(
+            parent, 
+            data, 
+            offset, 
+            rotationOffset, 
+            flipX
+        );
+
+    public static void Shoot(this GameObject parent, string dataName)
+        => Game.Instance.BulletFactory.Shoot(
+            parent,
+            dataName.ToBulletData(), 
+            new Vector2(0, 0), 
+            0f, 
+            false
+        );
+
+    public static void Shoot(this GameObject parent, string dataName, Vector2 offset, float rotationOffset, bool flipX = false)
+        => Game.Instance.BulletFactory.Shoot(
+            parent,
+            dataName.ToBulletData(),
+            offset,
+            rotationOffset,
+            flipX
+        );
 }

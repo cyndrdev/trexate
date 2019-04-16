@@ -10,16 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6877e2bfe46e7504eaf7fb0c695c9490, type: 3}
-  m_Name: smallprogressive
+  m_Name: smallsine
   m_EditorClassIdentifier: 
-  lifetime: 2
+  lifetime: 1.6
   sprite: {fileID: 21300000, guid: 431a73adc0e0f894f93a6fefa90b0522, type: 3}
-  scale: {x: 1, y: 1}
+  animatorController: {fileID: 9100000, guid: 21cf08164c7807e4b938764b4508b2e6, type: 2}
+  scale: {x: 0.707, y: 0.707}
+  material: {fileID: 0}
+  shootSample: shoot1
+  shootSampleVolume: 1
+  hitSample: 
+  hitSampleVolume: 1
   collisionShape: 0
-  collisionScale: {x: 1, y: 1}
+  collisionScale: {x: 2, y: 2}
   useSimpleMovement: 1
-  movementBehaviour: progressive
-  movementScale: {x: 1, y: 1}
-  timeScale: 15
+  movementBehaviour: sinusoidal
+  movementScale: {x: 0.35, y: 1.2}
+  timeScale: 18
   movementScript: 
-  explodeOnInpact: 0

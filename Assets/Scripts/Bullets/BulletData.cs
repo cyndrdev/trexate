@@ -19,9 +19,19 @@ public class BulletData : ScriptableObject
 
     [Header("Visuals")]
     public Sprite sprite;
-    public RuntimeAnimatorController controller;
+    public RuntimeAnimatorController animatorController;
     public Vector2 scale = new Vector2(1f, 1f);
     public Material material;
+
+    [Header("Sound FX")]
+    public string shootSample = "shoot1";
+    [Range(0f, 1f)]
+    public float shootSampleVolume = 1.0f;
+    public string hitSample;
+    [Range(0f, 1f)]
+    public float hitSampleVolume = 1.0f;
+    // TODO: maybe add flight sample?
+    //public string flightSample;
 
     [Header("Collision")]
     public BulletShape collisionShape;
@@ -37,5 +47,4 @@ public class BulletData : ScriptableObject
     public float timeScale = 1f;
     [ConditionalHide("useSimpleMovement", false, true)]
     public string movementScript;
-    public bool explodeOnInpact;
 }

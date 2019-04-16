@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifetime: 10
   sprite: {fileID: 21300000, guid: d4de998a11c5e9f488d9645fcde30393, type: 3}
+  controller: {fileID: 0}
   scale: {x: 1, y: 1}
   material: {fileID: 2100000, guid: 8fc7f13c2ec6091438d43f0e73b2b441, type: 2}
+  shootSample: shoot3
+  hitSample: 
   collisionShape: 0
   collisionScale: {x: 1, y: 1}
   useSimpleMovement: 0
@@ -23,4 +26,3 @@ MonoBehaviour:
   movementScale: {x: 0, y: 0}
   timeScale: 0
   movementScript: PlayerSeekingRocket
-  explodeOnInpact: 1

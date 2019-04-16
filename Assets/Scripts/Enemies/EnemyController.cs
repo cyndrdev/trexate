@@ -1,37 +1,54 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyController : MonoBehaviour
 {
-#pragma warning disable 0649
     [SerializeField]
-    private float _shotsPerSecond;
-
-    [SerializeField]
-    private BulletData _bulletData;
-#pragma warning restore 0649
-
-    private SoundEngine _soundEngine;
+    private EnemyData _data;
+    private IEnemyState _currentState;
 
     private void Start()
     {
-        _soundEngine = Game.Instance.SoundEngine;
-        StartCoroutine(FireRockets());
+        SetState(_data.Stages[0].StageScript);
     }
 
-    void Fire()
+    private void SetState(string stateName)
     {
-        _soundEngine.PlaySFX("shoot3", true);
-        gameObject.Shoot(_bulletData, new Vector2(0,0), Random.Range(-Mathf.PI, Mathf.PI));
-    }
+        // first, end our current state cleanly
+        if (_currentState != null)
+            _currentState.End();
 
-    private IEnumerator FireRockets()
-    {
-        while(true)
+        Debug.Log(stateName);
+
+        // to the unlucky soul reading this:
+        // enemy behaviour is instantiated via reflection.
+        // this is a terrible idea and you should never do it.
+        // it was also the fastest way i could think of to get this working.
+        // i hope you can forgive me.
+
+        Type objType = Type.GetType(stateName);
+
+        if (objType != null)
         {
-            Fire();
-            yield return new WaitForSeconds(1f / _shotsPerSecond);
+            Debug.Log("found type");
+            if (objType.GetInterfaces().Contains(typeof(IEnemyState)))
+            {
+                // we successfully reflected the type we want, not bad!
+                // now let's create an instance
+                _currentState = (IEnemyState)Activator.CreateInstance(objType);
+
+                // and start it!
+                _currentState.Start(gameObject, this);
+
+                return;
+            }
+            throw new System.Exception("[EnemyController]: tried to instantiate state with class '" + stateName + "', however that class doesn't implement IEnemyState.");
         }
+
+        throw new System.Exception("[EnemyController]: tried to instantiate state with class name '" + stateName + "', however no such class exists.");
     }
 }
