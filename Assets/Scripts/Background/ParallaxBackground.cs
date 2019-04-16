@@ -58,6 +58,8 @@ public class ParallaxBackground : MonoBehaviour
             sr.sortingLayerName = GameConstants.BackgroundSortLayer;
             sr.sortingOrder = _layers.Count;
 
+            sr.flipX = (i % 2 == 0); // flip every other set
+
             so.transform.localPosition = new Vector3(0f, (i - 1) * spriteHeight, 0f);
         }
 
@@ -87,6 +89,15 @@ public class ParallaxBackground : MonoBehaviour
         while (_position > _baseHeight)
         {
             _position -= _baseHeight;
+
+            // toggle flip on each layer
+            foreach (ParallaxLayer layer in _layers)
+            {
+                foreach (var sr in layer.GameObject.GetComponentsInChildren<SpriteRenderer>())
+                {
+                    sr.flipX = !sr.flipX;
+                }
+            }
         }
 
         foreach (ParallaxLayer layer in _layers)
