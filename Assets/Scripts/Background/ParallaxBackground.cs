@@ -18,16 +18,23 @@ public struct ParallaxLayer
 
 public class ParallaxBackground : MonoBehaviour
 {
-    public float movementRate = 16f;
-    public Sprite _background;
-    public Sprite _layerOne;
-    public Sprite _layerTwo;
+    [SerializeField]
+    [Range(1f,20f)]
+    private float _movementRate = 3f;
+    [SerializeField]
+    private Sprite _background;
+    [SerializeField]
+    private Sprite _layerOne;
+    [SerializeField]
+    private Sprite _layerTwo;
 
     private List<ParallaxLayer> _layers;
     private float _baseHeight;
 
     //private float _t;
-    private float _relPos;
+    [SerializeField]
+    [ReadOnly]
+    private float _position;
 
     void InstantiateLayer(Sprite sprite)
     {
@@ -75,16 +82,16 @@ public class ParallaxBackground : MonoBehaviour
     {
         //_t += Time.deltaTime;
         //float relPos = _t * movementRate;
-        _relPos += Time.deltaTime * movementRate;
+        _position += Time.deltaTime * _movementRate;
 
-        while (_relPos > _baseHeight)
+        while (_position > _baseHeight)
         {
-            _relPos -= _baseHeight;
+            _position -= _baseHeight;
         }
 
         foreach (ParallaxLayer layer in _layers)
         {
-            var height = (layer.Size / 2f) - _relPos * layer.MovementScale;
+            var height = (layer.Size / 2f) - _position * layer.MovementScale;
             var position = layer.GameObject.transform.position;
             layer.GameObject.transform.position
                 = new Vector3(position.x, height, position.z);

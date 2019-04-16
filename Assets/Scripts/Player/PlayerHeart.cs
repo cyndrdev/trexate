@@ -6,6 +6,6 @@ public class PlayerHeart : MonoBehaviour
 {
     public void Hit()
     {
-        Debug.Log("[PlayerHeart]: ouch!");
+        //Debug.Log("[PlayerHeart]: ouch!");
     }
 }

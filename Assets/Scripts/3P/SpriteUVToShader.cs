@@ -111,8 +111,6 @@ public class SpriteUVToShader : MonoBehaviour {
         if(!string.IsNullOrEmpty(pixSizeProp))
             mpb.SetFloat(pixSizeProp, 1f/toSprite.pixelsPerUnit);
 
-        Debug.Log(renderer.transform.parent.gameObject.name + ": " + mpb.GetVector("_SpriteUV"));
-       
         renderer.SetPropertyBlock(mpb);
     }
 }

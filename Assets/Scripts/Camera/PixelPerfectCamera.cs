@@ -24,7 +24,6 @@ public class PixelPerfectCamera : MonoBehaviour
 
         float pixelSizeX = (float)Screen.width / (float)GameConstants.ViewportRes.x;
         float pixelSizeY = (float)Screen.height / (float)GameConstants.ViewportRes.y;
-        Debug.Log("X: " + pixelSizeX + "\nY: " + pixelSizeY);
 
         SpriteScale = _fill ?
             (int)Mathf.Ceil(Mathf.Min(pixelSizeX, pixelSizeY)) :

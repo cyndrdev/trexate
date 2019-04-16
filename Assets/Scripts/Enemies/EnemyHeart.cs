@@ -31,7 +31,7 @@ public class EnemyHeart : MonoBehaviour
         _hitPoints -= damage;
         _soundEngine.PlaySFX("hurt");
         GameConstants.GruntHitScore.AddToScore();
-        Debug.Log("[EnemyHeart]: took " + damage.ToString() + " damage!");
+        // Debug.Log("[EnemyHeart]: took " + damage.ToString() + " damage!");
 
         if (_hitPoints < 0)
         {
