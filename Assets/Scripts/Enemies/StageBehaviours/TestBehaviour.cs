@@ -26,7 +26,6 @@ public class TestBehaviour : IEnemyState
 
     public void Update()
     {
-
     }
 
     void Fire()

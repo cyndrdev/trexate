@@ -16,6 +16,16 @@ public class EnemyController : MonoBehaviour
         SetState(_data.Stages[0].StageScript);
     }
 
+    private void Update()
+    {
+        // TODO:
+        // - remove `EnemyHeart` and manage health here
+        // - update _currentState based on health triggers
+
+        if (_currentState != null)
+            _currentState.Update();
+    }
+
     private void SetState(string stateName)
     {
         // first, end our current state cleanly
