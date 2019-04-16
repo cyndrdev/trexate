@@ -7,8 +7,10 @@ public class PauseDisplay : MonoBehaviour
 {
     private Text _display;
 
+#pragma warning disable 0649
     [SerializeField]
     private bool _flash;
+#pragma warning restore 0649
 
     // Start is called before the first frame update
     void Start()

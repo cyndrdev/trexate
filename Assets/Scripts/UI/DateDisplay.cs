@@ -9,8 +9,10 @@ public class DateDisplay : MonoBehaviour
     private Text _display;
     private int _date;
 
+#pragma warning disable 0649
     [SerializeField]
     private bool _showCurrentDate;
+#pragma warning restore 0649
 
     [SerializeField]
     [Range(0, 1)]

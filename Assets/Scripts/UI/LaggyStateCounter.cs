@@ -6,11 +6,13 @@ using Extensions;
 
 public class LaggyStateCounter : MonoBehaviour
 {
+#pragma warning disable 0649
     [SerializeField]
     private string _key;
 
     [SerializeField]
     private bool _isPlayerPref;
+#pragma warning restore 0649
 
     private int _value;
     private int _shownValue = 0;

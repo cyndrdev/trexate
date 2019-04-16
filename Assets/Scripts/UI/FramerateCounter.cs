@@ -7,9 +7,12 @@ public class FramerateCounter : MonoBehaviour
 {
     private Text _counter;
     private float _framerate;
+
+#pragma warning disable 0649
     [SerializeField]
     [Range(0f, 1f)]
     private float _smoothing;
+#pragma warning restore 0649
 
     void Start()
     {
