@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifetime: 20
   sprite: {fileID: 21300000, guid: 431a73adc0e0f894f93a6fefa90b0522, type: 3}
+  controller: {fileID: 9100000, guid: 21cf08164c7807e4b938764b4508b2e6, type: 2}
   scale: {x: 1, y: 1}
   material: {fileID: 2100000, guid: 8fc7f13c2ec6091438d43f0e73b2b441, type: 2}
   collisionShape: 0

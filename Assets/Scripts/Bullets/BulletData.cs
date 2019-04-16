@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEditor;
 
 public enum BulletShape
@@ -18,6 +19,7 @@ public class BulletData : ScriptableObject
 
     [Header("Visuals")]
     public Sprite sprite;
+    public RuntimeAnimatorController controller;
     public Vector2 scale = new Vector2(1f, 1f);
     public Material material;
 

@@ -17,6 +17,7 @@ public class Bullet : MonoBehaviour
 
     private GameObject _graphicsHolder;
     private SpriteRenderer _renderer;
+    private Animator _animator;
     private Collider2D _collider;
 
     private System.Func<float, Vector2> _simplePositionFunc;
@@ -50,7 +51,6 @@ public class Bullet : MonoBehaviour
                 newCollider = this.GetOrAddComponent<BoxCollider2D>();
                 break;
         }
-
         newCollider.isTrigger = true;
         return newCollider;
     }
@@ -84,6 +84,7 @@ public class Bullet : MonoBehaviour
 
         /* === references === */
         // keep a reference to our gameobject
+        // fixme: this is unnecessary
         _object = gameObject;
 
         _soundEngine = Game.Instance.SoundEngine;
@@ -98,6 +99,12 @@ public class Bullet : MonoBehaviour
             _renderer = _graphicsHolder.AddComponent<SpriteRenderer>();
             _renderer.sprite = _data.sprite;
             _renderer.sortingLayerName = GameConstants.BulletSortLayer;
+
+            if (data.controller != null)
+            {
+                _animator = _graphicsHolder.AddComponent<Animator>();
+                _animator.runtimeAnimatorController = data.controller;
+            }
 
             //_material = new Material(Shader.Find(GameConstants.BulletShader));
 
@@ -213,9 +220,14 @@ public class Bullet : MonoBehaviour
 
         /* === movement === */
         if (_data.useSimpleMovement)
+        {
             SetTransform(_simplePositionFunc(0f));
+            _renderer.transform.localRotation = (_originRotation-180f).ToRotation();
+        }
         else
+        {
             SetTransform(new Vector2(0f, 0f));
+        }
 
         // after this point, either _smartPositionFunc or _simplePositionFunc will be set
         _startTime = Time.time;

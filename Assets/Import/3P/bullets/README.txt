@@ -1,0 +1,1 @@
+in the public domain, downloaded at https://stealthix.itch.io/animated-fires
