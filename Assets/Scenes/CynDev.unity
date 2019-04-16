@@ -306,9 +306,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementRate: 3
-  _background: {fileID: 21300000, guid: cf68550f0323a7e46abb4548598112dc, type: 3}
-  _layerOne: {fileID: 21300000, guid: 5a04b04a1c6244043bf4cab97698ea8a, type: 3}
-  _layerTwo: {fileID: 21300000, guid: 02e1cdf7bdb4fb144971810a7a5cc4c9, type: 3}
+  _background: {fileID: 21300000, guid: cd46274babfe95c48be5320b229cc40a, type: 3}
+  _layerOne: {fileID: 21300000, guid: 4102308830344ff4c9f82c172f38cfac, type: 3}
+  _layerTwo: {fileID: 21300000, guid: 78010b66711acd4489a42ca02dbc6def, type: 3}
 --- !u!4 &122059330
 Transform:
   m_ObjectHideFlags: 0
@@ -1794,7 +1794,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Hiscore
+  m_Text: Hi
 --- !u!222 &1399478773
 CanvasRenderer:
   m_ObjectHideFlags: 0

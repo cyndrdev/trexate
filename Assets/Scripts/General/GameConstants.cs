@@ -26,9 +26,10 @@ public class GameConstants
     public static float BoundsMargin = 0.25f;
 
     /* --- time travel --- */
-    public static int TimeTravelStart = 2177;
+    public static int TimeTravelStart = 2742;
     public static int TimeTravelEnd = -137500000;
-    public static float TimeTravelExponent = 3.35f;
+    public static float TimeTravelExponent = 3.75f;
+    public static float TimeTravelDuration = 350f;
 
     /* --- points --- */
     public static int MinScoreIncrease = 1;

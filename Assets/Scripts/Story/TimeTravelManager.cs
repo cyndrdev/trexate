@@ -23,7 +23,11 @@ public class TimeTravelManager : MonoBehaviour
 
     void Update()
     {
-        _time += Time.deltaTime * 0.01f;
+        _time += Time.deltaTime / GameConstants.TimeTravelDuration;
+
+        if (_time > 1f)
+            _time = 1f;
+
         Game.Instance.GlobalState.Counters["date"] = GetCurrentDate();
     }
 }

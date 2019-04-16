@@ -26,7 +26,8 @@ public class ParallaxBackground : MonoBehaviour
     private List<ParallaxLayer> _layers;
     private float _baseHeight;
 
-    private float _t;
+    //private float _t;
+    private float _relPos;
 
     void InstantiateLayer(Sprite sprite)
     {
@@ -72,18 +73,18 @@ public class ParallaxBackground : MonoBehaviour
 
     private void Update()
     {
-        _t += Time.deltaTime;
-        float relPos = _t * movementRate;
+        //_t += Time.deltaTime;
+        //float relPos = _t * movementRate;
+        _relPos += Time.deltaTime * movementRate;
 
-        while (relPos > _baseHeight)
+        while (_relPos > _baseHeight)
         {
-            _t -= relPos / movementRate;
-            relPos -= _baseHeight;
+            _relPos -= _baseHeight;
         }
 
         foreach (ParallaxLayer layer in _layers)
         {
-            var height = (layer.Size / 2f) - relPos * layer.MovementScale;
+            var height = (layer.Size / 2f) - _relPos * layer.MovementScale;
             var position = layer.GameObject.transform.position;
             layer.GameObject.transform.position
                 = new Vector3(position.x, height, position.z);
