@@ -49,6 +49,7 @@ public class GameConstants
     /* --- ui --- */
     public static float CounterRefreshRate = 0.025f;
     public static float PauseDisplayFlashRate = 0.35f;
+    public static float FramerateDisplayDelay = 1.3f;
 
     /* === tags === */
     public static string PlayerController = "Player";

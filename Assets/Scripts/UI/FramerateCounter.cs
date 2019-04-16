@@ -20,6 +20,11 @@ public class FramerateCounter : MonoBehaviour
 
         if (_counter == null)
             throw new System.Exception();
+
+        // don't show counter while it's still gathering data
+        // for the first second or so
+        _counter.enabled = false;
+        StartCoroutine(ShowCounter());
     }
 
     void Update()
@@ -27,5 +32,11 @@ public class FramerateCounter : MonoBehaviour
         float currentFramerate = 1f / Time.unscaledDeltaTime;
         _framerate = Mathf.Lerp(_framerate, currentFramerate, _smoothing);
         _counter.text = Mathf.RoundToInt(_framerate).ToString();
+    }
+
+    private IEnumerator ShowCounter()
+    {
+        yield return new WaitForSecondsRealtime(GameConstants.FramerateDisplayDelay);
+        _counter.enabled = true;
     }
 }
