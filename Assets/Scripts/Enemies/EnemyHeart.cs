@@ -10,7 +10,10 @@ public class EnemyHeart : MonoBehaviour
     private int _maxHitPoints;
 #pragma warning restore 0649
 
+    [SerializeField]
+    [ReadOnly]
     private int _hitPoints;
+
     private IEnumerator hitFlashInstance;
 
     private static SoundEngine _soundEngine;
