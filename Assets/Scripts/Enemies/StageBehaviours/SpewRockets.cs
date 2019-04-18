@@ -2,26 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestBehaviour : IEnemyState
+public class SpewRockets : IEnemyState
 {
     private float _shotsPerSecond = 2.0f;
     private IEnumerator _behaviourCoroutine;
-    private string _bulletName = "enemyrocket";
+    private string _bulletName = BulletTypes.EnemyRocket;
     private GameObject _gameObject;
-    private MonoBehaviour _script;
+    private MonoBehaviour _controller;
 
-    public void Start(GameObject gameObject, MonoBehaviour script)
+    public void Start(GameObject gameObject, EnemyController controller)
     {
-        _script = script;
+        _controller = controller;
         _gameObject = gameObject;
 
         _behaviourCoroutine = FireRockets();
-        _script.StartCoroutine(_behaviourCoroutine);
+        _controller.StartCoroutine(_behaviourCoroutine);
     }
 
     public void End()
     {
-        _script.StopCoroutine(_behaviourCoroutine);
+        _controller.StopCoroutine(_behaviourCoroutine);
     }
 
     public void Update()

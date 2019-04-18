@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IEnemyState
 {
-    void Start(GameObject gameObject, MonoBehaviour script);
+    void Start(GameObject gameObject, EnemyController controller);
     void Update();
     void End();
 }

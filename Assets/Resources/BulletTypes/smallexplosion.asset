@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6877e2bfe46e7504eaf7fb0c695c9490, type: 3}
-  m_Name: enemyrocket
+  m_Name: smallexplosion
   m_EditorClassIdentifier: 
-  lifetime: 3
+  lifetime: 0.5
   sprite: {fileID: 21300000, guid: d4de998a11c5e9f488d9645fcde30393, type: 3}
   animatorController: {fileID: 0}
-  color: {r: 1, g: 1, b: 1, a: 1}
-  scale: {x: 1, y: 1}
-  material: {fileID: 2100000, guid: 8fc7f13c2ec6091438d43f0e73b2b441, type: 2}
-  shootSample: shoot3
+  color: {r: 1, g: 0.504717, b: 0.504717, a: 1}
+  scale: {x: 1.414, y: 1.414}
+  material: {fileID: 0}
+  shootSample: shoot1
   shootSampleVolume: 1
   hitSample: 
   hitSampleVolume: 1
   collisionShape: 0
   collisionScale: {x: 1, y: 1}
-  useSimpleMovement: 0
-  movementBehaviour: 
-  movementScale: {x: 0, y: 0}
-  timeScale: 0
-  movementScript: PlayerSeekingRocket
+  useSimpleMovement: 1
+  movementBehaviour: progressive
+  movementScale: {x: 1, y: 1}
+  timeScale: 5
+  movementScript: 

@@ -101,6 +101,7 @@ public class Bullet : MonoBehaviour
 
             _renderer = _graphicsHolder.AddComponent<SpriteRenderer>();
             _renderer.sprite = _data.sprite;
+            _renderer.color = _data.color;
             _renderer.sortingLayerName = GameConstants.BulletSortLayer;
 
             if (data.animatorController != null)
@@ -264,14 +265,14 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        EnemyHeart enemyHeart = collision.GetComponent<EnemyHeart>();
+        EnemyController enemyController = collision.GetComponent<EnemyController>();
         PlayerHeart playerHeart = collision.GetComponent<PlayerHeart>();
 
         bool playerHit = (!_playerBullet && playerHeart != null);
-        bool enemyHit = (_playerBullet && enemyHeart != null);
+        bool enemyHit = (_playerBullet && enemyController != null);
 
         if (playerHit) playerHeart.Hit();
-        if (enemyHit) enemyHeart.DoDamage(1);
+        if (enemyHit) enemyController.Damage(1);
 
         if (playerHit || enemyHit)
         {

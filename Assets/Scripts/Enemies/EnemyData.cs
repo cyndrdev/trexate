@@ -25,6 +25,10 @@ public class EnemyData : ScriptableObject
     public RuntimeAnimatorController animatorController;
     public Vector2 scale = new Vector2(1f, 1f);
 
+    [Header("Sound FX")]
+    public string hitSound;
+    public string deathSound;
+
     [Header("Collision")]
     public Vector2 collisionScale = new Vector2(1f, 1f);
 

@@ -20,6 +20,7 @@ public class BulletData : ScriptableObject
     [Header("Visuals")]
     public Sprite sprite;
     public RuntimeAnimatorController animatorController;
+    public Color color = Color.white;
     public Vector2 scale = new Vector2(1f, 1f);
     public Material material;
 

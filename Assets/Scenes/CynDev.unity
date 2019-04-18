@@ -2443,21 +2443,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 15676775623928561, guid: 3cdf8e193f123d04e8fac36bc25f7db6,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 15676775623928561, guid: 3cdf8e193f123d04e8fac36bc25f7db6,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1412485289
-      objectReference: {fileID: 0}
-    - target: {fileID: 15676775623928561, guid: 3cdf8e193f123d04e8fac36bc25f7db6,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cdf8e193f123d04e8fac36bc25f7db6, type: 3}
 --- !u!1001 &2102109464122410189
@@ -2526,41 +2511,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 4971939024858665763, guid: 05ce3215e5e0e7242a1a8a2114e60db4,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4971939024858665763, guid: 05ce3215e5e0e7242a1a8a2114e60db4,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4971939024858665763, guid: 05ce3215e5e0e7242a1a8a2114e60db4,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4971939024858665763, guid: 05ce3215e5e0e7242a1a8a2114e60db4,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1412485289
-      objectReference: {fileID: 0}
-    - target: {fileID: 4971939024858665763, guid: 05ce3215e5e0e7242a1a8a2114e60db4,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8262217721852529054, guid: 05ce3215e5e0e7242a1a8a2114e60db4,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2019561875508055319, guid: 05ce3215e5e0e7242a1a8a2114e60db4,
-        type: 3}
-      propertyPath: _maxHitPoints
-      value: 250
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05ce3215e5e0e7242a1a8a2114e60db4, type: 3}

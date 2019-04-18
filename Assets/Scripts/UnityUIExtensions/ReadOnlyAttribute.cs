@@ -31,6 +31,9 @@ public class ReadOnlyDrawer : PropertyDrawer
             case SerializedPropertyType.String:
                 value = property.stringValue;
                 break;
+            case SerializedPropertyType.Boolean:
+                value = property.boolValue ? "true" : "false";
+                break;
             default:
                 value = "[type not supported]";
                 break;
