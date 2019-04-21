@@ -29,6 +29,10 @@ public class EnemyData : ScriptableObject
     public string hitSound;
     public string deathSound;
 
+    [Header("Points")]
+    public int hitScore;
+    public int killScore;
+
     [Header("Collision")]
     public Vector2 collisionScale = new Vector2(1f, 1f);
 

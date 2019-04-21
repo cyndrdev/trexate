@@ -85,7 +85,7 @@ public class EnemyController : MonoBehaviour
         _hitPoints -= damage;
 
         CheckTriggers();
-        AnimateDamage();
+        DamageHooks();
     }
 
     public void DamageTo(int health, bool overrideInvulnerability = false)
@@ -101,7 +101,7 @@ public class EnemyController : MonoBehaviour
         _hitPoints = health;
 
         CheckTriggers();
-        AnimateDamage();
+        DamageHooks();
     }
 
     public void Heal(int amount)
@@ -130,21 +130,26 @@ public class EnemyController : MonoBehaviour
             _soundEngine.PlaySFX(_data.deathSound);
 
         //FIXME: proper scores?
-        GameConstants.GruntKillScore.AddToScore();
+        _data.killScore.AddToScore();
 
         Destroy(gameObject);
     }
 
-    public void AnimateDamage()
+    public void DamageHooks()
     {
+        // damage sfx
         if (_data.hitSound != "")
             _soundEngine.PlaySFX(_data.hitSound);
 
+        // hitflash
         if (_hitFlashInstance != null)
             StopCoroutine(_hitFlashInstance);
 
         _hitFlashInstance = DoHitFlash();
         StartCoroutine(_hitFlashInstance);
+
+        // points
+        _data.hitScore.AddToScore();
     }
 
     /* === helper methods === */
