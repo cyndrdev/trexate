@@ -44,7 +44,7 @@ public class ExplodeSmall : IEnemyState
             Fire(angle);
         }
         //_shots = Mathf.RoundToInt(_shots * 1.5f);
-        _shots += 4;
+        _shots += _shotsIncrease;
     }
 
     private void Fire(float angle)

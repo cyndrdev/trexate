@@ -11,7 +11,7 @@ public enum BulletShape
     Rectangle
 }
 
-[CreateAssetMenu(fileName = "Data", menuName = "Bullet", order = 1)]
+[CreateAssetMenu(fileName = "BulletData", menuName = "Trexate/Bullet", order = 0)]
 public class BulletData : ScriptableObject
 {
     [Header("General")]

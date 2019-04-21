@@ -14,7 +14,7 @@ public struct StageContext
     public int HealthTrigger;
 }
 
-[CreateAssetMenu(fileName = "Enemy", menuName = "Enemies/Data", order = 1)]
+[CreateAssetMenu(fileName = "EnemyData", menuName = "Trexate/Enemy", order = 1)]
 public class EnemyData : ScriptableObject
 {
     [Header("Health")]
