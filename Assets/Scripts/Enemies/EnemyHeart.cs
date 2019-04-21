@@ -22,7 +22,7 @@ public class EnemyHeart : MonoBehaviour
     void Start()
     {
         _hitPoints = _maxHitPoints;
-        _soundEngine = Game.Instance.SoundEngine;
+        _soundEngine = Game.GetPersistentComponent<SoundEngine>();
         _material = gameObject.GetComponentInChildren<SpriteRenderer>().material;
     }
     

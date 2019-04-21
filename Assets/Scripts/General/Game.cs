@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,26 +11,30 @@ public class Game : MonoBehaviour
     public Transform BulletRoot;
 
     private GameObject _player;
+
+    private Dictionary<Type, Component> _instances
+        = new Dictionary<Type, Component>();
+
     public Vector3 PlayerPosition {
         get => _player.transform.position;
         set => _player.transform.position = value;
     }
 
-    public SoundEngine SoundEngine { get; private set; }
-    public InputManager InputManager { get; private set; }
-    public BulletFactory BulletFactory { get; private set; }
     public PixelPerfectCamera PixelPerfectCamera { get; private set; }
-    public GlobalState GlobalState { get; private set; }
-    public TimeTravelManager TimeTravelManager { get; private set; }
-    public EnemyFactory EnemyFactory { get; private set; }
 
     public static T GetPersistentComponent<T>() where T : Component
     {
-        T t = Instance.Persistant.GetComponent<T>();
+        // check our cache
+        if (Instance._instances.ContainsKey(typeof(T)))
+            return (T)Instance._instances[typeof(T)];
 
-        if (t == null)
+        // try a getcomponent instead
+        T t = Instance.Persistant.GetComponent<T>();
+        if (t == null) 
             throw new System.Exception();
 
+        // add to the cache
+        Instance._instances.Add(typeof(T), t);
         return t;
     }
 

@@ -30,8 +30,8 @@ public static class EnemyExtensions
     }
 
     public static void Spawn(this GameObject gameObject, EnemyData data, float xPosition)
-        => Game.Instance.EnemyFactory.Spawn(data, xPosition);
+        => Game.GetPersistentComponent<EnemyFactory>().Spawn(data, xPosition);
 
     public static void Spawn(this GameObject gameObject, string dataName, float xPosition)
-        => Game.Instance.EnemyFactory.Spawn(dataName.ToEnemyData(), xPosition);
+        => Game.GetPersistentComponent<EnemyFactory>().Spawn(dataName.ToEnemyData(), xPosition);
 }
