@@ -34,6 +34,24 @@ namespace Extensions
         public static Vector2 Rotate(this Vector2 vector, float degrees)
             => degrees.ToRotation() * vector;
 
+        public static TValue GetValueOrDefault<TKey, TValue>(
+            this Dictionary<TKey, TValue> dictionary,
+            TKey key,
+            TValue defaultValue = default(TValue))
+        {
+            TValue value;
+            return dictionary.TryGetValue(key, out value) ? value : defaultValue;
+        }
+
+        public static T GetOrDefault<T>(this IList<T> collection, int index, T defaultValue = default(T))
+            => (collection.Count >= index || index < 0) ? defaultValue : collection[index];
+
+        public static T? GetNullable<T>(this IList<T> collection, int index) where T : struct
+            => (index >= collection.Count || index < 0) ? null : collection?[index];
+
+        public static T GetAtIndex<T>(this IList<T> collection, int index) where T : class
+            => (index >= collection.Count || index < 0) ? null : collection[index];
+
         /// <summary>
         /// Get a component or create one if it doesn't exist.
         /// </summary>

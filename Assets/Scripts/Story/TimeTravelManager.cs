@@ -22,6 +22,16 @@ public class TimeTravelManager : MonoBehaviour
         return GameConstants.TimeTravelStart + Mathf.RoundToInt(diff * m);
     }
 
+    public float GetT(int date)
+    {
+        float m = (
+            (float)(GameConstants.TimeTravelStart - date) /
+            (GameConstants.TimeTravelStart - GameConstants.TimeTravelEnd)
+        );
+
+        return Mathf.Pow(m, 1f / GameConstants.TimeTravelExponent);
+    }
+
     private void Start()
     {
         _globalState = Game.GetPersistentComponent<GlobalState>();

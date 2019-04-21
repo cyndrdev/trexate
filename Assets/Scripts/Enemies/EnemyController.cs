@@ -194,7 +194,7 @@ public class EnemyController : MonoBehaviour
 
         if (objType != null)
         {
-            Debug.Log("found type");
+            // Debug.Log("found type");
             if (objType.GetInterfaces().Contains(typeof(IEnemyState)))
             {
                 // we successfully reflected the type we want, not bad!
