@@ -18,12 +18,17 @@ public class LaggyStateCounter : MonoBehaviour
     private int _shownValue = 0;
 
     private Text _counter;
+    private GlobalState _globalState;
 
     void Start()
     {
         _counter = this.GetComponent<Text>();
+
         if (_counter == null)
             throw new System.Exception();
+
+        _globalState = Game.GetPersistentComponent<GlobalState>();
+
         StartCoroutine(KeepUp());
     }
 
@@ -33,7 +38,7 @@ public class LaggyStateCounter : MonoBehaviour
         if (_isPlayerPref)
             _value = PlayerPrefs.GetInt(_key);
         else
-            _value = Game.Instance.GlobalState.Counters[_key];
+            _value = Game.GetPersistentComponent<GlobalState>().Counters[_key];
 
         // nothing to count up to
         if (_value <= _shownValue)

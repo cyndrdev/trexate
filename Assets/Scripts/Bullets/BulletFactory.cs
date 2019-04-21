@@ -78,6 +78,7 @@ public class BulletFactory : MonoBehaviour
 
 public static class BulletExtensions
 {
+    private static BulletFactory _factory = Game.GetPersistentComponent<BulletFactory>();
     private static BulletData ToBulletData(this string name)
     {
         BulletData data = Resources.Load<BulletData>(GameConstants.BulletBehaviourPath + name);
@@ -91,7 +92,7 @@ public static class BulletExtensions
     }
 
     public static void Shoot(this GameObject parent, BulletData data)
-        => Game.Instance.BulletFactory.Shoot(
+        => _factory.Shoot(
             parent, 
             data, 
             new Vector2(0,0), 
@@ -100,7 +101,7 @@ public static class BulletExtensions
         );
 
     public static void Shoot(this GameObject parent, BulletData data, Vector2 offset, float rotationOffset, bool flipX = false)
-        => Game.Instance.BulletFactory.Shoot(
+        => _factory.Shoot(
             parent, 
             data, 
             offset, 
@@ -109,7 +110,7 @@ public static class BulletExtensions
         );
 
     public static void Shoot(this GameObject parent, string dataName)
-        => Game.Instance.BulletFactory.Shoot(
+        => _factory.Shoot(
             parent,
             dataName.ToBulletData(), 
             new Vector2(0, 0), 
@@ -118,7 +119,7 @@ public static class BulletExtensions
         );
 
     public static void Shoot(this GameObject parent, string dataName, Vector2 offset, float rotationOffset, bool flipX = false)
-        => Game.Instance.BulletFactory.Shoot(
+        => _factory.Shoot(
             parent,
             dataName.ToBulletData(),
             offset,

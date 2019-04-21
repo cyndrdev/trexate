@@ -23,6 +23,16 @@ public class Game : MonoBehaviour
     public TimeTravelManager TimeTravelManager { get; private set; }
     public EnemyFactory EnemyFactory { get; private set; }
 
+    public static T GetPersistentComponent<T>() where T : Component
+    {
+        T t = Instance.Persistant.GetComponent<T>();
+
+        if (t == null)
+            throw new System.Exception();
+
+        return t;
+    }
+
     void Awake()
     {
         if (Instance != null)
@@ -33,22 +43,8 @@ public class Game : MonoBehaviour
 
         Instance = this;
 
-        SoundEngine         = Persistant.GetComponent<SoundEngine>();
-        InputManager        = Persistant.GetComponent<InputManager>();
-        BulletFactory       = Persistant.GetComponent<BulletFactory>();
-        EnemyFactory        = Persistant.GetComponent<EnemyFactory>();
-        GlobalState         = Persistant.GetComponent<GlobalState>();
-        TimeTravelManager   = Persistant.GetComponent<TimeTravelManager>();
-
         PixelPerfectCamera  = Camera.main.GetComponent<PixelPerfectCamera>();
-
-        if (SoundEngine         == null)    throw new System.Exception();
-        if (InputManager        == null)    throw new System.Exception();
-        if (BulletFactory       == null)    throw new System.Exception();
-        if (EnemyFactory        == null)    throw new System.Exception();
         if (PixelPerfectCamera  == null)    throw new System.Exception();
-        if (GlobalState         == null)    throw new System.Exception();
-        if (TimeTravelManager   == null)    throw new System.Exception();
 
         _player = GameObject.FindGameObjectWithTag(GameConstants.PlayerController);
 

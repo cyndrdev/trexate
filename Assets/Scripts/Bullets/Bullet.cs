@@ -90,7 +90,7 @@ public class Bullet : MonoBehaviour
         // fixme: this is unnecessary
         _object = gameObject;
 
-        _soundEngine = Game.Instance.SoundEngine;
+        _soundEngine = Game.GetPersistentComponent<SoundEngine>();
 
 
         // set our graphicsholder object

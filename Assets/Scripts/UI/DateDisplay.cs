@@ -6,6 +6,7 @@ using Extensions;
 
 public class DateDisplay : MonoBehaviour
 {
+    private TimeTravelManager _timeTravelManager;
     private Text _display;
     private int _date;
 
@@ -21,6 +22,7 @@ public class DateDisplay : MonoBehaviour
     void Start()
     {
         _display = this.GetComponent<Text>();
+        _timeTravelManager = Game.GetPersistentComponent<TimeTravelManager>();
 
         if (_display == null)
             throw new System.Exception();
@@ -29,9 +31,9 @@ public class DateDisplay : MonoBehaviour
     void Update()
     {
         if (_showCurrentDate)
-            _time = Game.Instance.TimeTravelManager.GetCurrentTimescale();
+            _time = _timeTravelManager.GetCurrentTimescale();
 
-        _date = Game.Instance.TimeTravelManager.GetDate(_time);
+        _date = _timeTravelManager.GetDate(_time);
 
         _display.text = _date.ToYearString();
     }

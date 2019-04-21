@@ -7,6 +7,7 @@ public class TimeTravelManager : MonoBehaviour
     [SerializeField]
     [Range(0, 1)]
     private float _time = 0;
+    private GlobalState _globalState;
 
     public float GetCurrentTimescale()
         => _time;
@@ -21,6 +22,11 @@ public class TimeTravelManager : MonoBehaviour
         return GameConstants.TimeTravelStart + Mathf.RoundToInt(diff * m);
     }
 
+    private void Start()
+    {
+        _globalState = Game.GetPersistentComponent<GlobalState>();
+    }
+
     void Update()
     {
         _time += Time.deltaTime / GameConstants.TimeTravelDuration;
@@ -28,6 +34,6 @@ public class TimeTravelManager : MonoBehaviour
         if (_time > 1f)
             _time = 1f;
 
-        Game.Instance.GlobalState.Counters["date"] = GetCurrentDate();
+        _globalState.Counters["date"] = GetCurrentDate();
     }
 }

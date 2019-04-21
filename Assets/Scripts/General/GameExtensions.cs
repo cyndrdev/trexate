@@ -11,8 +11,9 @@ namespace Extensions
 
         public static int AddToState(this int value, string stateName)
         {
-            Game.Instance.GlobalState.Counters[stateName] += value;
-            return Game.Instance.GlobalState.Counters[stateName];
+            var state = Game.GetPersistentComponent<GlobalState>();
+            state.Counters[stateName] += value;
+            return state.Counters[stateName];
         }
 
         public static int AddToScore(this int value)

@@ -52,7 +52,7 @@ public class EnemyController : MonoBehaviour
     /* === unity methods === */
     private void Start()
     {
-        _soundEngine = Game.Instance.SoundEngine;
+        _soundEngine = Game.GetPersistentComponent<SoundEngine>();
         _renderer = gameObject.GetComponentInChildren<SpriteRenderer>();
         _material = _renderer.material;
         _hitPoints = _data.MaxHealth;

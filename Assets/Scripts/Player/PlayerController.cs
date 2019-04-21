@@ -40,8 +40,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        _inputManager = Game.Instance.InputManager;
-        _soundEngine = Game.Instance.SoundEngine;
+        _inputManager = Game.GetPersistentComponent<InputManager>();
+        _soundEngine = Game.GetPersistentComponent<SoundEngine>();
         _graphics = transform.GetChild(0);
 
         _inputManager.Primary.AddListener(ChangeFireState);
