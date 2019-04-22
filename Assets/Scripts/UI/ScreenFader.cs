@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Extensions;
 
 public class ScreenFader : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class ScreenFader : MonoBehaviour
     }
 
     void SetLevel(float f)
-        => _image.color = new Color(_baseColor.r, _baseColor.g, _baseColor.b, f);
+        => _image.color = _baseColor.WithAlpha(f);
 
     public void FadeTo(float target, float time)
     {

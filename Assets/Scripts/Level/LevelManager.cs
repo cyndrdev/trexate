@@ -13,12 +13,14 @@ public class LevelManager : MonoBehaviour
     private TimeTravelManager _timeTravelManager;
 
     [Header("UI References")]
-    [SerializeField]
-    private Text _anorLondo;
 
     [SerializeField]
     private GameObject _fadeObject;
     private ScreenFader _fader;
+
+    [SerializeField]
+    private GameObject _titleObject;
+    private NewAreaTitle _newAreaTitle;
 
     [SerializeField]
     private GameObject _bgObject;
@@ -36,6 +38,7 @@ public class LevelManager : MonoBehaviour
         _timeTravelManager = Game.GetPersistentComponent<TimeTravelManager>();
         _fader = _fadeObject.GetComponent<ScreenFader>();
         _background = _bgObject.GetComponent<ParallaxBackground>();
+        _newAreaTitle = _titleObject.GetComponent<NewAreaTitle>();
         Debug.Log("there are " + _levels.Length + " levels.");
         SetLevel(0);
     }
@@ -88,18 +91,29 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator ChangeLevel()
     {
+        // first, fade the level out
         if (_currentLevelId != 0)
         {
-            _fader.FadeTo(1f, 1f);
-            yield return new WaitForSeconds(1f);
+            _fader.FadeTo(1f, GameConstants.AreaSwitchFadeDuration);
+            yield return new WaitForSeconds(
+                GameConstants.AreaSwitchFadeDuration
+            );
+
+            // load the new background
             _background.SwapLayer(_currentLevelId);
+
+            // TODO load dates?
         }
-        _fader.FadeTo(0f, 1f);
-        yield return new WaitForSeconds(1f);
-        // do the dark souls text thing
-        string name = CurrentLevel.levelName;
-        _anorLondo.text = name;
-        yield return new WaitForSeconds(2f);
-        _anorLondo.text = "";
+
+        // and fade back in
+        _fader.FadeTo(0f, GameConstants.AreaSwitchFadeDuration);
+        yield return new WaitForSeconds(
+            GameConstants.AreaSwitchFadeDuration
+        );
+
+        // now do the title fade
+        yield return new WaitForSeconds(
+            _newAreaTitle.DisplayText(CurrentLevel.levelName)
+        );
     }
 }

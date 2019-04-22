@@ -308,6 +308,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c447371762736614782bdc494363395f, type: 2}
   _anorLondo: {fileID: 1913031729}
   _fadeObject: {fileID: 189511848}
+  _titleObject: {fileID: 1913031727}
   _bgObject: {fileID: 122059328}
 --- !u!1 &122059328
 GameObject:
@@ -2353,6 +2354,7 @@ GameObject:
   - component: {fileID: 1913031729}
   - component: {fileID: 1913031732}
   - component: {fileID: 1913031731}
+  - component: {fileID: 1913031733}
   m_Layer: 5
   m_Name: NewAreaText
   m_TagString: Untagged
@@ -2451,6 +2453,18 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 3, y: -3}
   m_UseGraphicAlpha: 1
+--- !u!114 &1913031733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913031727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba9aa7c8c73357f44b68c6a838206a0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2086355916
 GameObject:
   m_ObjectHideFlags: 0
