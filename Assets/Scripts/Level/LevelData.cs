@@ -20,6 +20,8 @@ public class LevelData : ScriptableObject
 
     /* === methods & fields === */
 
+    public bool IsJumping { get => _jumpTimer > 0f; }
+
     private float _length = -1f;
     private int _currentWaveId = 0;
     private float _jumpTimer;
@@ -55,6 +57,7 @@ public class LevelData : ScriptableObject
             if (CurrentWave.CurrentEntry == null)
             {
                 // wave is over, start a jump!
+                Debug.Log("starting jump...");
                 _jumpTimer = GameConstants.TimeJumpDuration;
                 _currentWaveId++;
                 if (CurrentWave != null)

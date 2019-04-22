@@ -11,6 +11,8 @@ public class LevelManager : MonoBehaviour
 
     private TimeTravelManager _timeTravelManager;
 
+    public bool IsJumping { get => (CurrentLevel == null) ? false : CurrentLevel.IsJumping; }
+
     protected LevelData CurrentLevel
     {
         get => _levels.GetAtIndex(_currentLevelId);
@@ -43,6 +45,7 @@ public class LevelManager : MonoBehaviour
             throw new System.Exception();
 
         CurrentLevel.Start();
+        StartCoroutine(ChangeLevel());
     }
 
     public void LoadCredits()
@@ -57,10 +60,21 @@ public class LevelManager : MonoBehaviour
             return;
 
         CurrentLevel.Update();
+
+        if (CurrentLevel.IsJumping)
+
         if (CurrentLevel.CurrentWave == null)
         {
             // level is over, on to the next
             NextLevel();
         }
+
+    }
+
+    IEnumerator ChangeLevel()
+    {
+        // do the dark souls text thing
+        string name = CurrentLevel.name;
+        yield return null;
     }
 }

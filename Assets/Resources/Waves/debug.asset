@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: debug
   m_EditorClassIdentifier: 
   Delay: 2
-  WaveEntries: []
+  WaveEntries:
+  - Enemy: {fileID: 11400000, guid: a0b232bac4c3bc94a8d229fd325d3421, type: 2}
+    Delay: 2
+    xPosition: 0
