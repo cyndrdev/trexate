@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Extensions;
 
 public class LevelManager : MonoBehaviour
@@ -10,6 +11,8 @@ public class LevelManager : MonoBehaviour
     private int _currentLevelId;
 
     private TimeTravelManager _timeTravelManager;
+    [SerializeField]
+    private Text _anorLondo;
 
     public bool IsJumping { get => (CurrentLevel == null) ? false : CurrentLevel.IsJumping; }
 
@@ -74,7 +77,9 @@ public class LevelManager : MonoBehaviour
     IEnumerator ChangeLevel()
     {
         // do the dark souls text thing
-        string name = CurrentLevel.name;
-        yield return null;
+        string name = CurrentLevel.levelName;
+        _anorLondo.text = name;
+        yield return new WaitForSeconds(2f);
+        _anorLondo.text = "";
     }
 }
