@@ -23,11 +23,11 @@ public class ParallaxBackground : MonoBehaviour
     private float _movementRate = 3f;
 #pragma warning disable 0649
     [SerializeField]
-    private Sprite _background;
+    private Sprite[] _background;
     [SerializeField]
-    private Sprite _layerOne;
+    private Sprite[] _layerOne;
     [SerializeField]
-    private Sprite _layerTwo;
+    private Sprite[] _layerTwo;
 #pragma warning restore 0649
 
     private List<ParallaxLayer> _layers;
@@ -74,12 +74,27 @@ public class ParallaxBackground : MonoBehaviour
         );
     }
 
+    void ChangeLayerSprite(GameObject baseNode, Sprite sprite)
+    {
+        foreach (SpriteRenderer sr in baseNode.GetComponentsInChildren<SpriteRenderer>())
+        {
+            sr.sprite = sprite;
+        }
+    }
+
+    public void SwapLayer(int id)
+    {
+        ChangeLayerSprite(_layers[0].GameObject, _background[id]);
+        ChangeLayerSprite(_layers[1].GameObject, _layerOne[id]);
+        ChangeLayerSprite(_layers[2].GameObject, _layerTwo[id]);
+    }
+
     private void Start()
     {
         _layers = new List<ParallaxLayer>();
-        InstantiateLayer(_background);
-        InstantiateLayer(_layerOne);
-        InstantiateLayer(_layerTwo);
+        InstantiateLayer(_background[0]);
+        InstantiateLayer(_layerOne[0]);
+        InstantiateLayer(_layerTwo[0]);
     }
 
     private void Update()

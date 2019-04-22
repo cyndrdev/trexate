@@ -11,8 +11,18 @@ public class LevelManager : MonoBehaviour
     private int _currentLevelId;
 
     private TimeTravelManager _timeTravelManager;
+
+    [Header("UI References")]
     [SerializeField]
     private Text _anorLondo;
+
+    [SerializeField]
+    private GameObject _fadeObject;
+    private ScreenFader _fader;
+
+    [SerializeField]
+    private GameObject _bgObject;
+    private ParallaxBackground _background;
 
     public bool IsJumping { get => (CurrentLevel == null) ? false : CurrentLevel.IsJumping; }
 
@@ -24,6 +34,8 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         _timeTravelManager = Game.GetPersistentComponent<TimeTravelManager>();
+        _fader = _fadeObject.GetComponent<ScreenFader>();
+        _background = _bgObject.GetComponent<ParallaxBackground>();
         Debug.Log("there are " + _levels.Length + " levels.");
         SetLevel(0);
     }
@@ -76,6 +88,14 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator ChangeLevel()
     {
+        if (_currentLevelId != 0)
+        {
+            _fader.FadeTo(1f, 1f);
+            yield return new WaitForSeconds(1f);
+            _background.SwapLayer(_currentLevelId);
+        }
+        _fader.FadeTo(0f, 1f);
+        yield return new WaitForSeconds(1f);
         // do the dark souls text thing
         string name = CurrentLevel.levelName;
         _anorLondo.text = name;

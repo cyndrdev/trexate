@@ -52,6 +52,12 @@ public class GameConstants
     public static float PauseDisplayFlashRate = 0.35f;
     public static float FramerateDisplayDelay = 1.3f;
 
+    public static float AreaSwitchFadeDuration = 1.0f;
+
+    public static float NewAreaTextFadeInDuration = 0.1f;
+    public static float NewAreaTextFadeOutDuration = 1.0f;
+    public static float NewAreaTextHoldDuration = 2.0f;
+
     /* === tags === */
     public static string PlayerController = "Player";
 
