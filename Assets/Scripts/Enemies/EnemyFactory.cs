@@ -1,15 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class EnemyFactory : MonoBehaviour
 {
     private Dictionary<EnemyData, List<EnemyController>> _census;
 
+    public void CleanPools()
+    {
+        foreach (var pair in _census)
+        {
+            int i = 0;
+            while (true)
+            {
+                if (pair.Value == null) break;
+
+                if (i >= pair.Value.Count)
+                    break;
+
+                if (pair.Value[i] == null)
+                    pair.Value.RemoveAt(i);
+                else i++;
+            }
+        }
+    }
+
+    public bool HasActiveEnemies
+    {
+        get => !_census.All(kvp => kvp.Value.Count == 0);
+    }
+
     private void Awake()
     {
         _census = new Dictionary<EnemyData, List<EnemyController>>();
     }
+
+    private void Update()
+        => CleanPools();
 
     public void Spawn(EnemyData data, float xPosition)
     {

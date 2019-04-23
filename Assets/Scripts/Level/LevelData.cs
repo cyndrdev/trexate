@@ -54,7 +54,10 @@ public class LevelData : ScriptableObject
                 return;
 
             CurrentWave.Update();
-            if (CurrentWave.CurrentEntry == null)
+            if (
+                CurrentWave.CurrentEntry == null &&
+                !Game.GetPersistentComponent<EnemyFactory>().HasActiveEnemies
+            )
             {
                 // wave is over, start a jump!
                 Debug.Log("starting jump...");
