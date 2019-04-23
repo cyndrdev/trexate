@@ -9,6 +9,7 @@ public class Game : MonoBehaviour
 
     public GameObject Persistant;
     public Transform BulletRoot;
+    public Transform EnemyRoot;
 
     private GameObject _player;
 

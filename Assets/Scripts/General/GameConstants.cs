@@ -54,8 +54,8 @@ public class GameConstants
 
     public static float AreaSwitchFadeDuration = 1.0f;
 
-    public static float NewAreaTextFadeInDuration = 0.1f;
-    public static float NewAreaTextFadeOutDuration = 1.5f;
+    public static float NewAreaTextFadeInDuration = 0.2f;
+    public static float NewAreaTextFadeOutDuration = 0.5f;
     public static float NewAreaTextHoldDuration = 0.7f;
 
     /* === tags === */

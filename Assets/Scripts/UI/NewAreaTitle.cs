@@ -44,7 +44,7 @@ public class NewAreaTitle : MonoBehaviour
         while (_level > 0f)
         {
             yield return new WaitForEndOfFrame();
-            _level -= Time.deltaTime / GameConstants.NewAreaTextFadeInDuration;
+            _level -= Time.deltaTime / GameConstants.NewAreaTextFadeOutDuration;
             SetFadeLevel(_level);
         }
     }

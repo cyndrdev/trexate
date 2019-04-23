@@ -49,6 +49,39 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public void Initialise(EnemyData data)
+    {
+        _data = data;
+
+        /* === add a rigidbody for collisions to work === */
+        var rb = gameObject.AddComponent<Rigidbody2D>();
+        rb.gravityScale = 0f;
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.mass = 0.00001f;
+
+        /* === create our collider === */
+        var collider = gameObject.AddComponent<BoxCollider2D>();
+        collider.isTrigger = true;
+        collider.offset = Vector2.zero;
+        collider.size = _data.collisionScale;
+        collider.edgeRadius = 0.2f;
+
+        /* === initialise our graphics object === */
+        if (transform.childCount == 0)
+        {
+            GameObject graphics = new GameObject("Graphics");
+            graphics.transform.parent = transform;
+
+            _renderer = graphics.AddComponent<SpriteRenderer>();
+            _renderer.sprite = _data.sprite;
+            _renderer.sortingLayerName = GameConstants.EntitySortLayer;
+
+            _renderer.transform.localScale = _data.collisionScale;
+        }
+
+        // TODO: animation???
+    }
+
     /* === unity methods === */
     private void Start()
     {

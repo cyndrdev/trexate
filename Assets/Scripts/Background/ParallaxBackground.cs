@@ -21,6 +21,7 @@ public class ParallaxBackground : MonoBehaviour
     [SerializeField]
     [Range(1f,20f)]
     private float _movementRate = 3f;
+
 #pragma warning disable 0649
     [SerializeField]
     private Sprite[] _background;

@@ -13,7 +13,32 @@ public class EnemyFactory : MonoBehaviour
 
     public void Spawn(EnemyData data, float xPosition)
     {
+        GameObject genus = null;
 
+        // make sure we have the correct parent
+        if (!_census.ContainsKey(data))
+        {
+            _census.Add(data, new List<EnemyController>());
+            genus = new GameObject(data.name);
+            genus.transform.parent = Game.Instance.EnemyRoot;
+        }
+        else
+        {
+            genus = Game.Instance.EnemyRoot.Find(data.name).gameObject;
+        }
+
+        List<EnemyController> clones = _census[data];
+
+        // create the enemy object
+        GameObject newObject = new GameObject("Enemy");
+        EnemyController newEnemy = newObject.AddComponent<EnemyController>();
+        
+        // give it its data and initialise it
+        newEnemy.Initialise(data);
+
+        // add to the correct parent
+        newObject.transform.parent = genus.transform;
+        clones.Add(newEnemy);
     }
 }
 
