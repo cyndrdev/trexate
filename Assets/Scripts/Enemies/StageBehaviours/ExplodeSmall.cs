@@ -7,7 +7,7 @@ public class ExplodeSmall : IEnemyState
     private EnemyController _controller;
     private GameObject _gameObject;
     private IEnumerator _explosion;
-    private static int _shots = 16;
+    private int _shots = 16;
     private static int _shotsIncrease = 8;
     private static int _rounds = 3;
     private static float _roundDelay = 0.25f;

@@ -53,6 +53,9 @@ public class EnemyController : MonoBehaviour
     {
         _data = data;
 
+        /* === sort our transform out === */
+        gameObject.layer = GameConstants.EnemyLayer;
+
         /* === add a rigidbody for collisions to work === */
         var rb = gameObject.AddComponent<Rigidbody2D>();
         rb.gravityScale = 0f;
