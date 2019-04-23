@@ -74,6 +74,7 @@ public class EnemyController : MonoBehaviour
         {
             GameObject graphics = new GameObject("Graphics");
             graphics.transform.parent = transform;
+            graphics.transform.localPosition = Vector2.zero;
 
             _renderer = graphics.AddComponent<SpriteRenderer>();
             _renderer.sprite = _data.sprite;

@@ -31,6 +31,11 @@ public class EnemyFactory : MonoBehaviour
 
         // create the enemy object
         GameObject newObject = new GameObject("Enemy");
+
+        float scale = Game.Instance.PixelPerfectCamera.OrthoScale;
+        newObject.transform.position
+            = new Vector2(scale * xPosition, scale);
+
         EnemyController newEnemy = newObject.AddComponent<EnemyController>();
         
         // give it its data and initialise it
