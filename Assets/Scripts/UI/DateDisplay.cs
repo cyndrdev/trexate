@@ -13,6 +13,9 @@ public class DateDisplay : MonoBehaviour
 #pragma warning disable 0649
     [SerializeField]
     private bool _showCurrentDate;
+
+    [SerializeField]
+    private bool _showCurrentTarget;
 #pragma warning restore 0649
 
     [SerializeField]
@@ -32,6 +35,9 @@ public class DateDisplay : MonoBehaviour
     {
         if (_showCurrentDate)
             _time = _timeTravelManager.GetCurrentTimescale();
+
+        else if (_showCurrentTarget)
+            _time = _timeTravelManager.Target;
 
         _date = _timeTravelManager.GetDate(_time);
 

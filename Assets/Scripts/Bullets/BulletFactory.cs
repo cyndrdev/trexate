@@ -6,11 +6,24 @@ public class BulletFactory : MonoBehaviour
 {
     private Dictionary<BulletData, List<Bullet>> _bank;
 
+    public GameObject _preloadRoot;
+    private static Dictionary<string, int> _preloadValues =
+        new Dictionary<string, int>
+    {
+        { BulletTypes.PlayerBullets, 50 },
+        { BulletTypes.EnemyRocket, 20 },
+        { BulletTypes.ExplosionDebris, 100 },
+        { BulletTypes.Simple, 200 }
+    };
+
     void Awake()
     {
         _bank = new Dictionary<BulletData, List<Bullet>>();
         StartCoroutine(DoDiagnostics());
     }
+
+    void Start()
+        => StartCoroutine(Preload());
 
     public void Shoot(GameObject parent, BulletData data, Vector2 offset, float rotationOffset, bool flipX)
     {
@@ -88,6 +101,23 @@ public class BulletFactory : MonoBehaviour
             }
             Debug.Log("[BulletFactory]: " + active + " bullets active (" + total + " pooled)");
         }
+    }
+
+    private IEnumerator Preload()
+    {
+        // preloads a set list of bullets to avoid allocations during gameplay
+        // shoot a bunch o bullets
+        foreach (var pair in _preloadValues)
+        {
+            for (int i = 0; i < pair.Value; i++)
+                _preloadRoot.Shoot(pair.Key);
+        }
+
+        // wait 2 frames for full init to happen
+        for (int i = 0; i < 2; i++)
+            yield return new WaitForEndOfFrame();
+
+        ClearBullets();
     }
 }
 

@@ -118,6 +118,9 @@ public class LevelManager : MonoBehaviour
             Game.GetPersistentComponent<BulletFactory>().ClearBullets();
         }
 
+        // load new date target
+        _timeTravelManager.Target = _timeTravelManager.GetT(CurrentLevel.EndYear);
+
         // and fade back in
         _fader.FadeTo(0f, GameConstants.AreaSwitchFadeDuration);
         yield return new WaitForSeconds(

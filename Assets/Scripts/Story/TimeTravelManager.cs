@@ -7,7 +7,14 @@ public class TimeTravelManager : MonoBehaviour
     [SerializeField]
     [Range(0, 1)]
     private float _time = 0;
+    private float _target = 0;
     private GlobalState _globalState;
+
+    public float Target
+    {
+        get => _target;
+        set => _target = value;
+    }
 
     public float GetCurrentTimescale()
         => _time;

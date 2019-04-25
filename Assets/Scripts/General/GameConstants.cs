@@ -29,7 +29,7 @@ public class GameConstants
     /* --- time travel --- */
     public static int TimeTravelStart = 7192;
     public static int TimeTravelEnd = -137500000;
-    public static float TimeTravelExponent = 3.75f;
+    public static float TimeTravelExponent = 1.7f;
     public static float TimeTravelDuration = 350f;
     public static float TimeJumpDuration = 1.5f;
 
