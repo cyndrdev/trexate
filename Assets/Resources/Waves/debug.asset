@@ -17,3 +17,9 @@ MonoBehaviour:
   - Enemy: {fileID: 11400000, guid: a0b232bac4c3bc94a8d229fd325d3421, type: 2}
     Delay: 2
     xPosition: 0
+  - Enemy: {fileID: 11400000, guid: 53a61445cc2ee9c4796120a1364dbfad, type: 2}
+    Delay: 1
+    xPosition: 0.5
+  - Enemy: {fileID: 11400000, guid: 53a61445cc2ee9c4796120a1364dbfad, type: 2}
+    Delay: 0
+    xPosition: -0.5

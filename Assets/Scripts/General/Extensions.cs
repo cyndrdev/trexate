@@ -16,7 +16,11 @@ namespace Extensions
         public static Color WithAlpha(this Color c, float alpha)
             => new Color(c.r, c.g, c.b, alpha);
 
-        public static Quaternion ToRotation(this float degrees) => Quaternion.Euler(0, 0, degrees);
+        public static Quaternion ToRotation(this float degrees)
+            => Quaternion.Euler(0, 0, degrees);
+
+        public static Quaternion ToRotation(this Vector2 direction)
+            => Mathf.Atan2(direction.y, direction.x).ToRotation();
 
         public static float SignalToScale(this float f)
             => (f + 1.0f) / 2.0f;

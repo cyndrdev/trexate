@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93f3acfddcaec07488319c02fcd91d78, type: 3}
-  m_Name: test
+  m_Name: SuicideRed
   m_EditorClassIdentifier: 
-  MaxHealth: 50
-  sprite: {fileID: 21300000, guid: 2f9c3b4514d7de341aac5b933226e8af, type: 3}
+  MaxHealth: 51
+  sprite: {fileID: 21300000, guid: 1970e7bf906ea2e46823451d2cc68220, type: 3}
   animatorController: {fileID: 0}
   scale: {x: 1, y: 1}
   flipX: 0
@@ -24,9 +24,9 @@ MonoBehaviour:
   killScore: 500
   collisionScale: {x: 1, y: 1}
   Stages:
-  - StageScript: ShowoffEntry
+  - StageScript: EnterStage
     HealthTrigger: 51
-  - StageScript: SpewRockets
+  - StageScript: FrontShotgun
     HealthTrigger: 50
-  - StageScript: ExplodeSmall
-    HealthTrigger: 0
+  - StageScript: SuicideJump
+    HealthTrigger: 20

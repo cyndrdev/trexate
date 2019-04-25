@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpewRockets : IEnemyState
 {
-    private float _shotsPerSecond = 2.0f;
+    private float _shotsPerSecond = 0.5f;
     private IEnumerator _behaviourCoroutine;
     private string _bulletName = BulletTypes.EnemyRocket;
     private GameObject _gameObject;

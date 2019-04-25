@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnterStage : IEnemyState
+public class ShowoffEntry : IEnemyState
 {
     private GameObject _gameObject;
     private EnemyController _controller;
     private float _t = 0f;
-    private static float _speedMulti = 7.5f;
-    private static float _stageTime = 0.7f;
+    private static float _speedMulti = 3.5f;
+    private static float _stageTime = 2f;
 
     /* === interface methods === */
     public void Start(GameObject gameObject, EnemyController controller)

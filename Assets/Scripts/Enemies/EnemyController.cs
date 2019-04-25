@@ -87,6 +87,8 @@ public class EnemyController : MonoBehaviour
             _renderer = graphics.AddComponent<SpriteRenderer>();
             _renderer.sprite = _data.sprite;
             _renderer.sortingLayerName = GameConstants.EntitySortLayer;
+            _renderer.flipX = _data.flipX;
+            _renderer.flipY = _data.flipY;
 
             Material material = new Material(Shader.Find(GameConstants.EnemyShader));
 
@@ -164,8 +166,10 @@ public class EnemyController : MonoBehaviour
 
         _hitPoints -= damage;
 
+        if (!overrideInvulnerability)
+            DamageHooks();
+
         CheckTriggers();
-        DamageHooks();
     }
 
     public void DamageTo(int health, bool overrideInvulnerability = false)
@@ -180,8 +184,10 @@ public class EnemyController : MonoBehaviour
 
         _hitPoints = health;
 
+        if (!overrideInvulnerability)
+            DamageHooks();
+
         CheckTriggers();
-        DamageHooks();
     }
 
     public void Heal(int amount)
@@ -206,6 +212,10 @@ public class EnemyController : MonoBehaviour
         }
 
         // okay, we gotta die now ://
+        // first, end our behaviour
+        if (_currentState != null)
+            _currentState.End();
+
         if (_data.deathSound != "")
             _soundEngine.PlaySFX(_data.deathSound);
 

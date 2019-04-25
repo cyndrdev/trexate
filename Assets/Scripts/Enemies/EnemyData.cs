@@ -24,6 +24,8 @@ public class EnemyData : ScriptableObject
     public Sprite sprite;
     public RuntimeAnimatorController animatorController;
     public Vector2 scale = new Vector2(1f, 1f);
+    public bool flipX = false;
+    public bool flipY = false;
 
     [Header("Sound FX")]
     public string hitSound;
