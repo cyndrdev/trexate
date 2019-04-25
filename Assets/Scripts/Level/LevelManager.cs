@@ -26,6 +26,10 @@ public class LevelManager : MonoBehaviour
     private GameObject _bgObject;
     private ParallaxBackground _background;
 
+    private float _startDate;
+    private float _endDate;
+    private float _dateJump;
+
     public bool IsJumping { get => (CurrentLevel == null) ? false : CurrentLevel.IsJumping; }
 
     protected LevelData CurrentLevel
@@ -79,7 +83,7 @@ public class LevelManager : MonoBehaviour
 
         CurrentLevel.Update();
 
-        if (CurrentLevel.IsJumping)
+        if (CurrentLevel.IsJumping) return;
 
         if (CurrentLevel.CurrentWave == null)
         {
@@ -91,9 +95,18 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator ChangeLevel()
     {
+        bool hasFadeOut = (_currentLevelId != 0);
+        float jumpDuration = GameConstants.TimeJumpDuration / (hasFadeOut ? 1f : 2f);
+
+        // jump our time
+        _startDate = _timeTravelManager.GetT(CurrentLevel.StartYear);
+        _endDate = _timeTravelManager.GetT(CurrentLevel.EndYear);
+        _timeTravelManager.DoJump(_startDate, jumpDuration);
+
         // first, fade the level out
-        if (_currentLevelId != 0)
+        if (hasFadeOut)
         {
+
             _fader.FadeTo(1f, GameConstants.AreaSwitchFadeDuration);
             yield return new WaitForSeconds(
                 GameConstants.AreaSwitchFadeDuration
@@ -102,7 +115,7 @@ public class LevelManager : MonoBehaviour
             // load the new background
             _background.SwapLayer(_currentLevelId);
 
-            // TODO load dates?
+            Game.GetPersistentComponent<BulletFactory>().ClearBullets();
         }
 
         // and fade back in

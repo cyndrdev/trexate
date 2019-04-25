@@ -8,8 +8,9 @@ public class SuicideJump : IEnemyState
     private GameObject _gameObject;
     private EnemyController _controller;
     private static float _jumpDuration = 0.2f;
-    private static float _jumpSpeed = 35f;
+    private static float _jumpSpeed = 125f;
     private static float _proxyTrigger = 0.3f;
+    private static float _exp = 1.6f;
     private static int _explosionShots = 8;
     private static string _bulletName = BulletTypes.ExplosionDebris;
 
@@ -28,7 +29,9 @@ public class SuicideJump : IEnemyState
     public void Update()
     {
         _t += Time.deltaTime;
-        _gameObject.transform.Translate(_direction * Time.deltaTime * _jumpSpeed);
+
+        float expMultiplier = Mathf.Pow(_t / _jumpDuration, _exp);
+        _gameObject.transform.Translate(_direction * Time.deltaTime * expMultiplier * _jumpSpeed);
 
         // lifetime check
         if (_t >= _jumpDuration)

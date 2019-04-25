@@ -39,11 +39,34 @@ public class TimeTravelManager : MonoBehaviour
 
     void Update()
     {
+        /*
         _time += Time.deltaTime / GameConstants.TimeTravelDuration;
 
         if (_time > 1f)
             _time = 1f;
+        */
 
         _globalState.Counters["date"] = GetCurrentDate();
+    }
+
+    public void DoJump(float target, float duration)
+        => StartCoroutine(JumpTo(target, duration));
+
+    public void DoJump(int target, float duration)
+        => DoJump(GetT(target), duration);
+
+    private IEnumerator JumpTo(float target, float duration)
+    {
+        float t = 0;
+        float start = _time;
+        float dist = target - start;
+
+        while (t <= duration)
+        {
+            yield return new WaitForEndOfFrame();
+            t += Time.deltaTime;
+            _time = start + dist * (t / duration);
+        }
+        _time = target;
     }
 }

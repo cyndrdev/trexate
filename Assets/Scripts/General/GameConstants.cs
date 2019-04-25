@@ -27,7 +27,7 @@ public class GameConstants
     public static float SpawnMarginY = 2f;
 
     /* --- time travel --- */
-    public static int TimeTravelStart = 2742;
+    public static int TimeTravelStart = 7192;
     public static int TimeTravelEnd = -137500000;
     public static float TimeTravelExponent = 3.75f;
     public static float TimeTravelDuration = 350f;

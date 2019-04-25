@@ -55,6 +55,17 @@ public class BulletFactory : MonoBehaviour
         newBullet.Shoot(parent, offset, rotationOffset, flipX);
     }
 
+    public void ClearBullets()
+    {
+        foreach (var pair in _bank)
+        {
+            foreach (var bullet in pair.Value)
+            {
+                bullet.gameObject.SetActive(false);
+            }
+        }
+    }
+
     private IEnumerator DoDiagnostics()
     {
         while (true)
@@ -69,6 +80,10 @@ public class BulletFactory : MonoBehaviour
                 {
                     total++;
                     if (bullet.isActiveAndEnabled) active++;
+
+                    // only count 20 per frame
+                    if (total % 20 == 0)
+                        yield return new WaitForEndOfFrame();
                 }
             }
             Debug.Log("[BulletFactory]: " + active + " bullets active (" + total + " pooled)");

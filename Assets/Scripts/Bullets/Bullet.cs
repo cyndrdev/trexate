@@ -29,6 +29,8 @@ public class Bullet : MonoBehaviour
     private float _startTime;
     private bool _playerBullet = true;
 
+    [SerializeField]
+    [ReadOnly]
     private bool _initialized = false;
 
     Collider2D CreateCollider(BulletShape shape)

@@ -25,6 +25,7 @@ public class LevelData : ScriptableObject
     private float _length = -1f;
     private int _currentWaveId = 0;
     private float _jumpTimer;
+
     public float Length
     {
         get => Waves.Sum(wave => wave.Length);
@@ -63,8 +64,17 @@ public class LevelData : ScriptableObject
                 Debug.Log("starting jump...");
                 _jumpTimer = GameConstants.TimeJumpDuration;
                 _currentWaveId++;
+
                 if (CurrentWave != null)
+                {
+                    // start our time jump
+                    int year = StartYear + (int)((EndYear - StartYear) / ((float)_currentWaveId + 1) / Waves.Length);
+
+                    Game.GetPersistentComponent<TimeTravelManager>()
+                        .DoJump(year, GameConstants.TimeJumpDuration);
+
                     CurrentWave.Start();
+                }
             }
         }
     }
