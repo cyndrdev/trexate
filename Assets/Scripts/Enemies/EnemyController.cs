@@ -17,6 +17,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     private bool _isInvulnerable;
+    private float _invulnTime;
 
     [SerializeField]
     [ReadOnly]
@@ -30,7 +31,14 @@ public class EnemyController : MonoBehaviour
     public bool IsInvulnerable
     {
         get => _isInvulnerable;
-        set => _isInvulnerable = value;
+        set {
+            if (value)
+                _invulnTime = 0f;
+            else
+                _invulnTime = -1f;
+
+            _isInvulnerable = value;
+        }
     }
 
     public bool IsVisible
@@ -80,6 +88,11 @@ public class EnemyController : MonoBehaviour
             _renderer.sprite = _data.sprite;
             _renderer.sortingLayerName = GameConstants.EntitySortLayer;
 
+            Material material = new Material(Shader.Find(GameConstants.EnemyShader));
+
+            material.mainTexture = _renderer.sprite.texture;
+            _renderer.material = material;
+
             _renderer.transform.localScale = _data.collisionScale;
         }
 
@@ -98,6 +111,8 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        UpdateColors();
+
         // TODO:
         // - remove `EnemyHeart` and manage health here
         // - update _currentState based on health triggers
@@ -107,6 +122,34 @@ public class EnemyController : MonoBehaviour
     }
 
     /* === damage handlers === */
+    private void UpdateColors()
+    {
+
+        Color newColor;
+
+        if (_isInvulnerable)
+        {
+            _invulnTime += Time.deltaTime;
+            float amt = -Mathf.Cos(
+                _invulnTime * 
+                GameConstants.EnemyInvulnFlashRate * 
+                2f * Mathf.PI
+            );
+            amt = (-amt).SignalToScale();
+            newColor = Color.Lerp(
+                Color.white,
+                GameConstants.EnemyInvulnFlashColor,
+                amt
+            );
+        }
+        else
+        {
+            newColor = Color.white;
+        }
+
+        _renderer.color = newColor;
+    }
+
     public int Health { get => _hitPoints; }
 
     public void Damage(int damage, bool overrideInvulnerability = false)

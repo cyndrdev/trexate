@@ -62,7 +62,7 @@ public class EnemyFactory : MonoBehaviour
 
         float scale = Game.Instance.PixelPerfectCamera.OrthoScale;
         newObject.transform.position
-            = new Vector2(scale * xPosition, scale);
+            = new Vector2(scale * xPosition, scale + GameConstants.SpawnMarginY);
 
         EnemyController newEnemy = newObject.AddComponent<EnemyController>();
         

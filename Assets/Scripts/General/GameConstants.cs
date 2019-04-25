@@ -24,6 +24,7 @@ public class GameConstants
 
     /* --- mechanics --- */
     public static float BoundsMargin = 0.25f;
+    public static float SpawnMarginY = 2f;
 
     /* --- time travel --- */
     public static int TimeTravelStart = 2742;
@@ -46,6 +47,9 @@ public class GameConstants
     public static int HitFlashFade = 2;
     public static float HitFlashPeak = 0.85f;
     public static string PixelPerfectShader = "Sprites/PixelPerfectEntity";
+    public static string EnemyShader = "Sprites/Entity";
+    public static float EnemyInvulnFlashRate = 3f;
+    public static Color EnemyInvulnFlashColor = new Color(0f, 0.4f, 1f);
 
     /* --- ui --- */
     public static float CounterRefreshRate = 0.025f;
