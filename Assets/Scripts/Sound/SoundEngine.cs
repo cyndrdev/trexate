@@ -5,6 +5,20 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+struct SoundEffect
+{
+    public AudioClip Clip;
+    public bool VaryPitch;
+    public float Volume;
+
+    public SoundEffect(AudioClip clip, bool varyPitch, float volume)
+    {
+        Clip = clip;
+        VaryPitch = varyPitch;
+        Volume = volume;
+    }
+}
+
 public class SoundEngine : MonoBehaviour {
     [SerializeField]
     float _sfxVolume = 1.0f;
@@ -26,6 +40,9 @@ public class SoundEngine : MonoBehaviour {
     GameObject[] _musicObjects;
     GameObject _currentMusic;
 
+    private Dictionary<string, SoundEffect> _fxQueue
+        = new Dictionary<string, SoundEffect>();
+
     public void Awake()
     {
         preloadMusic();
@@ -37,7 +54,17 @@ public class SoundEngine : MonoBehaviour {
         if (!_musicTracks.Any())
             return;
 
-        PlayMusic(_musicTracks.First().name);
+        // PlayMusic(_musicTracks.First().name);
+    }
+
+    private void LateUpdate()
+    {
+        while (_fxQueue.Count > 0)
+        {
+            var pair = _fxQueue.First();
+            playQueuedFX(pair.Value);
+            _fxQueue.Remove(pair.Key);
+        }
     }
 
     private void preloadMusic()
@@ -79,8 +106,28 @@ public class SoundEngine : MonoBehaviour {
         Destroy(sfxObj);
     }
 
+    private void playQueuedFX(SoundEffect fx)
+    {
+        // the clip we're looking for exits! let's play it!
+        GameObject audioObj = new GameObject("audio_" + fx.Clip.name);
+        audioObj.transform.parent = transform;
+        audioObj.transform.localPosition = Vector3.zero;
+
+        float pitchMultiplier = fx.VaryPitch ? getRandomPitch() : 1f;
+        AudioSource audioSource = audioObj.AddComponent<AudioSource>();
+        audioSource.clip = fx.Clip;
+        audioSource.volume = _sfxVolume * fx.Volume;
+        audioSource.pitch = pitchMultiplier;
+
+        StartCoroutine(PlayAndDelete(audioObj));
+    }
+
     public void PlaySFX(string clipname, bool varyPitch=true, float volume=1f)
     {
+        // already an identical sfx on the queue
+        if (_fxQueue.Keys.Contains(clipname))
+            return;
+
         AudioClip clip = _soundEffects
             .Where((AudioClip a) => a.name == clipname)
             .First();
@@ -91,18 +138,11 @@ public class SoundEngine : MonoBehaviour {
             return;
         }
 
-        // the clip we're looking for exits! let's play it!
-        GameObject audioObj = new GameObject("audio_" + clipname);
-        audioObj.transform.parent = transform;
-        audioObj.transform.localPosition = Vector3.zero;
-
-        float pitchMultiplier = varyPitch ? getRandomPitch() : 1f;
-        AudioSource audioSource = audioObj.AddComponent<AudioSource>();
-        audioSource.clip = clip;
-        audioSource.volume = _sfxVolume * volume;
-        audioSource.pitch = pitchMultiplier;
-
-        StartCoroutine(PlayAndDelete(audioObj));
+        else
+        {
+            SoundEffect fx = new SoundEffect(clip, varyPitch, volume);
+            _fxQueue.Add(clipname, fx);
+        }
     }
 
     public void PlayRandomSFX(string baseclip, int start, int end, bool varyPitch=true, float volume=1f)

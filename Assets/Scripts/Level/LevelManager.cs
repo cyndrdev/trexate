@@ -98,6 +98,13 @@ public class LevelManager : MonoBehaviour
         bool hasFadeOut = (_currentLevelId != 0);
         float jumpDuration = GameConstants.TimeJumpDuration / (hasFadeOut ? 1f : 2f);
 
+        // start music fade
+        var engine = Game.GetPersistentComponent<SoundEngine>();
+        //if (hasFadeOut)
+            Game.GetPersistentComponent<SoundEngine>().PlayMusic(CurrentLevel.Music);
+        //else
+            //Game.GetPersistentComponent<SoundEngine>().PlayMusicNofade(CurrentLevel.Music);
+
         // jump our time
         _startDate = _timeTravelManager.GetT(CurrentLevel.StartYear);
         _endDate = _timeTravelManager.GetT(CurrentLevel.EndYear);

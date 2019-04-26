@@ -18,6 +18,9 @@ public class LevelData : ScriptableObject
     [Header("Waves")]
     public WaveData[] Waves;
 
+    [Header("Sound")]
+    public string Music;
+
     /* === methods & fields === */
 
     public bool IsJumping { get => _jumpTimer > 0f; }

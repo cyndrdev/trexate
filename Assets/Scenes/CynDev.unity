@@ -205,8 +205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e08b003dedf5d24b9959dde91ec4513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sfxVolume: 0.2
-  _musicVolume: 0.2
+  _sfxVolume: 0.5
+  _musicVolume: 1
   _sfxPitchVariance: 0.2
   _musicFadeTime: 3
   _soundEffects:
@@ -216,7 +216,15 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9452c44a5513de240bacf7b733e6064d, type: 3}
   - {fileID: 8300000, guid: c84e5cea3b8d36d4f86310b2abc8f650, type: 3}
   - {fileID: 8300000, guid: f7cf49ac1dd6c984ea264f1f5239e24b, type: 3}
-  _musicTracks: []
+  _musicTracks:
+  - {fileID: 8300000, guid: 53c17e6dc4d54064a8738ab72ece32ed, type: 3}
+  - {fileID: 8300000, guid: 2dac97c273100824493359270b7afee2, type: 3}
+  - {fileID: 8300000, guid: a4004a4d6b5ee4146baf6200be1f6d05, type: 3}
+  - {fileID: 8300000, guid: 5cf1e7326f0c3354789007893e31389f, type: 3}
+  - {fileID: 8300000, guid: cb5fdeb59320c7348b864433b27e4708, type: 3}
+  - {fileID: 8300000, guid: 017d1f41e21016147aa64c22c3c877be, type: 3}
+  - {fileID: 8300000, guid: 4ab244a0f952ca84bad0b6e73b06a21a, type: 3}
+  - {fileID: 8300000, guid: ad02125f7a9a6da4dac23c1c0358ef52, type: 3}
 --- !u!114 &121208056
 MonoBehaviour:
   m_ObjectHideFlags: 0
