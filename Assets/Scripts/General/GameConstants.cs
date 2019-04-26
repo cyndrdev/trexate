@@ -62,6 +62,11 @@ public class GameConstants
     public static float NewAreaTextFadeOutDuration = 0.5f;
     public static float NewAreaTextHoldDuration = 0.7f;
 
+    public static float CreditsFadeInSpeed = 1.5f;
+    public static float CreditsTopMargin = 200.0f;
+    public static float CreditsScrollSpeed = 100.0f;
+    public static float CreditsEndTextFadeSpeed = 3.0f;
+
     /* === tags === */
     public static string PlayerController = "Player";
 

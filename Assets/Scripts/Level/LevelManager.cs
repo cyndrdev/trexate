@@ -51,6 +51,8 @@ public class LevelManager : MonoBehaviour
     {
         if (_currentLevelId < _levels.Length)
         {
+            // debug: loads credits after 1st world
+            //LoadCredits(); return;
             if (_currentLevelId == _levels.Length - 1)
                 LoadCredits();
             else
@@ -74,6 +76,7 @@ public class LevelManager : MonoBehaviour
     {
         _currentLevelId++;
         Debug.Log("credits time uwu");
+        Game.GetPersistentComponent<Credits>().Begin();
     }
 
     void Update()

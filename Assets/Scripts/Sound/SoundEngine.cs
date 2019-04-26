@@ -160,7 +160,7 @@ public class SoundEngine : MonoBehaviour {
 
         while (fadePosition < _musicFadeTime)
         {
-            fadePosition += Time.deltaTime;
+            fadePosition += Time.unscaledDeltaTime;
             track.volume = (1f - Mathf.Cos(fadePosition * timeMultiplier)) * _musicVolume;
             yield return new WaitForEndOfFrame();
         }
@@ -175,7 +175,7 @@ public class SoundEngine : MonoBehaviour {
 
         while (fadePosition < _musicFadeTime)
         {
-            fadePosition += Time.deltaTime;
+            fadePosition += Time.unscaledDeltaTime;
             track.volume = Mathf.Cos(fadePosition * timeMultiplier) * _musicVolume;
             yield return new WaitForEndOfFrame();
         }
