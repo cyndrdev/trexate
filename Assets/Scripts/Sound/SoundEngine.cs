@@ -43,6 +43,14 @@ public class SoundEngine : MonoBehaviour {
     private Dictionary<string, SoundEffect> _fxQueue
         = new Dictionary<string, SoundEffect>();
 
+    private bool _muteFX = false;
+
+    public bool MuteSFX
+    {
+        get => _muteFX;
+        set => _muteFX = value;
+    }
+
     public void Awake()
     {
         preloadMusic();
@@ -62,7 +70,10 @@ public class SoundEngine : MonoBehaviour {
         while (_fxQueue.Count > 0)
         {
             var pair = _fxQueue.First();
-            playQueuedFX(pair.Value);
+
+            if (!_muteFX)
+                playQueuedFX(pair.Value);
+
             _fxQueue.Remove(pair.Key);
         }
     }

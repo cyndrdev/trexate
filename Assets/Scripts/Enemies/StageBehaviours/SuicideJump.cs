@@ -7,8 +7,8 @@ public class SuicideJump : IEnemyState
 {
     private GameObject _gameObject;
     private EnemyController _controller;
-    private static float _jumpDuration = 0.2f;
-    private static float _jumpSpeed = 125f;
+    private static float _jumpDuration = 0.4f;
+    private static float _jumpSpeed = 60f;
     private static float _proxyTrigger = 0.3f;
     private static float _exp = 1.6f;
     private static int _explosionShots = 8;

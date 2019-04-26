@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: enemyrocket
   m_EditorClassIdentifier: 
   lifetime: 3
-  sprite: {fileID: 21300000, guid: d4de998a11c5e9f488d9645fcde30393, type: 3}
+  sprite: {fileID: 21300000, guid: 333a4cd3621da5f428568751d8ddf739, type: 3}
   animatorController: {fileID: 0}
   color: {r: 1, g: 1, b: 1, a: 1}
   scale: {x: 1, y: 1}

@@ -105,6 +105,11 @@ public class BulletFactory : MonoBehaviour
 
     private IEnumerator Preload()
     {
+        // mute sfx first
+        var soundEngine = Game.GetPersistentComponent<SoundEngine>();
+        bool oldState = soundEngine.MuteSFX;
+        soundEngine.MuteSFX = true;
+
         // preloads a set list of bullets to avoid allocations during gameplay
         // shoot a bunch o bullets
         foreach (var pair in _preloadValues)
@@ -118,6 +123,8 @@ public class BulletFactory : MonoBehaviour
             yield return new WaitForEndOfFrame();
 
         ClearBullets();
+
+        soundEngine.MuteSFX = oldState;
     }
 }
 
