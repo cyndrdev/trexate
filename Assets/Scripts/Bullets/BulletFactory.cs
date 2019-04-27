@@ -44,9 +44,6 @@ public class BulletFactory : MonoBehaviour
         }
         else
         {
-            Debug.Log(Game.Instance.BulletRoot);
-            Debug.Log(_bank);
-            Debug.Log(_bank.Count);
             vaultObject = Game.Instance.BulletRoot.Find(data.name).gameObject;
         }
 

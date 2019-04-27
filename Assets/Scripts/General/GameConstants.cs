@@ -26,6 +26,10 @@ public class GameConstants
     public static float BoundsMargin = 0.25f;
     public static float SpawnMarginY = 2f;
 
+    /* --- health --- */
+    public static int PlayerMaxHealth = 10;
+    public static float ShieldDuration = 3f;
+
     /* --- time travel --- */
     public static int TimeTravelStart = 7192;
     public static int TimeTravelEnd = -137500000;
@@ -69,6 +73,8 @@ public class GameConstants
 
     public static float DeathFadeDuration = 3.0f;
     public static float DeathBlinkRate = 0.5f;
+
+    public static float BarMargin = 16f;
 
     /* === tags === */
     public static string PlayerController = "Player";
