@@ -67,6 +67,9 @@ public class GameConstants
     public static float CreditsScrollSpeed = 100.0f;
     public static float CreditsEndTextFadeSpeed = 3.0f;
 
+    public static float DeathFadeDuration = 3.0f;
+    public static float DeathBlinkRate = 0.5f;
+
     /* === tags === */
     public static string PlayerController = "Player";
 

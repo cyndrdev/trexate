@@ -12,7 +12,7 @@ public class ScreenFader : MonoBehaviour
     private Image _image;
     private IEnumerator _fadeCoroutine;
 
-    void Start()
+    void Awake()
     {
         _image = this.GetComponent<Image>();
         _baseColor = _image.color;
@@ -39,19 +39,16 @@ public class ScreenFader : MonoBehaviour
 
     private IEnumerator DoFade(float target, float time) {
         _startLevel = _level;
+        float t = 0f;
         float diff = target - _level;
-        while (true)
+
+        while (t < 1f)
         {
+            SetLevel(_startLevel + diff * t);
             yield return new WaitForEndOfFrame();
-            _level += diff * (Time.deltaTime / time);
-
-            if ((diff < 0f && _level < target) || (diff > 0f && _level > target))
-            {
-                _level = target;
-                yield return null;
-            }
-
-            SetLevel(_level);
+            t += Time.unscaledDeltaTime / time;
+            _level = _startLevel + diff * t;
         }
+            SetLevel(target);
     }
 }

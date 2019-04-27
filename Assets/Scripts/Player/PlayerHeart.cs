@@ -7,5 +7,6 @@ public class PlayerHeart : MonoBehaviour
     public void Hit()
     {
         //Debug.Log("[PlayerHeart]: ouch!");
+        Game.GetPersistentComponent<DeathScreen>().StartDeathFade();
     }
 }

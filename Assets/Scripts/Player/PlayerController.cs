@@ -66,6 +66,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0f)
+            return;
+
         float frameTime = Time.deltaTime * 60f;
 
         Vector3 targetVelocity = new Vector3(_inputManager.LeftStick.x, _inputManager.LeftStick.y) * _maxSpeed;
@@ -95,6 +98,9 @@ public class PlayerController : MonoBehaviour
 
     void ChangeFireState (bool down)
     {
+        if (Time.timeScale == 0f)
+            return;
+
         _isFiring = down;
         if (_isFiring) StartCoroutine(_fireContinuously);
         else StopCoroutine(_fireContinuously);

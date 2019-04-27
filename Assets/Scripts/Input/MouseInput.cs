@@ -19,6 +19,9 @@ public class MouseInput : MonoBehaviour, IInputMethod
     
     private void updateInput()
     {
+        if (_playerTransform == null)
+            _playerTransform = GameObject.FindGameObjectWithTag(GameConstants.PlayerController).transform;
+
         _leftStick = new Vector2(
             Input.GetAxisRaw(GameConstants.LeftHorizontal),
             Input.GetAxisRaw(GameConstants.LeftVertical)

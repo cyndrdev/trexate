@@ -26,7 +26,11 @@ public class BulletFactory : MonoBehaviour
     }
 
     void Start()
-        => StartCoroutine(Preload());
+    {
+        _bank = new Dictionary<BulletData, List<Bullet>>();
+
+        StartCoroutine(Preload());
+    }
 
     public void Shoot(GameObject parent, BulletData data, Vector2 offset, float rotationOffset, bool flipX)
     {
@@ -40,6 +44,9 @@ public class BulletFactory : MonoBehaviour
         }
         else
         {
+            Debug.Log(Game.Instance.BulletRoot);
+            Debug.Log(_bank);
+            Debug.Log(_bank.Count);
             vaultObject = Game.Instance.BulletRoot.Find(data.name).gameObject;
         }
 
@@ -129,7 +136,6 @@ public class BulletFactory : MonoBehaviour
 
 public static class BulletExtensions
 {
-    private static BulletFactory _factory = Game.GetPersistentComponent<BulletFactory>();
     private static BulletData ToBulletData(this string name)
     {
         BulletData data = Resources.Load<BulletData>(GameConstants.BulletBehaviourPath + name);
@@ -143,7 +149,7 @@ public static class BulletExtensions
     }
 
     public static void Shoot(this GameObject parent, BulletData data)
-        => _factory.Shoot(
+        => Game.GetPersistentComponent<BulletFactory>().Shoot(
             parent, 
             data, 
             new Vector2(0,0), 
@@ -152,7 +158,7 @@ public static class BulletExtensions
         );
 
     public static void Shoot(this GameObject parent, BulletData data, Vector2 offset, float rotationOffset, bool flipX = false)
-        => _factory.Shoot(
+        => Game.GetPersistentComponent<BulletFactory>().Shoot(
             parent, 
             data, 
             offset, 
@@ -161,7 +167,7 @@ public static class BulletExtensions
         );
 
     public static void Shoot(this GameObject parent, string dataName)
-        => _factory.Shoot(
+        => Game.GetPersistentComponent<BulletFactory>().Shoot(
             parent,
             dataName.ToBulletData(), 
             new Vector2(0, 0), 
@@ -170,7 +176,7 @@ public static class BulletExtensions
         );
 
     public static void Shoot(this GameObject parent, string dataName, Vector2 offset, float rotationOffset, bool flipX = false)
-        => _factory.Shoot(
+        => Game.GetPersistentComponent<BulletFactory>().Shoot(
             parent,
             dataName.ToBulletData(),
             offset,

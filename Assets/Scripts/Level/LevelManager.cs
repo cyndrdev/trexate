@@ -44,7 +44,7 @@ public class LevelManager : MonoBehaviour
         _background = _bgObject.GetComponent<ParallaxBackground>();
         _newAreaTitle = _titleObject.GetComponent<NewAreaTitle>();
         Debug.Log("there are " + _levels.Length + " levels.");
-        SetLevel(0);
+        StartCoroutine(StartLoad());
     }
 
     public void NextLevel()
@@ -94,6 +94,17 @@ public class LevelManager : MonoBehaviour
             NextLevel();
         }
 
+    }
+
+    IEnumerator StartLoad()
+    {
+        // since the beginning lags quite a bit, we want to wait 3 frames before starting.
+        for (int i = 0; i<3; i++)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        SetLevel(0);
     }
 
     IEnumerator ChangeLevel()

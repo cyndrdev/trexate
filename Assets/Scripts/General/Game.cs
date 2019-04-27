@@ -13,12 +13,36 @@ public class Game : MonoBehaviour
 
     private GameObject _player;
 
+    private bool _isPaused;
+
+    public bool IsPaused
+    {
+        get => _isPaused;
+    }
+
     private Dictionary<Type, Component> _instances
         = new Dictionary<Type, Component>();
 
     public Vector3 PlayerPosition {
-        get => _player.transform.position;
-        set => _player.transform.position = value;
+        get
+        {
+            if (_player == null)
+                UpdatePlayerReference();
+
+            return _player.transform.position;
+        }
+        set
+        {
+            if (_player == null)
+                UpdatePlayerReference();
+
+            _player.transform.position = value;
+        }
+    }
+
+    private void UpdatePlayerReference()
+    {
+        _player = GameObject.FindGameObjectWithTag(GameConstants.PlayerController);
     }
 
     public PixelPerfectCamera PixelPerfectCamera { get; private set; }
@@ -43,20 +67,33 @@ public class Game : MonoBehaviour
     {
         if (Instance != null)
         {
-            Debug.LogError("[Game]: Main game instance already exists, aborting initialisation.");
-            Destroy(this);
+            Debug.LogWarning("[Game]: Main game instance already exists, aborting initialisation.");
+            Destroy(Game.Instance.gameObject);
         }
+
+        Time.timeScale = 1f;
 
         Instance = this;
 
         PixelPerfectCamera  = Camera.main.GetComponent<PixelPerfectCamera>();
         if (PixelPerfectCamera  == null)    throw new System.Exception();
 
-        _player = GameObject.FindGameObjectWithTag(GameConstants.PlayerController);
+        UpdatePlayerReference();
 
-        DontDestroyOnLoad(this.gameObject);
+        // DontDestroyOnLoad(this.gameObject);
     }
 
     public void TogglePause()
-        => Time.timeScale = (Time.timeScale == 0) ? 1f : 0f;
+    {
+        if (_isPaused && Time.timeScale == 0f)
+        {
+            Time.timeScale = 1f;
+            _isPaused ^= true;
+        }
+        else if (!_isPaused && Time.timeScale != 0f)
+        {
+            Time.timeScale = 0f;
+            _isPaused ^= true;
+        }
+    }
 }
