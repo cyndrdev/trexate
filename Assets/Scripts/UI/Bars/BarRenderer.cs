@@ -41,7 +41,7 @@ public class BarRenderer : MonoBehaviour
 
     public void SetBarValue(Image bar, float barSize, float value)
     {
-        bar.color = bar.color.WithAlpha((value <= 0f) ? 0f : 1f);
+        bar.color = bar.color.WithAlpha((value <= 0.001f) ? 0f : 1f);
         bar.rectTransform.offsetMax = new Vector2((value - 1f) * barSize, 0);
     }
 }

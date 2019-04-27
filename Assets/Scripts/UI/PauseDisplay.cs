@@ -34,7 +34,7 @@ public class PauseDisplay : MonoBehaviour
         );
 
         _display.enabled = (
-            Time.timeScale == 0 && flashState
+            Game.Instance.IsPaused && flashState
         );
     }
 }
