@@ -19,9 +19,19 @@ public class PlayerHeart : MonoBehaviour
         get => _isDamaging;
     }
 
+    public int Health
+    {
+        get => _health;
+    }
+
+    public int MaxHealth
+    {
+        get => GameConstants.PlayerMaxHealth;
+    }
+
     private void Awake()
     {
-        _health = GameConstants.PlayerMaxHealth;
+        _health = MaxHealth;
     }
 
     public void Hit()

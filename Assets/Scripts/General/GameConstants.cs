@@ -76,6 +76,10 @@ public class GameConstants
 
     public static float BarMargin = 16f;
 
+    public static int HealthBarValues = 10;
+    public static float HealthBarDelay = 1.0f;
+    public static float HealthBarLerp = 0.07f;
+
     /* === tags === */
     public static string PlayerController = "Player";
 
