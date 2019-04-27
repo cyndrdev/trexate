@@ -4619,51 +4619,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameCamera
       objectReference: {fileID: 0}
-    - target: {fileID: 5834296813607208312, guid: 028f02353a3c9114bbd82c1806fa82e3,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5834296813607208315, guid: 028f02353a3c9114bbd82c1806fa82e3,
-        type: 3}
-      propertyPath: m_TargetDisplay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5834296813607208315, guid: 028f02353a3c9114bbd82c1806fa82e3,
-        type: 3}
-      propertyPath: m_TargetTexture
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5834296813607208315, guid: 028f02353a3c9114bbd82c1806fa82e3,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 5834296813607208315, guid: 028f02353a3c9114bbd82c1806fa82e3,
-        type: 3}
-      propertyPath: m_HDR
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5834296813607208315, guid: 028f02353a3c9114bbd82c1806fa82e3,
-        type: 3}
-      propertyPath: m_AllowMSAA
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5834296813607208315, guid: 028f02353a3c9114bbd82c1806fa82e3,
-        type: 3}
-      propertyPath: m_OcclusionCulling
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5834296813607208315, guid: 028f02353a3c9114bbd82c1806fa82e3,
-        type: 3}
-      propertyPath: m_AllowDynamicResolution
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5834296813607208315, guid: 028f02353a3c9114bbd82c1806fa82e3,
-        type: 3}
-      propertyPath: m_Depth
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 5834296813607208324, guid: 028f02353a3c9114bbd82c1806fa82e3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4717,11 +4672,6 @@ PrefabInstance:
     - target: {fileID: 5834296813607208324, guid: 028f02353a3c9114bbd82c1806fa82e3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5860863455512715333, guid: 028f02353a3c9114bbd82c1806fa82e3,
-        type: 3}
-      propertyPath: _fill
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
