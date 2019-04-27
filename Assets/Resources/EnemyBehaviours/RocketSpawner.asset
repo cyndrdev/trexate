@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93f3acfddcaec07488319c02fcd91d78, type: 3}
-  m_Name: SuicideRed
+  m_Name: RocketSpawner
   m_EditorClassIdentifier: 
-  MaxHealth: 51
-  sprite: {fileID: 21300000, guid: 1970e7bf906ea2e46823451d2cc68220, type: 3}
+  MaxHealth: 50
+  sprite: {fileID: 21300000, guid: 2f9c3b4514d7de341aac5b933226e8af, type: 3}
   animatorController: {fileID: 0}
   scale: {x: 1, y: 1}
   flipX: 0
   flipY: 1
   hitSound: hurt
   deathSound: explosion
-  hitScore: 5
-  killScore: 100
+  hitScore: 10
+  killScore: 250
   collisionScale: {x: 1, y: 1}
   Stages:
-  - StageScript: EnterStage
+  - StageScript: ShowoffEntry
     HealthTrigger: 51
-  - StageScript: FrontShotgun
+  - StageScript: SpewRockets
     HealthTrigger: 50
-  - StageScript: SuicideJump
-    HealthTrigger: 20
+  - StageScript: ExplodeSmall
+    HealthTrigger: 0

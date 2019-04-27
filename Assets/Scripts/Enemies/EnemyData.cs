@@ -28,12 +28,12 @@ public class EnemyData : ScriptableObject
     public bool flipY = false;
 
     [Header("Sound FX")]
-    public string hitSound;
-    public string deathSound;
+    public string hitSound = "hurt";
+    public string deathSound = "explosion";
 
     [Header("Points")]
-    public int hitScore;
-    public int killScore;
+    public int hitScore = 10;
+    public int killScore = 500;
 
     [Header("Collision")]
     public Vector2 collisionScale = new Vector2(1f, 1f);

@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e08b003dedf5d24b9959dde91ec4513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sfxVolume: 0.2
+  _sfxVolume: 0.1
   _musicVolume: 0
   _sfxPitchVariance: 0.2
   _musicFadeTime: 1.5
