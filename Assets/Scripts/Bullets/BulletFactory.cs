@@ -10,16 +10,19 @@ public class BulletFactory : MonoBehaviour
     private static Dictionary<string, int> _preloadValues =
         new Dictionary<string, int>
     {
-        { BulletTypes.PlayerBullets, 50 },
+        { BulletTypes.PlayerBullets, 100 },
         { BulletTypes.EnemyRocket, 20 },
         { BulletTypes.ExplosionDebris, 100 },
-        { BulletTypes.Simple, 200 }
+        { BulletTypes.Simple, 300 }
     };
 
     void Awake()
     {
         _bank = new Dictionary<BulletData, List<Bullet>>();
+
+#if DEBUG
         StartCoroutine(DoDiagnostics());
+#endif
     }
 
     void Start()
@@ -93,10 +96,6 @@ public class BulletFactory : MonoBehaviour
                 {
                     total++;
                     if (bullet.isActiveAndEnabled) active++;
-
-                    // only count 20 per frame
-                    if (total % 20 == 0)
-                        yield return new WaitForEndOfFrame();
                 }
             }
             Debug.Log("[BulletFactory]: " + active + " bullets active (" + total + " pooled)");

@@ -9,18 +9,19 @@ public class EnemyFactory : MonoBehaviour
 
     public void CleanPools()
     {
-        foreach (var pair in _census)
+        foreach (var k in _census.Keys)
         {
             int i = 0;
             while (true)
             {
-                if (pair.Value == null) break;
+                var pool = _census[k];
+                if (pool == null) break;
 
-                if (i >= pair.Value.Count)
+                if (i >= pool.Count)
                     break;
 
-                if (pair.Value[i] == null)
-                    pair.Value.RemoveAt(i);
+                if (pool[i] == null)
+                    pool.RemoveAt(i);
                 else i++;
             }
         }

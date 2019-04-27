@@ -52,7 +52,7 @@ public class LevelManager : MonoBehaviour
         if (_currentLevelId < _levels.Length)
         {
             // debug: loads credits after 1st world
-            //LoadCredits(); return;
+            LoadCredits(); return;
             if (_currentLevelId == _levels.Length - 1)
                 LoadCredits();
             else
