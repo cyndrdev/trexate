@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IScaleProvider
 {
     float GetValue();
+    float GetSubValue();
 }
