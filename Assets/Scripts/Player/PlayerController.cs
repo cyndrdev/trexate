@@ -95,11 +95,7 @@ public class PlayerController : MonoBehaviour
         );
 
         transform.localRotation = (_aimAngle.ToDegrees() - 90f).ToRotation();
-    }
-
-    private void FixedUpdate()
-    {
-        transform.localPosition += new Vector3(_velocity.x, _velocity.y) * Time.fixedDeltaTime;
+        transform.localPosition += new Vector3(_velocity.x, _velocity.y) * Time.deltaTime;
     }
 
     void ChangeFireState (bool down)

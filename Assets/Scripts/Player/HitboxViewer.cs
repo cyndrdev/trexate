@@ -14,11 +14,11 @@ public class HitboxViewer : MonoBehaviour
 
     private float _playerAlpha;
     private float PlayerTargetAlpha
-        => (_isSlowmo) ? 0.5f : 1f;
+        => (_isSlowmo && !Game.Instance.IsPaused) ? 0.5f : 1f;
 
     private float _hitboxAlpha;
     private float HitboxTargetAlpha
-        => (_isSlowmo) ? 1f : 0f;
+        => (_isSlowmo && !Game.Instance.IsPaused) ? 1f : 0f;
 
     private void Start()
     {
@@ -34,5 +34,10 @@ public class HitboxViewer : MonoBehaviour
 
         _playerGraphics.color = _playerGraphics.color.WithAlpha(_playerAlpha);
         _hitboxGraphics.color = _hitboxGraphics.color.WithAlpha(_hitboxAlpha);
+    }
+
+    private void LateUpdate()
+    {
+        _hitboxGraphics.gameObject.transform.rotation = Quaternion.identity;
     }
 }
