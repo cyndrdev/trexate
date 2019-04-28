@@ -33,14 +33,10 @@ public class LevelData : ScriptableObject
     private float _jumpTimer;
 
     public float Length
-    {
-        get => Waves.Sum(wave => wave.Length);
-    }
+        => Waves.Sum(wave => wave.Length);
 
     public WaveData CurrentWave
-    {
-        get => Waves.GetAtIndex(_currentWaveId);
-    }
+        => Waves.GetAtIndex(_currentWaveId);
 
     public void Start()
     {

@@ -33,8 +33,6 @@ public class DeathScreen : MonoBehaviour
         bool hasFadedBg = false;
         float componentDuration = GameConstants.DeathFadeDuration / 1.5f;
 
-        Debug.Log(componentDuration);
-
         while (t < 1f)
         {
             _deathText.color = _deathText.color.WithAlpha(t);
@@ -48,6 +46,7 @@ public class DeathScreen : MonoBehaviour
         }
 
         _canRestart = true;
+        yield return new WaitForSecondsRealtime(componentDuration / 2f);
 
         _restartText.color = _restartText.color.WithAlpha(1f);
         while (true)

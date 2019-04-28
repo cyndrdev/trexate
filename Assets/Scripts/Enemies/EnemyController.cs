@@ -166,6 +166,9 @@ public class EnemyController : MonoBehaviour
 
         _hitPoints -= damage;
 
+        // debug: enemies die in one hit
+        //if (!overrideInvulnerability) Die(true);
+
         if (!overrideInvulnerability)
             DamageHooks();
 
@@ -256,6 +259,10 @@ public class EnemyController : MonoBehaviour
                 _hitPoints = 0;
                 SetState(++_currentStateId);
             }
+            else
+            {
+                Die(true);
+            }
         }
 
         // are we at a trigger point?
@@ -271,6 +278,9 @@ public class EnemyController : MonoBehaviour
         // first, end our current state cleanly
         if (_currentState != null)
             _currentState.End();
+
+        if (id >= _data.Stages.Count || id == -1) 
+            return;
 
         string stateName = _data.Stages[id].StageScript;
 
@@ -307,7 +317,6 @@ public class EnemyController : MonoBehaviour
     {
         int flashFrames = (int)(GameConstants.HitFlashFrames * Time.timeScale);
         int flashFadeFrames = (int)(GameConstants.HitFlashFade * Time.timeScale);
-
         _material.SetFloat("_HitAmount", GameConstants.HitFlashPeak);
 
         for (int i = 0; i < flashFrames; i++)

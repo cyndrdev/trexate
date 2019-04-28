@@ -123,6 +123,7 @@ public class BigSwoosh : IEnemyState
         {
             for (int i = 0; i < 10; i++)
             {
+                _gameObject.Shoot(_bulletName, Vector2.zero, 0f);
                 _gameObject.Shoot(_bulletName, Vector2.zero, 180f);
                 yield return new WaitForSeconds(0.05f);
             }

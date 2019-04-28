@@ -34,10 +34,16 @@ public class FrontShotgun : IEnemyState
 
     void Fire(int size)
     {
+        var diff = _gameObject.transform.position - Game.Instance.PlayerPosition;
+
+        int offset = (Mathf.Abs(diff.x) > Mathf.Abs(diff.y)) ?
+            ((diff.x > 0f) ? 3 : 1) :
+            ((diff.y > 0f) ? 0 : 2);
+
         for (int i = 0; i < size; i++)
         {
             float angle = ((_shotgunSpread / (size - 1)) * i) + (_shotgunSpread / 2f);
-            _gameObject.Shoot(_bulletName, Vector2.zero, angle);
+            _gameObject.Shoot(_bulletName, Vector2.zero, angle + 90f * offset);
         }
     }
     

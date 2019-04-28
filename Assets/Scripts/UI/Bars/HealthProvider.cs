@@ -45,7 +45,7 @@ public class HealthProvider : MonoBehaviour, IScaleProvider
     }
 
     public float GetValue()
-        => _healthHistory.Last();
+        => CurrentHealthValue;
 
     public float GetSubValue()
         => _subValueLerp;

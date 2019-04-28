@@ -318,6 +318,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a74edae1f38591e44b8fd46d9c22e11d, type: 2}
   - {fileID: 11400000, guid: c7a86250775145447afc58bbae60672a, type: 2}
   - {fileID: 11400000, guid: c447371762736614782bdc494363395f, type: 2}
+  - {fileID: 11400000, guid: 98baa0e482c3fc9428d8c43dd049e3c0, type: 2}
   _fadeObject: {fileID: 189511848}
   _titleObject: {fileID: 1913031727}
   _bgObject: {fileID: 122059328}
@@ -386,14 +387,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cf68550f0323a7e46abb4548598112dc, type: 3}
   - {fileID: 21300000, guid: cd46274babfe95c48be5320b229cc40a, type: 3}
   - {fileID: 21300000, guid: 009311762c05bde429e195f1439dfd22, type: 3}
+  - {fileID: 21300000, guid: ae1a560a142493f4eba963b1cded2dc5, type: 3}
   _layerOne:
   - {fileID: 21300000, guid: 5a04b04a1c6244043bf4cab97698ea8a, type: 3}
   - {fileID: 21300000, guid: 4102308830344ff4c9f82c172f38cfac, type: 3}
   - {fileID: 21300000, guid: 4cf0c478e91b53742827f41a2ddee09e, type: 3}
+  - {fileID: 21300000, guid: 0c8e01d30733bb248b66a146b1f88e85, type: 3}
   _layerTwo:
   - {fileID: 21300000, guid: 02e1cdf7bdb4fb144971810a7a5cc4c9, type: 3}
   - {fileID: 21300000, guid: 78010b66711acd4489a42ca02dbc6def, type: 3}
   - {fileID: 21300000, guid: 95431f8221d73fc4b86de8e498828aeb, type: 3}
+  - {fileID: 21300000, guid: a09a6b380c130974a8a22d3003a00ae4, type: 3}
   _position: 0
 --- !u!4 &122059330
 Transform:
