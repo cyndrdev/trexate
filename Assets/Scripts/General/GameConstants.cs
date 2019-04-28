@@ -12,7 +12,7 @@ public class GameConstants
     /* --- pixel perfect --- */
     public static Vector2Int ViewportRes = new Vector2Int(360, 360);
     public static int TileSize = 16;
-    public static bool SnapPosition = true;
+    public static bool SnapPosition = false;
     public static bool SnapAngle = true;
 
     /* --- Sprite UV Passthrough --- */
@@ -25,6 +25,8 @@ public class GameConstants
     /* --- mechanics --- */
     public static float BoundsMargin = 0.25f;
     public static float SpawnMarginY = 2f;
+
+    public static float SlomoAmount = 0.5f;
 
     /* --- health --- */
     public static int PlayerMaxHealth = 10;
@@ -54,6 +56,8 @@ public class GameConstants
     public static string EnemyShader = "Sprites/Entity";
     public static float EnemyInvulnFlashRate = 3f;
     public static Color EnemyInvulnFlashColor = new Color(0f, 0.4f, 1f);
+
+    public static float HitboxFadeAmt = 5f;
 
     /* --- ui --- */
     public static float CounterRefreshRate = 0.025f;

@@ -47,6 +47,12 @@ public class PlayerController : MonoBehaviour
         _inputManager.Primary.AddListener(ChangeFireState);
         _fireContinuously = FireContinuously();
 
+        _inputManager.Secondary.AddListener((b) =>
+        {
+            if (b && Time.timeScale == 1f) Time.timeScale = GameConstants.SlomoAmount;
+            else if (!b && Time.timeScale == GameConstants.SlomoAmount) Time.timeScale = 1f;
+        });
+
         if (_bulletData == null)
         {
             throw new System.Exception("[PlayerController]: no bullet data set for player!");
