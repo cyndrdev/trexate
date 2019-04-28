@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c90bc28a70737b499fb62f4c584468e, type: 3}
+  m_Name: Jungle
+  m_EditorClassIdentifier: 
+  levelName: Primordial Jungle
+  StartYear: -65000000
+  EndYear: -137000000
+  Background: jungle
+  Waves:
+  - {fileID: 11400000, guid: 3ab7118d76f925c4c838e12881b83713, type: 2}
+  - {fileID: 11400000, guid: f55625e421ecd0b468751bdd1ca611a5, type: 2}
+  Music: chillwave
