@@ -102,7 +102,10 @@ public class ParallaxBackground : MonoBehaviour
     {
         //_t += Time.deltaTime;
         //float relPos = _t * movementRate;
-        float multiplier = Game.GetPersistentComponent<LevelManager>().IsJumping ? 3f : 1f;
+        float multiplier = 1f;
+        if (Game.Instance != null)
+            multiplier = Game.GetPersistentComponent<LevelManager>().IsJumping ? 3f : 1f;
+
         _position += Time.deltaTime * _movementRate * multiplier;
 
         while (_position > _baseHeight)
