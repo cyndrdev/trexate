@@ -35,8 +35,8 @@ public class MouseInput : MonoBehaviour, IInputMethod
         _buttons = new bool[3]
         {
             Input.GetMouseButton(0),
-            false,
-            false
+            Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift),
+            Input.GetKey(KeyCode.R)
         };
     }
 

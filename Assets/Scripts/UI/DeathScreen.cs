@@ -21,6 +21,11 @@ public class DeathScreen : MonoBehaviour
     public void StartDeathFade()
     {
         Time.timeScale = 0f;
+
+        Game.GetPersistentComponent<InputManager>()
+            .Tertiary
+            .AddListener((b) => { if (b && _canRestart) ReloadScene(); });
+
         _deathText.enabled = true;
         _restartText.enabled = true;
         _fader = _fadeObject.GetComponent<ScreenFader>();
@@ -60,14 +65,5 @@ public class DeathScreen : MonoBehaviour
     {
         Debug.Log("restart pls");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    void Update()
-    {
-        if (!_canRestart)
-            return;
-
-        if (Input.GetKeyDown(KeyCode.R))
-            ReloadScene();
     }
 }
