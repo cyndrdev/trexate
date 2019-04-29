@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93f3acfddcaec07488319c02fcd91d78, type: 3}
   m_Name: RocketSpawner
   m_EditorClassIdentifier: 
-  MaxHealth: 50
+  MaxHealth: 101
   sprite: {fileID: 21300000, guid: 2f9c3b4514d7de341aac5b933226e8af, type: 3}
   animatorController: {fileID: 0}
   scale: {x: 1, y: 1}
@@ -25,8 +25,13 @@ MonoBehaviour:
   collisionScale: {x: 1, y: 1}
   Stages:
   - StageScript: ShowoffEntry
-    HealthTrigger: 51
+    HealthTrigger: 101
   - StageScript: SpewRockets
-    HealthTrigger: 50
+    HealthTrigger: 100
   - StageScript: ExplodeSmall
     HealthTrigger: 0
+  DoHealthPickup: 1
+  DoDamagePickup: 1
+  DoShieldPickup: 1
+  SpawnChance: 0.7
+  SpawnAttempts: 5

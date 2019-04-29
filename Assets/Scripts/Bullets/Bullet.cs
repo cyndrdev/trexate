@@ -274,7 +274,7 @@ public class Bullet : MonoBehaviour
         bool enemyHit = (_playerBullet && enemyController != null);
 
         if (playerHit) playerHeart.Hit();
-        if (enemyHit) enemyController.Damage(1000);
+        if (enemyHit) enemyController.Damage(GameConstants.BulletDamage);
 
         if (playerHit || enemyHit)
         {

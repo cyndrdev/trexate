@@ -33,6 +33,10 @@ public class GameConstants
     public static float ShieldDuration = 3f;
     public static int AbilityBuildLimit = 5;
 
+    public static int BulletDamage
+        = 1;
+        //= 1000;
+
     /* --- time travel --- */
     public static int TimeTravelStart = 7192;
     public static int TimeTravelEnd = -137500000;

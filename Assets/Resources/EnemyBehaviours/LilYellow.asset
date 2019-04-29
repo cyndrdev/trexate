@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93f3acfddcaec07488319c02fcd91d78, type: 3}
   m_Name: LilYellow
   m_EditorClassIdentifier: 
-  MaxHealth: 0
+  MaxHealth: 51
   sprite: {fileID: 21300000, guid: 87b09209784dadc43ad67d9273266cb8, type: 3}
   animatorController: {fileID: 0}
   scale: {x: 1, y: 1}
@@ -26,3 +26,8 @@ MonoBehaviour:
   Stages:
   - StageScript: 
     HealthTrigger: 0
+  DoHealthPickup: 0
+  DoDamagePickup: 1
+  DoShieldPickup: 1
+  SpawnChance: 0.7
+  SpawnAttempts: 2

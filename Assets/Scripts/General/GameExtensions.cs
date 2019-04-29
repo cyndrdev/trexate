@@ -17,7 +17,11 @@ namespace Extensions
         }
 
         public static int AddToScore(this int value)
-            => value.AddToState("score");
+        {
+            int score = value;
+            if (Time.timeScale != 1f) score /= 2;
+            return score.AddToState("score");
+        }
 
         public static string ToYearString(this int value)
         {

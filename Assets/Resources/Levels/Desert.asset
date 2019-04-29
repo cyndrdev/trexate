@@ -17,6 +17,6 @@ MonoBehaviour:
   EndYear: -15000
   Background: desert
   Waves:
-  - {fileID: 11400000, guid: 3ab7118d76f925c4c838e12881b83713, type: 2}
+  - {fileID: 11400000, guid: 8d698613ebfa0b141975055e5312119b, type: 2}
   - {fileID: 11400000, guid: f55625e421ecd0b468751bdd1ca611a5, type: 2}
   Music: chillwave

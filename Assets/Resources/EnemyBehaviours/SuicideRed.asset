@@ -30,3 +30,8 @@ MonoBehaviour:
     HealthTrigger: 50
   - StageScript: SuicideJump
     HealthTrigger: 20
+  DoHealthPickup: 1
+  DoDamagePickup: 1
+  DoShieldPickup: 0
+  SpawnChance: 0.7
+  SpawnAttempts: 2
