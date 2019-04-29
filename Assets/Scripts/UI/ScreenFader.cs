@@ -6,7 +6,9 @@ using Extensions;
 
 public class ScreenFader : MonoBehaviour
 {
-    private float _level = 1f;
+    [SerializeField]
+    private float _awakeLevel = 1f;
+    private float _level;
     private float _startLevel;
     private Color _baseColor;
     private Image _image;
@@ -14,6 +16,7 @@ public class ScreenFader : MonoBehaviour
 
     void Awake()
     {
+        _level = _awakeLevel;
         _image = this.GetComponent<Image>();
         _baseColor = _image.color;
         SetLevel(_level);

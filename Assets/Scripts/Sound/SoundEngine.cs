@@ -20,10 +20,8 @@ struct SoundEffect
 }
 
 public class SoundEngine : MonoBehaviour {
-    [SerializeField]
-    float _sfxVolume = 1.0f;
 
-    [SerializeField]
+    float _sfxVolume = 1.0f;
     float _musicVolume = 1.0f;
 
     [SerializeField]
@@ -57,10 +55,29 @@ public class SoundEngine : MonoBehaviour {
         updateVolumes();
     }
 
+    public void UpdateVolumes()
+    {
+        if (!PlayerPrefs.HasKey(GameConstants.MusicLevelPlayerPref))
+            PlayerPrefs.SetFloat(GameConstants.MusicLevelPlayerPref, 1f);
+
+        if (!PlayerPrefs.HasKey(GameConstants.SFXLevelPlayerPref))
+            PlayerPrefs.SetFloat(GameConstants.SFXLevelPlayerPref, 0.5f);
+
+
+        _musicVolume = PlayerPrefs.GetFloat(GameConstants.MusicLevelPlayerPref);
+        _sfxVolume = PlayerPrefs.GetFloat(GameConstants.SFXLevelPlayerPref);
+        Debug.Log("music level: " + _musicVolume + ", current music: " + _currentMusic?.name);
+
+        if (_currentMusic != null)
+            _currentMusic.GetComponent<AudioSource>().volume = _musicVolume;
+    }
+
     public void Start()
     {
         if (!_musicTracks.Any())
             return;
+
+        UpdateVolumes();
 
         // PlayMusic(_musicTracks.First().name);
     }

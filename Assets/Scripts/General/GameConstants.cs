@@ -102,4 +102,8 @@ public class GameConstants
     /* === resource paths === */
     public const string BulletBehaviourPath = "BulletTypes/";
     public const string EnemyBehaviourPath = "EnemyBehaviour/";
+
+    /* === playerprefs === */
+    public const string MusicLevelPlayerPref = "MusicLevel";
+    public const string SFXLevelPlayerPref = "SFXLevel";
 }
