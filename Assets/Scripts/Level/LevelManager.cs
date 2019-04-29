@@ -139,6 +139,7 @@ public class LevelManager : MonoBehaviour
             _background.SwapLayer(_currentLevelId);
 
             Game.GetPersistentComponent<BulletFactory>().ClearBullets();
+            Game.GetPersistentComponent<PickupFactory>().CleanField();
         }
 
         // load new date target

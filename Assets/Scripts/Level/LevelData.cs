@@ -28,7 +28,6 @@ public class LevelData : ScriptableObject
     private float _startT;
     private float _endT;
 
-    private float _length = -1f;
     private int _currentWaveId = 0;
     private float _jumpTimer;
 

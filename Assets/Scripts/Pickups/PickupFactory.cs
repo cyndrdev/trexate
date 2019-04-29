@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Extensions;
 
 public class PickupFactory : MonoBehaviour
 {
@@ -10,6 +11,21 @@ public class PickupFactory : MonoBehaviour
     public Sprite _damageSprite;
     [SerializeField]
     public Sprite _shieldSprite;
+
+    public void SpawnRandom(Vector2 position, byte pool)
+    {
+        if (pool == 0 || pool >= 8) return;
+
+        while (true)
+        {
+            int i = Random.Range(0, 3);
+            if ((pool & (byte)2.Pow(i)) == 0)
+            {
+                Spawn(position, (PickupType)i);
+                return;
+            }
+        }
+    }
 
     public void SpawnRandom(Vector2 position)
         => Spawn(position, (PickupType)Random.Range(0, 3));
@@ -26,11 +42,14 @@ public class PickupFactory : MonoBehaviour
         sr.sortingOrder = -1;
 
         var col = obj.AddComponent<CircleCollider2D>();
-        col.radius = 0.21875f;
+        col.radius = GameConstants.PickupArea;
         col.isTrigger = true;
 
+        Vector2 offset = Vector2.up * GameConstants.PickupSpawnRadius * Random.Range(0f, 1f);
+        offset = offset.Rotate(Random.Range(0f, 360f));
+
         obj.transform.parent = Game.Instance.PickupRoot;
-        obj.transform.position = position;
+        obj.transform.position = position + offset;
     }
 
     public Sprite GetSprite(PickupType type)
@@ -46,5 +65,11 @@ public class PickupFactory : MonoBehaviour
             default:
                 return null;
         }
+    }
+
+    public void CleanField()
+    {
+        foreach (Transform child in Game.Instance.PickupRoot)
+            GameObject.Destroy(child.gameObject);
     }
 }

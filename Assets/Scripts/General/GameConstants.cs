@@ -62,6 +62,8 @@ public class GameConstants
 
     public static float PickupFallRate = 3f;
     public static float PickupDespawnMargin = 2f;
+    public static float PickupArea = 0.5f;
+    public static float PickupSpawnRadius = 0.2f;
 
     /* --- ui --- */
     public static float CounterRefreshRate = 0.025f;

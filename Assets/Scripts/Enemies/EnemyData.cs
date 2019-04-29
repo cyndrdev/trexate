@@ -40,4 +40,12 @@ public class EnemyData : ScriptableObject
 
     [Header("Behaviours")]
     public List<StageContext> Stages;
+
+    [Header("Pickup")]
+    public bool DoHealthPickup = true;
+    public bool DoDamagePickup = true;
+    public bool DoShieldPickup = true;
+
+    public float SpawnChance = 1.0f;
+    public int SpawnAttempts = 1;
 }
