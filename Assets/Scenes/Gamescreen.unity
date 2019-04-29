@@ -292,6 +292,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9452c44a5513de240bacf7b733e6064d, type: 3}
   - {fileID: 8300000, guid: c84e5cea3b8d36d4f86310b2abc8f650, type: 3}
   - {fileID: 8300000, guid: f7cf49ac1dd6c984ea264f1f5239e24b, type: 3}
+  - {fileID: 8300000, guid: b7cc05c4658a98d4a8f536aa7a0be4f1, type: 3}
   _musicTracks:
   - {fileID: 8300000, guid: 53c17e6dc4d54064a8738ab72ece32ed, type: 3}
   - {fileID: 8300000, guid: 2dac97c273100824493359270b7afee2, type: 3}
@@ -1323,7 +1324,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 15.999985, y: 0}
+  m_AnchoredPosition: {x: 16, y: 0}
   m_SizeDelta: {x: -32, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &429836583
@@ -1774,7 +1775,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 15.999985, y: 0}
+  m_AnchoredPosition: {x: 16, y: 0}
   m_SizeDelta: {x: -32, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &616987381
@@ -2473,36 +2474,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &965905390
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprites/PixelPerfectEntity
-  m_Shader: {fileID: 4800000, guid: b941d0ad94808604fb951105ad819b5f, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _PixelSize: 0.0625
-    - _Res: 16
-    m_Colors:
-    - _SpritePivot: {r: 1, g: 1, b: 0, a: 0}
-    - _SpriteUV: {r: 1, g: 1, b: 0, a: 0}
-    - _UVCenter: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &987162277
 GameObject:
   m_ObjectHideFlags: 0
@@ -3333,7 +3304,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 15.999985, y: 0}
+  m_AnchoredPosition: {x: 16, y: 0}
   m_SizeDelta: {x: -32, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1385829628
@@ -4044,36 +4015,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1697919670}
   m_CullTransparentMesh: 0
---- !u!21 &1743947526
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprites/PixelPerfectEntity
-  m_Shader: {fileID: 4800000, guid: b941d0ad94808604fb951105ad819b5f, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _PixelSize: 0.0625
-    - _Res: 16
-    m_Colors:
-    - _SpritePivot: {r: 1, g: 1, b: 0, a: 0}
-    - _SpriteUV: {r: 1, g: 1, b: 0, a: 0}
-    - _UVCenter: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1772683303
 GameObject:
   m_ObjectHideFlags: 0
@@ -4730,6 +4671,36 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!21 &2002711771
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites/PixelPerfectEntity
+  m_Shader: {fileID: 4800000, guid: b941d0ad94808604fb951105ad819b5f, type: 3}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _PixelSize: 0.0625
+    - _Res: 16
+    m_Colors:
+    - _SpritePivot: {r: 1, g: 1, b: 0, a: 0}
+    - _SpriteUV: {r: 1, g: 1, b: 0, a: 0}
+    - _UVCenter: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &2052904502
 GameObject:
   m_ObjectHideFlags: 0
@@ -5071,7 +5042,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 965905390}
+      objectReference: {fileID: 2002711771}
     - target: {fileID: 5879001905698873559, guid: 3cdf8e193f123d04e8fac36bc25f7db6,
         type: 3}
       propertyPath: m_Color.r
@@ -5087,6 +5058,35 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1699985168573419981, guid: 3cdf8e193f123d04e8fac36bc25f7db6,
+        type: 3}
+      propertyPath: _sprites.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1699985168573419981, guid: 3cdf8e193f123d04e8fac36bc25f7db6,
+        type: 3}
+      propertyPath: _sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: a730050cb298f9743b7c49e15c80e51a,
+        type: 3}
+    - target: {fileID: 1699985168573419981, guid: 3cdf8e193f123d04e8fac36bc25f7db6,
+        type: 3}
+      propertyPath: _sprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 22e9ad8ac33267f4d81011065d7910c6,
+        type: 3}
+    - target: {fileID: 1699985168573419981, guid: 3cdf8e193f123d04e8fac36bc25f7db6,
+        type: 3}
+      propertyPath: _sprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1eb392b818d21424283659f0fc716e48,
+        type: 3}
+    - target: {fileID: 1699985168573419981, guid: 3cdf8e193f123d04e8fac36bc25f7db6,
+        type: 3}
+      propertyPath: _sprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 9db9e212782087b4d92bd3908ca92248,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cdf8e193f123d04e8fac36bc25f7db6, type: 3}
 --- !u!1001 &2102109464122410189

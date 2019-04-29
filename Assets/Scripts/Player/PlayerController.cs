@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour
     private BulletData _bulletData;
 #pragma warning restore 0649
 
+    [SerializeField]
+    private Sprite[] _sprites;
+
     private Vector2 _velocity;
     private Vector2 _aimDirection;
     private float _aimAngle;
@@ -34,7 +37,11 @@ public class PlayerController : MonoBehaviour
     private static InputManager _inputManager;
     private static SoundEngine _soundEngine;
     private Transform _graphics;
+    private PlayerHeart _heart;
     private bool _isFiring;
+
+    private bool _isShielded;
+    private bool _isDamaging;
 
     private IEnumerator _fireContinuously;
 
@@ -43,6 +50,7 @@ public class PlayerController : MonoBehaviour
         _inputManager = Game.GetPersistentComponent<InputManager>();
         _soundEngine = Game.GetPersistentComponent<SoundEngine>();
         _graphics = transform.GetChild(0);
+        _heart = GetComponent<PlayerHeart>();
 
         _inputManager.Primary.AddListener(ChangeFireState);
         _fireContinuously = FireContinuously();
@@ -70,6 +78,33 @@ public class PlayerController : MonoBehaviour
         return angle;
     }
 
+    void UpdateSpecialState()
+    {
+        bool newShielded = _heart.IsShielded;
+        bool newDamaging = _heart.IsDamaging;
+        bool changed = 
+            (newShielded != _isShielded) || 
+            (newDamaging != _isDamaging);
+
+        if (!changed) return;
+
+        _isShielded = newShielded;
+        _isDamaging = newDamaging;
+
+        OnSpecialStateChanged();
+    }
+
+    void OnSpecialStateChanged()
+    {
+        int spriteIndex =
+            (_isDamaging ? 1 : 0) +
+            (_isShielded ? 2 : 0);
+
+        Sprite newSprite = _sprites[spriteIndex];
+
+        _graphics.GetComponent<SpriteRenderer>().sprite = newSprite;
+    }
+
     void Update()
     {
         if (Time.timeScale == 0f)
@@ -88,6 +123,8 @@ public class PlayerController : MonoBehaviour
         while (_aimAngle > Mathf.PI) _aimAngle -= Mathf.PI * 2f;
 
         _aimDirection = new Vector2(Mathf.Cos(_aimAngle), Mathf.Sin(_aimAngle));
+
+        UpdateSpecialState();
     }
 
     private void LateUpdate()
@@ -114,8 +151,19 @@ public class PlayerController : MonoBehaviour
     void Fire()
     {
         float _shootAngle = _aimAngle.ToDegrees() - 90f;
-        gameObject.Shoot(_bulletData, new Vector2(0, 0), _shootAngle, true);
-        gameObject.Shoot(_bulletData, new Vector2(0, 0), _shootAngle, false);
+        if (_isDamaging)
+        {
+            Vector2 offset = (new Vector2(GameConstants.DamagingShotDistance / 2f, 0)).Rotate(_shootAngle);
+            gameObject.Shoot(_bulletData, offset, _shootAngle, true);
+            gameObject.Shoot(_bulletData, offset, _shootAngle, false);
+            gameObject.Shoot(_bulletData, -offset, _shootAngle, true);
+            gameObject.Shoot(_bulletData, -offset, _shootAngle, false);
+        }
+        else
+        {
+            gameObject.Shoot(_bulletData, new Vector2(0, 0), _shootAngle, true);
+            gameObject.Shoot(_bulletData, new Vector2(0, 0), _shootAngle, false);
+        }
     }
 
     private IEnumerator FireContinuously()

@@ -13,6 +13,7 @@ public class PlayerHeart : MonoBehaviour
     private int _damageBuildup = 0;
 
     private bool _isDying = false;
+    private SoundEngine _soundEngine;
 
     public bool IsShielded
         => _shieldDuration > 0f;
@@ -43,6 +44,11 @@ public class PlayerHeart : MonoBehaviour
         _health = MaxHealth;
     }
 
+    private void Start()
+    {
+        _soundEngine = Game.GetPersistentComponent<SoundEngine>();
+    }
+
     public void Heal()
     {
         _health++;
@@ -53,10 +59,18 @@ public class PlayerHeart : MonoBehaviour
 
     public void Hit()
     {
-        _health--;
+        if (IsShielded)
+        {
+            _soundEngine.PlaySFX("hit_miss");
+            return;
+        }
+        else
+        {
+            _health--;
 
-        // u lose damaging status on hit
-        _isDamaging = false;
+            // u lose damaging status on hit
+            _isDamaging = false;
+        }
     }
 
     public void AddShield()
