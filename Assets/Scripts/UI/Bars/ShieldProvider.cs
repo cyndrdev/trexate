@@ -14,7 +14,7 @@ public class ShieldProvider : MonoBehaviour, IScaleProvider
     }
 
     public float GetValue()
-        => (_heart.IsShielded) ? _heart.ShieldLeft : 0f;
+        => (_heart.IsShielded) ? (_heart.ShieldLeft / GameConstants.ShieldDuration) : 0f;
     public float GetSubValue()
         => (_heart.IsShielded) ? 1f : _heart.ShieldBuildup;
 }

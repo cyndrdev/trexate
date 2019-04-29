@@ -318,6 +318,7 @@ GameObject:
   - component: {fileID: 121208062}
   - component: {fileID: 121208063}
   - component: {fileID: 121208064}
+  - component: {fileID: 121208065}
   m_Layer: 0
   m_Name: Persistent
   m_TagString: Untagged
@@ -379,6 +380,7 @@ MonoBehaviour:
   Persistant: {fileID: 121208050}
   BulletRoot: {fileID: 1781362591}
   EnemyRoot: {fileID: 1454334981}
+  PickupRoot: {fileID: 948856976}
 --- !u!114 &121208055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,6 +537,21 @@ MonoBehaviour:
   _fadeObject: {fileID: 189511848}
   _deathText: {fileID: 1034493868}
   _restartText: {fileID: 1512537883}
+--- !u!114 &121208065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121208050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 428ba7974194b5c4db8988ffe5ef350f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healSprite: {fileID: 21300000, guid: 973d11fb4773af34993c60593e79efef, type: 3}
+  _damageSprite: {fileID: 21300000, guid: 756baacf462a86f45b59d23091812229, type: 3}
+  _shieldSprite: {fileID: 21300000, guid: 5bd323755f9d153449eef2a4e3798e27, type: 3}
 --- !u!1 &122059328
 GameObject:
   m_ObjectHideFlags: 0
@@ -2566,6 +2583,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &965905390
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites/PixelPerfectEntity
+  m_Shader: {fileID: 4800000, guid: b941d0ad94808604fb951105ad819b5f, type: 3}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _PixelSize: 0.0625
+    - _Res: 16
+    m_Colors:
+    - _SpritePivot: {r: 1, g: 1, b: 0, a: 0}
+    - _SpriteUV: {r: 1, g: 1, b: 0, a: 0}
+    - _UVCenter: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &987162277
 GameObject:
   m_ObjectHideFlags: 0
@@ -2640,36 +2687,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987162277}
   m_CullTransparentMesh: 0
---- !u!21 &1014929380
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprites/PixelPerfectEntity
-  m_Shader: {fileID: 4800000, guid: b941d0ad94808604fb951105ad819b5f, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _PixelSize: 0.0625
-    - _Res: 16
-    m_Colors:
-    - _SpritePivot: {r: 1, g: 1, b: 0, a: 0}
-    - _SpriteUV: {r: 1, g: 1, b: 0, a: 0}
-    - _UVCenter: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1034493866
 GameObject:
   m_ObjectHideFlags: 0
@@ -3138,6 +3155,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1699985169759063433}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &1202214808
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites/PixelPerfectEntity
+  m_Shader: {fileID: 4800000, guid: b941d0ad94808604fb951105ad819b5f, type: 3}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _PixelSize: 0.0625
+    - _Res: 16
+    m_Colors:
+    - _SpritePivot: {r: 1, g: 1, b: 0, a: 0}
+    - _SpriteUV: {r: 1, g: 1, b: 0, a: 0}
+    - _UVCenter: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1241701934
 GameObject:
   m_ObjectHideFlags: 0
@@ -3714,36 +3761,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1477635405}
   m_CullTransparentMesh: 0
---- !u!21 &1483592524
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprites/PixelPerfectEntity
-  m_Shader: {fileID: 4800000, guid: b941d0ad94808604fb951105ad819b5f, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _PixelSize: 0.0625
-    - _Res: 16
-    m_Colors:
-    - _SpritePivot: {r: 1, g: 1, b: 0, a: 0}
-    - _SpriteUV: {r: 1, g: 1, b: 0, a: 0}
-    - _UVCenter: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1501377803
 GameObject:
   m_ObjectHideFlags: 0
@@ -5164,7 +5181,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1483592524}
+      objectReference: {fileID: 965905390}
     - target: {fileID: 5879001905698873559, guid: 3cdf8e193f123d04e8fac36bc25f7db6,
         type: 3}
       propertyPath: m_Color.r

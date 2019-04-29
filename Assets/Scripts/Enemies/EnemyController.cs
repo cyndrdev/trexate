@@ -225,6 +225,10 @@ public class EnemyController : MonoBehaviour
         //FIXME: proper scores?
         _data.killScore.AddToScore();
 
+        //FIXME: add random pickups
+        Game.GetPersistentComponent<PickupFactory>()
+            .SpawnRandom(transform.position);
+
         Destroy(gameObject);
     }
 
