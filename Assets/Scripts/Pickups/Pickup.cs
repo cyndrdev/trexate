@@ -12,8 +12,7 @@ public enum PickupType
 public class Pickup : MonoBehaviour
 {
     float _minY;
-    [SerializeField]
-    private PickupType _type;
+    public PickupType _type;
 
     void Start()
     {
