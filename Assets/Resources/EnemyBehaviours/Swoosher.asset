@@ -30,3 +30,8 @@ MonoBehaviour:
     HealthTrigger: 250
   - StageScript: ExplodeSmall
     HealthTrigger: 0
+  DoHealthPickup: 1
+  DoDamagePickup: 1
+  DoShieldPickup: 1
+  SpawnChance: 0.5
+  SpawnAttempts: 10

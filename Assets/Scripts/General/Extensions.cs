@@ -38,6 +38,8 @@ namespace Extensions
             return r;
         }
 
+        public static int AsInt(this bool b) => b ? 1 : 0;
+
         public static Vector2 Rotate(this Vector2 vector, float degrees)
             => degrees.ToRotation() * vector;
 

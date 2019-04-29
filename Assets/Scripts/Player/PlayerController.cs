@@ -88,14 +88,17 @@ public class PlayerController : MonoBehaviour
         while (_aimAngle > Mathf.PI) _aimAngle -= Mathf.PI * 2f;
 
         _aimDirection = new Vector2(Mathf.Cos(_aimAngle), Mathf.Sin(_aimAngle));
+    }
+
+    private void LateUpdate()
+    {
+        transform.localRotation = (_aimAngle.ToDegrees() - 90f).ToRotation();
+        transform.localPosition += new Vector3(_velocity.x, _velocity.y) * Time.deltaTime;
 
         Debug.DrawLine(
             transform.position, 
             transform.position + new Vector3(_aimDirection.x, _aimDirection.y) * 1000
         );
-
-        transform.localRotation = (_aimAngle.ToDegrees() - 90f).ToRotation();
-        transform.localPosition += new Vector3(_velocity.x, _velocity.y) * Time.deltaTime;
     }
 
     void ChangeFireState (bool down)

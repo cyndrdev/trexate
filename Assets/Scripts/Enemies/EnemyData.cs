@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 /* ~~~ sinning starts here ~~~ */
 // no mortals may pass
@@ -48,4 +49,12 @@ public class EnemyData : ScriptableObject
 
     public float SpawnChance = 1.0f;
     public int SpawnAttempts = 1;
+
+    public byte Pickups
+        => (byte)(new List<int>
+        {
+            DoHealthPickup ? 1 : 0,
+            DoDamagePickup ? 2 : 0,
+            DoShieldPickup ? 4 : 0,
+        }.Sum());
 }

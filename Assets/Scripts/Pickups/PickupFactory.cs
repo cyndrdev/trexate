@@ -19,7 +19,7 @@ public class PickupFactory : MonoBehaviour
         while (true)
         {
             int i = Random.Range(0, 3);
-            if ((pool & (byte)2.Pow(i)) == 0)
+            if ((pool & (byte)(2.Pow(i))) != 0)
             {
                 Spawn(position, (PickupType)i);
                 return;
