@@ -5,33 +5,50 @@ using UnityEngine;
 public class PlayerHeart : MonoBehaviour
 {
     private int _health;
+
     private float _shieldDuration;
+    private int _shieldBuildup = 0;
+
     private bool _isDamaging = false;
+    private int _damageBuildup = 0;
+
     private bool _isDying = false;
 
     public bool IsShielded
-    {
-        get => _shieldDuration > 0f;
-    }
+        => _shieldDuration > 0f;
+
+    public float ShieldLeft
+        => _shieldDuration;
+
+    public float ShieldBuildup
+        => (float)_shieldBuildup / GameConstants.AbilityBuildLimit;
 
     public bool IsDamaging
-    {
-        get => _isDamaging;
-    }
+        => _isDamaging;
+
+    public float DamageBuildup
+        => (float)_damageBuildup / GameConstants.AbilityBuildLimit;
 
     public int Health
-    {
-        get => _health;
-    }
+        => _health;
+
+    public bool IsFullHealth
+        => _health == MaxHealth;
 
     public int MaxHealth
-    {
-        get => GameConstants.PlayerMaxHealth;
-    }
+        => GameConstants.PlayerMaxHealth;
 
     private void Awake()
     {
         _health = MaxHealth;
+    }
+
+    public void Heal()
+    {
+        _health++;
+
+        if (_health > MaxHealth)
+            _health = MaxHealth;
     }
 
     public void Hit()
@@ -42,14 +59,24 @@ public class PlayerHeart : MonoBehaviour
         _isDamaging = false;
     }
 
-    public void Shield()
+    public void AddShield()
     {
-        _shieldDuration = GameConstants.ShieldDuration;
+        _shieldBuildup++;
+        if (_shieldBuildup >= GameConstants.AbilityBuildLimit)
+        {
+            _shieldBuildup = 0;
+            _shieldDuration = GameConstants.ShieldDuration;
+        }
     }
 
-    public void SetDamaging()
+    public void AddDamaging()
     {
-        _isDamaging = true;
+        _damageBuildup++;
+        if (_damageBuildup >= GameConstants.AbilityBuildLimit)
+        {
+            _damageBuildup = 0;
+            _isDamaging = true;
+        }
     }
 
     void Update()

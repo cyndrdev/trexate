@@ -31,6 +31,7 @@ public class GameConstants
     /* --- health --- */
     public static int PlayerMaxHealth = 10;
     public static float ShieldDuration = 3f;
+    public static int AbilityBuildLimit = 5;
 
     /* --- time travel --- */
     public static int TimeTravelStart = 7192;
@@ -58,6 +59,9 @@ public class GameConstants
     public static Color EnemyInvulnFlashColor = new Color(0f, 0.4f, 1f);
 
     public static float HitboxFadeAmt = 5f;
+
+    public static float PickupFallRate = 3f;
+    public static float PickupDespawnMargin = 2f;
 
     /* --- ui --- */
     public static float CounterRefreshRate = 0.025f;

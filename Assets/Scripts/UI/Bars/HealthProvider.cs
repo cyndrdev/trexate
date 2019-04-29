@@ -16,7 +16,8 @@ public class HealthProvider : MonoBehaviour, IScaleProvider
 
     void Start()
     {
-        _heart = GameObject.FindGameObjectWithTag(GameConstants.PlayerController)
+        _heart = GameObject
+            .FindGameObjectWithTag(GameConstants.PlayerController)
             .GetComponent<PlayerHeart>();
 
         float startValue = CurrentHealthValue;
