@@ -474,20 +474,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementRate: 5.5
   _background:
-  - {fileID: 21300000, guid: cf68550f0323a7e46abb4548598112dc, type: 3}
-  - {fileID: 21300000, guid: cd46274babfe95c48be5320b229cc40a, type: 3}
-  - {fileID: 21300000, guid: 009311762c05bde429e195f1439dfd22, type: 3}
-  - {fileID: 21300000, guid: ae1a560a142493f4eba963b1cded2dc5, type: 3}
+  - {fileID: 21300000, guid: 46c7b7bc15fadf44881150bff7dccc05, type: 3}
+  - {fileID: 21300000, guid: 53d10dc8e5e883b458e9cc4693abb5bf, type: 3}
+  - {fileID: 21300000, guid: 5eb577259cb3ddc4cb3b795c7bad2b75, type: 3}
+  - {fileID: 21300000, guid: 005230d0461c34e4ca561bc6cae37f98, type: 3}
   _layerOne:
-  - {fileID: 21300000, guid: 5a04b04a1c6244043bf4cab97698ea8a, type: 3}
-  - {fileID: 21300000, guid: 4102308830344ff4c9f82c172f38cfac, type: 3}
-  - {fileID: 21300000, guid: 4cf0c478e91b53742827f41a2ddee09e, type: 3}
-  - {fileID: 21300000, guid: 0c8e01d30733bb248b66a146b1f88e85, type: 3}
+  - {fileID: 21300000, guid: e62d1e437bc53dd4baa470d630a842a3, type: 3}
+  - {fileID: 21300000, guid: c03b65dc07feb4c46ac6916f85fef155, type: 3}
+  - {fileID: 21300000, guid: a6e91255a35ba054b85e58ad349fa9ae, type: 3}
+  - {fileID: 21300000, guid: 912f7a75a0060c24e8f4164a8d375489, type: 3}
   _layerTwo:
-  - {fileID: 21300000, guid: 02e1cdf7bdb4fb144971810a7a5cc4c9, type: 3}
-  - {fileID: 21300000, guid: 78010b66711acd4489a42ca02dbc6def, type: 3}
-  - {fileID: 21300000, guid: 95431f8221d73fc4b86de8e498828aeb, type: 3}
-  - {fileID: 21300000, guid: a09a6b380c130974a8a22d3003a00ae4, type: 3}
+  - {fileID: 21300000, guid: d494a517969f6a741a8aec49a8a256ee, type: 3}
+  - {fileID: 21300000, guid: 7f4dc355dcae26140a9fe4366befcfe4, type: 3}
+  - {fileID: 21300000, guid: 401060e60a4ddcc46b31fb0258f2e385, type: 3}
+  - {fileID: 21300000, guid: 5af0917da5f6bdc4b873634034ea3d5d, type: 3}
   _position: 0
 --- !u!4 &122059330
 Transform:
@@ -2235,6 +2235,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 831741962}
   m_CullTransparentMesh: 0
+--- !u!21 &872405151
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites/PixelPerfectEntity
+  m_Shader: {fileID: 4800000, guid: b941d0ad94808604fb951105ad819b5f, type: 3}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _PixelSize: 0.0625
+    - _Res: 16
+    m_Colors:
+    - _SpritePivot: {r: 1, g: 1, b: 0, a: 0}
+    - _SpriteUV: {r: 1, g: 1, b: 0, a: 0}
+    - _UVCenter: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &872605575
 GameObject:
   m_ObjectHideFlags: 0
